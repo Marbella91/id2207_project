@@ -24,33 +24,47 @@ public class LoginController implements Initializable{
 		String printedLogin = labelLogin.getText();
 		String printedPassword = labelPass.getText();
 		
-	    LinkedList<Employee> employeeList = Employee.generateEmployeeList();
-	    boolean employeeFound = false;
-	    int i = 0;
-	    while (!employeeFound && i < employeeList.size()){
-	    	Employee employee = employeeList.get(i);
-	    	if (employee.getLogin().equals(printedLogin))
-	    	{
-	    		employeeFound = true;
-	    		if (employee.getPassword().equals(printedPassword))
-	    		{
-	    			Stage currentStage = (Stage) buttonLogin.getScene().getWindow();
-	    			currentStage.close();
-	    		}
-	    		else
-	    		{
-	    			JOptionPane.showMessageDialog(null, "Wrong password!",
+		if (printedLogin.equals(""))
+		{
+			JOptionPane.showMessageDialog(null, "Please enter a login",
+    				"", JOptionPane.ERROR_MESSAGE);
+		}
+		else if (printedPassword.equals(""))
+		{
+			JOptionPane.showMessageDialog(null, "Please enter a password",
+    				"", JOptionPane.ERROR_MESSAGE);
+		}
+		else
+		{
+			LinkedList<Employee> employeeList = Employee.generateEmployeeList();
+		    boolean employeeFound = false;
+		    int i = 0;
+		    while (!employeeFound && i < employeeList.size()){
+		    	Employee employee = employeeList.get(i);
+		    	if (employee.getLogin().equals(printedLogin))
+		    	{
+		    		employeeFound = true;
+		    		if (employee.getPassword().equals(printedPassword))
+		    		{
+		    			Stage currentStage = (Stage) buttonLogin.getScene().getWindow();
+		    			currentStage.close();
+		    		}
+		    		else
+		    		{
+		    			JOptionPane.showMessageDialog(null, "Wrong password!",
+			    				"", JOptionPane.ERROR_MESSAGE);
+		    		}
+		    	}
+		    	i++;
+		    }
+		    if (!employeeFound)
+		    {
+		    	JOptionPane.showMessageDialog(null,
+		    				"This login does not exist!",
 		    				"", JOptionPane.ERROR_MESSAGE);
-	    		}
-	    	}
-	    	i++;
-	    }
-	    if (!employeeFound)
-	    {
-	    	JOptionPane.showMessageDialog(null,
-	    				"This login does not exist!",
-	    				"", JOptionPane.ERROR_MESSAGE);
-	    }
+		    }
+		}
+	    
 	}
 
 	@Override

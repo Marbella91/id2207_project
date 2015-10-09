@@ -97,10 +97,14 @@ public class Employee {
 	    }
 		
 		String janet = toXml(new Employee("Janet", "janet", "janetpassword", Job.SeniorCustomerServiceOfficer));
-		String jack = toXml(new Employee("Jack", "jack", "jackpassword",Job.FinancialManager));
+		String sarah = toXml(new Employee("Sarah", "sarah", "sarahpassword", Job.CustomerServiceOfficer));
+		String mike = toXml(new Employee("Mike", "mike", "mikepassword",Job.AdministrationManager));
+		String alice = toXml(new Employee("Alice", "alice", "alicepassword",Job.FinancialManager));
 		
 		fromXmlToFile(janet, "data/janet.xml");
-		fromXmlToFile(janet, "data/jack.xml");
+		fromXmlToFile(janet, "data/sarah.xml");
+		fromXmlToFile(mike, "data/mike.xml");
+		fromXmlToFile(alice, "data/alice.xml");
 		
 	}
 	
