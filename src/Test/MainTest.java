@@ -5,10 +5,9 @@ import Login.Employee;
 public class MainTest {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		Employee.generateDataFiles();
+		//Employee.generateDataFiles();
 		//TestEmployee.testGenerateEmployeeList();
+		TestEventPlanningRequest.testCreateEventPlanningRequest();
 	}
 
 }
