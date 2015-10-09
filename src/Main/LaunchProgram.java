@@ -1,6 +1,6 @@
 package Main;
 
-import Login.LoginController;
+import FxmlController.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,8 +16,7 @@ public class LaunchProgram extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
-		 FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginInterface.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginInterface.fxml"));
 	        LoginController controller = new  LoginController();
 	        loader.setController(controller); 
 	        Parent root = (Parent) loader.load();

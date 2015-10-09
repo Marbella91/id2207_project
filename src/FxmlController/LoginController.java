@@ -1,10 +1,11 @@
-package Login;
+package FxmlController;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
+import Login.Employee;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
