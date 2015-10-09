@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="430.0" prefWidth="582.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <!-- TODO Add Nodes -->
+  <children>
+    <TabPane layoutX="14.0" layoutY="45.0" prefHeight="371.0" prefWidth="554.0" tabClosingPolicy="UNAVAILABLE">
+      <tabs>
+        <Tab text="Event Planning Request">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <children>
+                <ListView fx:id="labelPendingCommentsRequests" layoutX="59.0" layoutY="47.0" onEditStart="#handlePendingCommentsRequests" prefHeight="149.0" prefWidth="347.0" />
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+        <Tab text="Client records">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+          </content>
+        </Tab>
+      </tabs>
+    </TabPane>
+    <HBox layoutX="468.0" layoutY="5.0" prefHeight="35.0" prefWidth="100.0">
+      <children>
+        <Label text="Login:" />
+        <Label text="login" />
+      </children>
+    </HBox>
+  </children>
+</AnchorPane>
