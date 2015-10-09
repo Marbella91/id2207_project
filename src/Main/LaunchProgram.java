@@ -16,7 +16,7 @@ public class LaunchProgram extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginInterface.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginInterface.fxml"));
 	        LoginController controller = new  LoginController();
 	        loader.setController(controller); 
 	        Parent root = (Parent) loader.load();

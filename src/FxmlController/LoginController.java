@@ -1,4 +1,5 @@
 package FxmlController;
+import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
@@ -10,6 +11,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -48,7 +51,26 @@ public class LoginController implements Initializable{
 		    		if (employee.getPassword().equals(printedPassword))
 		    		{
 		    			Stage currentStage = (Stage) buttonLogin.getScene().getWindow();
-		    			currentStage.close();
+		    			//currentStage.close();
+		    			
+		    			FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/NewRequest.fxml"));
+		    	        NewRequestController controller = new  NewRequestController();
+		    	        loader.setController(controller); 
+		    	        Parent root;
+						try {
+							root = (Parent) loader.load();
+							Scene scene = new Scene(root);
+			    	        currentStage.setScene(scene);
+			    	        currentStage.setTitle("Initialize a new Request"); 
+			    	        currentStage.setMinHeight(700);
+			    	        currentStage.setMinWidth(1100);
+			    	        currentStage.show();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+		    	       
+		    	        
 		    		}
 		    		else
 		    		{
