@@ -7,7 +7,9 @@ public class MainTest {
 	public static void main(String[] args) {
 		//Employee.generateDataFiles();
 		//TestEmployee.testGenerateEmployeeList();
-		TestEventPlanningRequest.testCreateEventPlanningRequest();
+		//TestEventPlanningRequest.testCreateEventPlanningRequest();
+		TestEventPlanningRequest t=new TestEventPlanningRequest();
+		t.testCreateXmlFile();
 	}
 
 }

@@ -5,6 +5,8 @@ import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
+import EventPlanningRequest.EventPlanningRequest;
+import Login.Employee;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,7 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class NewRequestController  implements Initializable{
-	private String userName;
+	private Employee employee;
 	private double recordNumber;
 	private String clientName;
 	private String eventType;
@@ -23,6 +25,9 @@ public class NewRequestController  implements Initializable{
 	@FXML private TextField eventTypeText;
 	@FXML private Button buttonSubmit;
 	
+	public NewRequestController(Employee employee){
+		this.employee=employee;
+	}
 	
 	public double getRecordNumber() {
 		return recordNumber;
@@ -58,25 +63,32 @@ public class NewRequestController  implements Initializable{
 		return labelLogin.getText();
 	}
 	
-	public NewRequestController(String userName){
-		this.userName=userName;
-		//setLabelLogin(userName);
-	}
+	
 
 	@FXML
 	public void handleSubmit(ActionEvent event){
 	//	setRecordNumber(this.recordNumberText.getText());
+		
+		if(this.clientNameText.getText().equals("")){
+			JOptionPane.showMessageDialog(null, "Please inter the client name!",
+					"", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		if(this.eventTypeText.getText().equals("")){
+			JOptionPane.showMessageDialog(null, "Please inter the event type!",
+					"", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 		setClientName(this.clientNameText.getText());
 		setEventType(this.eventTypeText.getText());
-		System.out.println("submit ");
+		//EventPlanningRequest request=new EventPlanningRequest("",this.clientName,
+			//	this.eventType,);
 		
-		JOptionPane.showMessageDialog(null, "the event planning request has been submited successfully",
-				"", JOptionPane.INFORMATION_MESSAGE);
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		
+		this.labelLogin.setText(this.employee.getLogin());
 	}
 	
 }

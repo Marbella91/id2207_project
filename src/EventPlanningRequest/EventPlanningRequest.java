@@ -1,6 +1,15 @@
 package EventPlanningRequest;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Calendar;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.StaxDriver;
+
+import Login.Employee;
 
 public class EventPlanningRequest {
 
@@ -185,6 +194,26 @@ public class EventPlanningRequest {
 
 	public void setAdministrationComments(String administrationComments) {
 		this.administrationComments = administrationComments;
+	}
+	
+	public void fromRequestToXml(){
+		XStream xstream = new XStream(new StaxDriver());
+		xstream.alias("EventPlanningRequest", EventPlanningRequest.class);
+		String xml= xstream.toXML(this);
+		File dataDirectory = new File("data/Requests/EPRequests");
+		int i=dataDirectory.listFiles().length+1;
+		String fileName="data/Requests/EPRequests/request"+i+".xml";
+		File file = new File(fileName);
+		FileWriter fw;
+		try {
+			fw = new FileWriter(fileName);
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(xml);
+			bw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	

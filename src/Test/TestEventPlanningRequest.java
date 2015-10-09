@@ -46,4 +46,26 @@ public class TestEventPlanningRequest {
 		}
 		
 	}
+	
+	public void testCreateXmlFile(){
+		Calendar fromDate = Calendar.getInstance();
+		fromDate.set(2015, 1, 1);
+		Calendar toDate = Calendar.getInstance();
+		toDate.set(2015, 1, 2);
+		EventPlanningRequest e = new EventPlanningRequest(
+				123,
+				"clientName",
+				"eventType",
+				fromDate,
+				toDate,
+				100,
+				true,
+				false,
+				false,
+				false,
+				false,
+				1000 );
+		
+		e.fromRequestToXml();
+	}
 }

@@ -22,6 +22,7 @@ public class LoginController implements Initializable{
 	@FXML private TextField labelLogin;
 	@FXML private TextField labelPass;
 	@FXML private Button buttonLogin;
+	private Employee employee; 
 	
 	@FXML
 	private void handleButtonLogin(ActionEvent event){
@@ -50,11 +51,13 @@ public class LoginController implements Initializable{
 		    		employeeFound = true;
 		    		if (employee.getPassword().equals(printedPassword))
 		    		{
+		    			this.employee=employee;
 		    			Stage currentStage = (Stage) buttonLogin.getScene().getWindow();
 		    			//currentStage.close();
 		    			
+		    			
 		    			FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/NewRequest.fxml"));
-		    	        NewRequestController controller = new  NewRequestController(printedLogin);
+		    	        NewRequestController controller = new  NewRequestController(employee);
 		    	        loader.setController(controller); 
 		    	        Parent root;
 						try {
