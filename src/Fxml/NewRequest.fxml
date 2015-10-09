@@ -25,7 +25,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
               <children>
-                <TextField prefWidth="200.0">
+                <TextField fx:id="clientNameText" prefWidth="200.0">
                   <HBox.margin>
                     <Insets left="70.0" top="10.0" />
                   </HBox.margin>
@@ -50,7 +50,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
               <children>
-                <TextField prefWidth="200.0">
+                <TextField fx:id="eventTypeText" prefWidth="200.0">
                   <HBox.margin>
                     <Insets left="70.0" top="10.0" />
                   </HBox.margin>
@@ -75,7 +75,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
               <children>
-                <TextField prefWidth="200.0">
+                <TextField fx:id="recordNumberText" prefWidth="200.0">
                   <HBox.margin>
                     <Insets left="70.0" top="10.0" />
                   </HBox.margin>
@@ -110,7 +110,7 @@
       </children>
     </Pane>
     <Label layoutX="406.0" layoutY="25.0" prefHeight="22.0" text="Login :" />
-    <Button layoutX="484.0" layoutY="512.0" mnemonicParsing="false" text="Submit" />
-    <Label layoutX="475.0" layoutY="28.0" text="Label" />
+    <Button fx:id="buttonSubmit" layoutX="484.0" layoutY="512.0" mnemonicParsing="false" onAction="#handleSubmit" text="Submit" />
+    <Label fx:id="labelLogin" layoutX="475.0" layoutY="28.0" text="Label" />
   </children>
 </AnchorPane>

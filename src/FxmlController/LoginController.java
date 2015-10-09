@@ -54,7 +54,7 @@ public class LoginController implements Initializable{
 		    			//currentStage.close();
 		    			
 		    			FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/NewRequest.fxml"));
-		    	        NewRequestController controller = new  NewRequestController();
+		    	        NewRequestController controller = new  NewRequestController(printedLogin);
 		    	        loader.setController(controller); 
 		    	        Parent root;
 						try {
@@ -65,6 +65,7 @@ public class LoginController implements Initializable{
 			    	        currentStage.setMinHeight(700);
 			    	        currentStage.setMinWidth(1100);
 			    	        currentStage.show();
+			    	        
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
