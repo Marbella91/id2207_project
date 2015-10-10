@@ -157,8 +157,8 @@ public class Employee {
 					scene = new Scene(root);
 	    	        currentStage.setScene(scene);
 	    	        currentStage.setTitle("Initialize a new Request"); 
-	    	        currentStage.setMinHeight(700);
-	    	        currentStage.setMinWidth(1100);
+	    	        currentStage.setHeight(800);
+	    	        currentStage.setWidth(600);
 	    	        currentStage.show();
 	        		break;
 	        	

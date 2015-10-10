@@ -39,6 +39,7 @@ public class NewRequestController  implements Initializable{
 	@FXML private TextField clientNameText;
 	@FXML private TextField eventTypeText;
 	@FXML private Button buttonSubmit;
+	@FXML private Button disconnect;
 	@FXML private TextField fromText;
 	@FXML private TextField toText;
 	@FXML private TextField expectedText;
@@ -47,6 +48,7 @@ public class NewRequestController  implements Initializable{
 	@FXML private CheckBox food;
 	@FXML private CheckBox drinks;
 	@FXML private CheckBox photos;
+	
 	
 	public NewRequestController(Employee employee){
 		this.employee=employee;
@@ -190,6 +192,13 @@ public class NewRequestController  implements Initializable{
 			}
 			
 		
+	}
+	
+	@FXML
+	public void handleDisconnect(ActionEvent event){
+		JOptionPane.showMessageDialog(null, "Are you sure you want to quit? ",
+				"", JOptionPane.QUESTION_MESSAGE);
+	
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
