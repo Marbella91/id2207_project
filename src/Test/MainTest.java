@@ -5,11 +5,12 @@ import Login.Employee;
 public class MainTest {
 
 	public static void main(String[] args) {
-		//Employee.generateDataFiles();
+		Employee.generateDataFiles();
 		//TestEmployee.testGenerateEmployeeList();
 		//TestEventPlanningRequest.testCreateEventPlanningRequest();
-		TestEventPlanningRequest t=new TestEventPlanningRequest();
-		t.testCreateXmlFile();
+		
+		//TestEventPlanningRequest t=new TestEventPlanningRequest();
+		//t.testCreateXmlFile();
 	}
 
 }

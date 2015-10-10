@@ -55,7 +55,8 @@ public class LoginController implements Initializable{
 		    			Stage currentStage = (Stage) buttonLogin.getScene().getWindow();
 		    			//currentStage.close();
 		    			
-		    			
+		    			employee.generateInterface(currentStage);
+		    			/*
 		    			FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/NewRequest.fxml"));
 		    	        NewRequestController controller = new  NewRequestController(employee);
 		    	        loader.setController(controller); 
@@ -73,6 +74,7 @@ public class LoginController implements Initializable{
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
+						*/
 		    	       
 		    	        
 		    		}
