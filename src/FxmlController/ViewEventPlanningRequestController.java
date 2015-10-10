@@ -139,7 +139,7 @@ public class ViewEventPlanningRequestController  implements Initializable{
 	                    }
 	                });
 	                Button  button2 = new Button("Reject request");
-	                button1.setOnAction(new EventHandler<ActionEvent>() {
+	                button2.setOnAction(new EventHandler<ActionEvent>() {
 	                    @Override
 	                    public void handle(ActionEvent e) {
 	                    	request.setStatus(EventPlanningRequestStatus.Rejected);
