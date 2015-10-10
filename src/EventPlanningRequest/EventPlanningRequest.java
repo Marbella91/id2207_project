@@ -21,8 +21,6 @@ public class EventPlanningRequest {
 	private int clientRecordNumber; // set to 0 if no client record
 	private String clientName;
 	private String eventType;
-	//private Calendar fromDate;
-	//private Calendar toDate;
 	private String fromDate;
 	private String toDate;
 	private int expectedAttendeesNumber;

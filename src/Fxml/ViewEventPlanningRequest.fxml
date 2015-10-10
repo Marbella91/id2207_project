@@ -148,6 +148,8 @@
             <Label id="labelRecordNumber" fx:id="labelBudget" contentDisplay="LEFT" prefHeight="16.0" prefWidth="62.0" text="Label" />
           </children>
         </HBox>
+        <Label id="labelRecordNumber" fx:id="labelExistingComments" contentDisplay="LEFT" layoutX="9.0" layoutY="403.0" prefHeight="74.0" prefWidth="492.0" text="Label" />
+        <HBox fx:id="hboxButton" layoutX="9.0" layoutY="462.0" prefHeight="35.0" prefWidth="394.0" />
       </children>
     </Pane>
   </children>
