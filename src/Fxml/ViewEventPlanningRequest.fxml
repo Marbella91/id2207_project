@@ -90,13 +90,9 @@
         <HBox layoutX="0.0" layoutY="167.0" prefHeight="43.0" prefWidth="538.000022070315">
           <children>
             <Label prefHeight="43.0" prefWidth="79.0" text="From" />
-            <TextField id="fromText" prefHeight="29.0" prefWidth="165.0">
-              <HBox.margin>
-                <Insets top="8.0" fx:id="x1" />
-              </HBox.margin>
-            </TextField>
+            <Label id="labelRecordNumber" fx:id="labelFromDate" contentDisplay="LEFT" prefHeight="43.0" prefWidth="62.0" text="Label" />
             <Label prefHeight="43.0" prefWidth="49.0" text="   To" />
-            <TextField id="toText" prefHeight="29.0" prefWidth="192.0" HBox.margin="$x1" />
+            <Label id="labelRecordNumber" fx:id="labelToDate" contentDisplay="LEFT" prefHeight="43.0" prefWidth="62.0" text="Label" />
           </children>
         </HBox>
         <HBox layoutX="3.0" layoutY="223.0" prefHeight="43.0" prefWidth="468.0">
@@ -112,11 +108,7 @@
             </HBox>
             <HBox prefHeight="43.0" prefWidth="227.0">
               <children>
-                <TextField id="recordNumberText" prefWidth="122.0">
-                  <HBox.margin>
-                    <Insets top="10.0" />
-                  </HBox.margin>
-                </TextField>
+                <Label id="labelRecordNumber" fx:id="labelAttendees" contentDisplay="LEFT" prefHeight="43.0" prefWidth="62.0" text="Label" />
               </children>
               <HBox.margin>
                 <Insets left="50.0" />
@@ -127,14 +119,35 @@
             <Insets right="10.0" />
           </padding>
         </HBox>
-        <Label layoutX="-2.0" layoutY="294.0" text="Preferences" />
-        <CheckBox id="decorations" layoutX="37.0" layoutY="333.0" mnemonicParsing="false" text="Decorations" />
-        <CheckBox id="parties" layoutX="183.0" layoutY="334.0" mnemonicParsing="false" text="Parties" />
-        <CheckBox id="food" layoutX="323.0" layoutY="334.0" mnemonicParsing="false" text="Breakfast,lunch,dinner" />
-        <CheckBox id="drinks" layoutX="36.0" layoutY="374.0" mnemonicParsing="false" text="soft/ hot drinks" />
-        <CheckBox id="photos" layoutX="183.0" layoutY="374.0" mnemonicParsing="false" text="Photos/ filming" />
-        <Label layoutX="4.0" layoutY="423.0" text="Expected budget" />
-        <TextField layoutX="264.0" layoutY="423.0" prefWidth="122.0" />
+        <HBox layoutX="3.0" layoutY="268.0" prefHeight="21.0" prefWidth="430.0">
+          <children>
+            <Label text="Preferences" />
+          </children>
+        </HBox>
+        <HBox layoutX="31.0" layoutY="296.0" prefHeight="28.0" prefWidth="483.0">
+          <children>
+            <Label prefHeight="21.0" prefWidth="90.0" text="Decorations:" />
+            <Label fx:id="labelDecorations" prefHeight="21.0" prefWidth="64.00009999999747" text="Label" />
+            <Label prefHeight="21.0" prefWidth="90.0" text="Parties:" />
+            <Label fx:id="labelParties" prefHeight="20.999900000002526" prefWidth="64.0" text="Label" />
+            <Label prefHeight="21.0" prefWidth="125.00009999999747" text="Breakfast,lunch,dinner:" />
+            <Label fx:id="labelFood" prefHeight="21.0" prefWidth="49.0" text="Label" />
+          </children>
+        </HBox>
+        <HBox layoutX="31.0" layoutY="324.0" prefHeight="35.0" prefWidth="483.0">
+          <children>
+            <Label prefHeight="21.0" prefWidth="90.0" text="soft/ hot drinks:" />
+            <Label fx:id="labelDrinks" prefHeight="21.0" prefWidth="65.0" text="Label" />
+            <Label prefHeight="21.0" prefWidth="90.0" text="Photos/ filming:" />
+            <Label fx:id="labelPhotos" prefHeight="20.999900000002526" prefWidth="64.0" text="Label" />
+          </children>
+        </HBox>
+        <HBox layoutX="3.0" layoutY="367.0" prefHeight="28.0" prefWidth="511.0">
+          <children>
+            <Label prefWidth="118.0" text="Expected budget" />
+            <Label id="labelRecordNumber" fx:id="labelBudget" contentDisplay="LEFT" prefHeight="16.0" prefWidth="62.0" text="Label" />
+          </children>
+        </HBox>
       </children>
     </Pane>
   </children>

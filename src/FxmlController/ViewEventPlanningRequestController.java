@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -33,6 +34,15 @@ public class ViewEventPlanningRequestController  implements Initializable{
 	@FXML private Label labelRecordNumber;
 	@FXML private Label labelClientName;
 	@FXML private Label labelEventType;
+	@FXML private Label labelFromDate;
+	@FXML private Label labelToDate;
+	@FXML private Label labelAttendees;
+	@FXML private Label labelDecorations;
+	@FXML private Label labelParties;
+	@FXML private Label labelFood;
+	@FXML private Label labelPhotos;
+	@FXML private Label labelDrinks;
+	@FXML private Label labelBudget;
 	
 	public ViewEventPlanningRequestController(Employee employee, EventPlanningRequest request){
 		this.employee=employee;
@@ -42,7 +52,7 @@ public class ViewEventPlanningRequestController  implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		//this.labelLogin.setText(this.employee.getLogin());
+		this.labelLogin.setText(this.employee.getLogin());
 		if (this.request.getClientRecordNumber() == 0){
 			this.labelRecordNumber.setText("");
 		} else {
@@ -50,6 +60,15 @@ public class ViewEventPlanningRequestController  implements Initializable{
 		}
 		this.labelClientName.setText(this.request.getClientName());
 		this.labelEventType.setText(this.request.getEventType());
+		this.labelFromDate.setText(this.request.getFromDate());
+		this.labelToDate.setText(this.request.getToDate());
+		this.labelAttendees.setText(String.valueOf(this.request.getExpectedAttendeesNumber()));
+		this.labelDecorations.setText(this.request.isDecorationPreference() ? "yes" : "no");
+		this.labelParties.setText(this.request.isPartiesPreference() ? "yes" : "no");
+		this.labelFood.setText(this.request.isFoodPreference() ? "yes" : "no");
+		this.labelPhotos.setText(this.request.isPhotoPreference() ? "yes" : "no");
+		this.labelDrinks.setText(this.request.isDrinkPreference() ? "yes" : "no");
+		this.labelBudget.setText(String.valueOf(this.request.getExpectedBudget()));
 	}
 	
 	
