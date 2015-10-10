@@ -110,7 +110,7 @@ public class Employee {
 	
 	public static LinkedList<Employee> generateEmployeeList()
 	{
-		File dataDirectory = new File("data");
+		File dataDirectory = new File("data/Employees");
 		File[] fileList = dataDirectory.listFiles(); 
 		
 		LinkedList<Employee>  employeeList = new LinkedList<Employee>();

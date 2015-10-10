@@ -13,11 +13,14 @@ import Login.Employee;
 
 public class EventPlanningRequest {
 
+	
 	private int clientRecordNumber; // set to 0 if no client record
 	private String clientName;
 	private String eventType;
-	private Calendar fromDate;
-	private Calendar toDate;
+	//private Calendar fromDate;
+	//private Calendar toDate;
+	private String fromDate;
+	private String toDate;
 	private int expectedAttendeesNumber;
 	private boolean decorationPreference;
 	private boolean partiesPreference;
@@ -34,8 +37,8 @@ public class EventPlanningRequest {
 	private String financialComments;
 	private String administrationComments;
 	
-	public EventPlanningRequest(int clientRecordNumber, String clientName, String eventType, Calendar fromDate,
-			Calendar toDate, int expectedAttendeesNumber, boolean decorationPreference, boolean partiesPreference,
+	public EventPlanningRequest(int clientRecordNumber, String clientName, String eventType, String fromDate,
+			String toDate, int expectedAttendeesNumber, boolean decorationPreference, boolean partiesPreference,
 			boolean photoPreference, boolean foodPreference, boolean drinkPreference, int expectedBudget) {
 		this.clientRecordNumber = clientRecordNumber;
 		this.clientName = clientName;
@@ -51,7 +54,7 @@ public class EventPlanningRequest {
 		this.expectedBudget = expectedBudget;
 	}
 
-	public EventPlanningRequest(String clientName, String eventType, Calendar fromDate, Calendar toDate,
+	public EventPlanningRequest(String clientName, String eventType, String fromDate, String toDate,
 			int expectedAttendeesNumber, boolean decorationPreference, boolean partiesPreference,
 			boolean photoPreference, boolean foodPreference, boolean drinkPreference, int expectedBudget) {
 		this.clientRecordNumber = 0;
@@ -92,19 +95,19 @@ public class EventPlanningRequest {
 		this.eventType = eventType;
 	}
 
-	public Calendar getFromDate() {
+	public String getFromDate() {
 		return fromDate;
 	}
 
-	public void setFromDate(Calendar fromDate) {
+	public void setFromDate(String fromDate) {
 		this.fromDate = fromDate;
 	}
 
-	public Calendar getToDate() {
+	public String getToDate() {
 		return toDate;
 	}
 
-	public void setToDate(Calendar toDate) {
+	public void setToDate(String toDate) {
 		this.toDate = toDate;
 	}
 
@@ -215,6 +218,7 @@ public class EventPlanningRequest {
 			e.printStackTrace();
 		}
 	}
+	
 	
 	
 	

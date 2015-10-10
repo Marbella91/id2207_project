@@ -24,8 +24,8 @@ public class LaunchProgram extends Application {
 	        Scene scene = new Scene(root);
 	        primaryStage.setScene(scene);
 	        primaryStage.setTitle("Login"); 
-	        primaryStage.setMinHeight(700);
-	        primaryStage.setMinWidth(1100);
+	        primaryStage.setHeight(250);
+	        primaryStage.setWidth(400);
 	        primaryStage.show();
 	         
 	      

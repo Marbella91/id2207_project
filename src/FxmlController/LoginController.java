@@ -65,8 +65,8 @@ public class LoginController implements Initializable{
 							Scene scene = new Scene(root);
 			    	        currentStage.setScene(scene);
 			    	        currentStage.setTitle("Initialize a new Request"); 
-			    	        currentStage.setMinHeight(700);
-			    	        currentStage.setMinWidth(1100);
+			    	        currentStage.setWidth(600);
+			    	        currentStage.setHeight(800);
 			    	        currentStage.show();
 			    	        
 						} catch (IOException e) {
