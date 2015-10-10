@@ -56,27 +56,6 @@ public class LoginController implements Initializable{
 		    			//currentStage.close();
 		    			
 		    			employee.generateInterface(currentStage);
-		    			/*
-		    			FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/NewRequest.fxml"));
-		    	        NewRequestController controller = new  NewRequestController(employee);
-		    	        loader.setController(controller); 
-		    	        Parent root;
-						try {
-							root = (Parent) loader.load();
-							Scene scene = new Scene(root);
-			    	        currentStage.setScene(scene);
-			    	        currentStage.setTitle("Initialize a new Request"); 
-			    	        currentStage.setWidth(600);
-			    	        currentStage.setHeight(800);
-			    	        currentStage.show();
-			    	        
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						*/
-		    	       
-		    	        
 		    		}
 		    		else
 		    		{

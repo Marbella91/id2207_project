@@ -11,6 +11,8 @@ import java.util.LinkedList;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
 
+import FxmlController.AdministrationManagerInterfaceController;
+import FxmlController.FinancialManagerInterfaceController;
 import FxmlController.NewRequestController;
 import FxmlController.SCSOInterfaceController;
 import javafx.fxml.FXMLLoader;
@@ -175,7 +177,36 @@ public class Employee {
 	    	        currentStage.show();
 	        		break;
 	        	
-	        	default: 
+	        	case FinancialManager: 
+	        		loader = new FXMLLoader(getClass().getResource("../Fxml/FinancialManagerInterface.fxml"));
+	        		FinancialManagerInterfaceController financialManagercontroller =
+	        				new  FinancialManagerInterfaceController(this);
+	    	        loader.setController(financialManagercontroller);
+	    	        root = (Parent) loader.load();
+					scene = new Scene(root);
+	    	        currentStage.setScene(scene);
+	    	        currentStage.setTitle("Financial Manager Interface"); 
+	    	        currentStage.setMinHeight(700);
+	    	        currentStage.setMinWidth(1100);
+	    	        currentStage.show();
+	        		break;
+	        	
+	        	case AdministrationManager: 
+	        		loader = new FXMLLoader(getClass().getResource("../Fxml/AdministrationManagerInterface.fxml"));
+	        		AdministrationManagerInterfaceController administrationManagercontroller =
+	        				new  AdministrationManagerInterfaceController(this);
+	    	        loader.setController(administrationManagercontroller);
+	    	        root = (Parent) loader.load();
+					scene = new Scene(root);
+	    	        currentStage.setScene(scene);
+	    	        currentStage.setTitle("Administration Manager Interface"); 
+	    	        currentStage.setMinHeight(700);
+	    	        currentStage.setMinWidth(1100);
+	    	        currentStage.show();
+	        		break;
+	        	
+	        	default:
+	        		System.out.println("Cas pas encore traité");
 	        		currentStage.close();
 	        		break;
 			}

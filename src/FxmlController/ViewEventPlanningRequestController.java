@@ -107,6 +107,7 @@ public class ViewEventPlanningRequestController  implements Initializable{
 		
 		// Display button depending on actor
 		switch(this.employee.getJob()){
+		
 			case SeniorCustomerServiceOfficer:
 				if (this.request.getStatus().equals(EventPlanningRequestStatus.PendingSCSOComments) &&
 					this.request.getSCSOComments() == null	){
@@ -152,6 +153,90 @@ public class ViewEventPlanningRequestController  implements Initializable{
 	                this.hboxButton.getChildren().add(button2);
 				}
 				break;
+			
+			case FinancialManager:
+				if (this.request.getStatus().equals(EventPlanningRequestStatus.PendingFinancialComments) &&
+					this.request.getFinancialComments() == null	){
+					Button  button = new Button("Add a comment");
+	                button.setOnAction(new EventHandler<ActionEvent>() {
+	                    @Override
+	                    public void handle(ActionEvent e) {
+	                    	String newComment = JOptionPane.showInputDialog("Write your comment below:", "My comment");
+	                    	if(newComment != null)
+	                    	{
+	                    		request.setFinancialComments(newComment);
+	                    		request.updateXml();
+	                    		Stage stage=(Stage) button.getScene().getWindow();
+	                    		reinitializeInterface(stage);
+	                    	}
+	                    }
+	                });
+	                this.hboxButton.getChildren().add(button);
+				}
+				else if (this.request.getStatus().equals(EventPlanningRequestStatus.PendingFinancialComments) &&
+						this.request.getFinancialComments() != null	){
+					Button  button = new Button("Send to Administration Manager");
+	                button.setOnAction(new EventHandler<ActionEvent>() {
+	                    @Override
+	                    public void handle(ActionEvent e) {
+	                    	request.setStatus(EventPlanningRequestStatus.PendingAdministrationComments);
+	                    	request.updateXml();
+	                    	Stage stage=(Stage) button.getScene().getWindow();
+	                    	reinitializeInterface(stage);
+	                    }
+	                });
+	                this.hboxButton.getChildren().add(button);
+	            }
+				break;
+			
+			case AdministrationManager:
+				if (this.request.getStatus().equals(EventPlanningRequestStatus.PendingAdministrationComments) &&
+					this.request.getAdministrationComments() == null	){
+					Button  button = new Button("Add a comment");
+	                button.setOnAction(new EventHandler<ActionEvent>() {
+	                    @Override
+	                    public void handle(ActionEvent e) {
+	                    	String newComment = JOptionPane.showInputDialog("Write your comment below:", "My comment");
+	                    	if(newComment != null)
+	                    	{
+	                    		request.setAdministrationComments(newComment);
+	                    		request.updateXml();
+	                    		Stage stage=(Stage) button.getScene().getWindow();
+	                    		reinitializeInterface(stage);
+	                    	}
+	                    }
+	                });
+	                this.hboxButton.getChildren().add(button);
+				}
+				else if (this.request.getStatus().equals(EventPlanningRequestStatus.PendingAdministrationComments) &&
+						this.request.getAdministrationComments() != null	){
+					Button  button1 = new Button("Approve request");
+	                button1.setOnAction(new EventHandler<ActionEvent>() {
+	                    @Override
+	                    public void handle(ActionEvent e) {
+	                    	request.setStatus(EventPlanningRequestStatus.Approved);
+	                    	request.updateXml();
+	                    	Stage stage=(Stage) button1.getScene().getWindow();
+	                    	reinitializeInterface(stage);
+	                    }
+	                });
+	                Button  button2 = new Button("Reject request");
+	                button2.setOnAction(new EventHandler<ActionEvent>() {
+	                    @Override
+	                    public void handle(ActionEvent e) {
+	                    	request.setStatus(EventPlanningRequestStatus.Rejected);
+	                    	request.updateXml();
+	                    	Stage stage=(Stage) button2.getScene().getWindow();
+	                    	reinitializeInterface(stage);
+	                    }
+	                });
+	                this.hboxButton.getChildren().add(button1);
+	                this.hboxButton.getChildren().add(button2);
+				}
+				break;
+			
+			
+				
 			default:
 				break;
 		}
