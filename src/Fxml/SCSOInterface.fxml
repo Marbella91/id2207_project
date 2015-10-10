@@ -14,7 +14,14 @@
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
-                <ListView fx:id="labelPendingCommentsRequests" layoutX="59.0" layoutY="47.0" prefHeight="149.0" prefWidth="347.0" />
+                <TableView id="labelPendingCommentsRequests" fx:id="labelPendingSCSOCommentsRequests" layoutX="37.0" layoutY="54.0" prefHeight="163.0" prefWidth="451.0">
+                  <columns>
+                    <TableColumn prefWidth="75.0" text="Client name" fx:id="labelPendingSCSO_ClientName" />
+                    <TableColumn prefWidth="75.0" text="Event type" fx:id="labelPendingSCSO_EventType" />
+                    <TableColumn prefWidth="75.0" text="From" fx:id="labelPendingSCSO_From" />
+                    <TableColumn prefWidth="75.0" text="To" fx:id="labelPendingSCSO_To" />
+                  </columns>
+                </TableView>
               </children>
             </AnchorPane>
           </content>
