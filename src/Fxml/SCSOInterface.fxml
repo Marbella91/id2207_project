@@ -10,11 +10,11 @@
   <children>
     <TabPane layoutX="14.0" layoutY="45.0" prefHeight="371.0" prefWidth="554.0" tabClosingPolicy="UNAVAILABLE">
       <tabs>
-        <Tab text="Event Planning Request">
+        <Tab text="Event Planning Requests">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
-                <ListView fx:id="labelPendingCommentsRequests" layoutX="59.0" layoutY="47.0" onEditStart="#handlePendingCommentsRequests" prefHeight="149.0" prefWidth="347.0" />
+                <ListView fx:id="labelPendingCommentsRequests" layoutX="59.0" layoutY="47.0" prefHeight="149.0" prefWidth="347.0" />
               </children>
             </AnchorPane>
           </content>
@@ -29,7 +29,7 @@
     <HBox layoutX="468.0" layoutY="5.0" prefHeight="35.0" prefWidth="100.0">
       <children>
         <Label text="Login:" />
-        <Label text="login" />
+        <Label fx:id="labelLogin" text="login" />
       </children>
     </HBox>
   </children>
