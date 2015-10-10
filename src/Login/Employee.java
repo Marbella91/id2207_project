@@ -11,6 +11,13 @@ import java.util.LinkedList;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
 
+import FxmlController.NewRequestController;
+import FxmlController.SCSOInterfaceController;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 public class Employee {
 	private String name;
 	private String login;
@@ -88,7 +95,7 @@ public class Employee {
 	
 	public static void generateDataFiles()
 	{
-		File dataDirectory = new File("data");
+		File dataDirectory = new File("data/Employees");
 		try{
 	        dataDirectory.mkdir();
 		} catch(SecurityException se){
@@ -101,10 +108,10 @@ public class Employee {
 		String mike = toXml(new Employee("Mike", "mike", "mikepassword",Job.AdministrationManager));
 		String alice = toXml(new Employee("Alice", "alice", "alicepassword",Job.FinancialManager));
 		
-		fromXmlToFile(janet, "data/janet.xml");
-		fromXmlToFile(janet, "data/sarah.xml");
-		fromXmlToFile(mike, "data/mike.xml");
-		fromXmlToFile(alice, "data/alice.xml");
+		fromXmlToFile(janet, "data/Employees/janet.xml");
+		fromXmlToFile(sarah, "data/Employees/sarah.xml");
+		fromXmlToFile(mike, "data/Employees/mike.xml");
+		fromXmlToFile(alice, "data/Employees/alice.xml");
 		
 	}
 	
@@ -133,11 +140,50 @@ public class Employee {
 			}
 			
 		}
-		
-		
-		
-		
 		return employeeList;
+	}
+	
+	public void generateInterface(Stage currentStage){
+		FXMLLoader loader;
+		Parent root;
+		Scene scene;
+		try {
+			switch (this.job) {
+	        	case CustomerServiceOfficer: 
+	        		loader = new FXMLLoader(getClass().getResource("../Fxml/NewRequest.fxml"));
+	    	        NewRequestController CSOcontroller = new  NewRequestController(this);
+	    	        loader.setController(CSOcontroller);
+	    	        root = (Parent) loader.load();
+					scene = new Scene(root);
+	    	        currentStage.setScene(scene);
+	    	        currentStage.setTitle("Initialize a new Request"); 
+	    	        currentStage.setMinHeight(700);
+	    	        currentStage.setMinWidth(1100);
+	    	        currentStage.show();
+	        		break;
+	        	
+	        	case SeniorCustomerServiceOfficer: 
+	        		loader = new FXMLLoader(getClass().getResource("../Fxml/SCSOInterface.fxml"));
+	        		SCSOInterfaceController SCSOcontroller = new  SCSOInterfaceController(this);
+	    	        loader.setController(SCSOcontroller);
+	    	        root = (Parent) loader.load();
+					scene = new Scene(root);
+	    	        currentStage.setScene(scene);
+	    	        currentStage.setTitle("Senior Customer Service Officer Interface"); 
+	    	        currentStage.setMinHeight(700);
+	    	        currentStage.setMinWidth(1100);
+	    	        currentStage.show();
+	        		break;
+	        	
+	        	default: 
+	        		currentStage.close();
+	        		break;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 	
 	

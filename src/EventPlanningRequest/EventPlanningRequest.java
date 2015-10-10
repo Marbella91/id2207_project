@@ -1,10 +1,14 @@
 package EventPlanningRequest;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.LinkedList;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
@@ -218,6 +222,61 @@ public class EventPlanningRequest {
 			e.printStackTrace();
 		}
 	}
+	
+	public static EventPlanningRequest fromXmlToRequest(String xml){
+		XStream xstream = new XStream(new StaxDriver());
+		xstream.processAnnotations(EventPlanningRequest.class);
+		xstream.alias("EventPlanningRequest", EventPlanningRequest.class);
+		return (EventPlanningRequest) xstream.fromXML(xml);
+	}
+	
+	
+	// true if the employee is authorized to see the event planning request
+	public boolean isVisible(Employee e)
+	{
+		switch (e.getJob())
+		{
+			case SeniorCustomerServiceOfficer:
+				return true;
+			case FinancialManager:
+				return (this.status.equals(EventPlanningRequestStatus.PendingFinancialComments) ||
+						this.status.equals(EventPlanningRequestStatus.Approved));
+			case AdministrationManager:
+				return (this.status.equals(EventPlanningRequestStatus.PendingAdministrationComments) ||
+						this.status.equals(EventPlanningRequestStatus.Approved));
+			default:
+				return false;
+		}
+	}
+	
+	public static LinkedList<EventPlanningRequest> generateAuthorizedEPRequestsList(Employee e)
+	{
+		File dataDirectory = new File("data/Requests/EPRequests");
+		File[] fileList = dataDirectory.listFiles(); 
+		
+		LinkedList<EventPlanningRequest>  EPRequestsList = new LinkedList<EventPlanningRequest>();
+		
+		for (int i = 0; i < fileList.length; i++)
+		{
+			FileReader fr;
+			try {
+				fr = new FileReader(fileList[i]);
+				BufferedReader br = new BufferedReader(fr);
+				String requestXml = br.readLine();
+				EventPlanningRequest request = fromXmlToRequest(requestXml);
+				if (request.isVisible(e))
+					EPRequestsList.add(request);
+				br.close();
+				fr.close();
+			} catch (IOException ex) {
+				// TODO Auto-generated catch block
+				ex.printStackTrace();
+			}
+		}
+		return EPRequestsList;
+	}
+	
+	
 	
 	
 	
