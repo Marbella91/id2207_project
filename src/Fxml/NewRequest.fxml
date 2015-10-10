@@ -143,7 +143,8 @@
       </children>
     </Pane>
     <Label layoutX="406.0" layoutY="25.0" prefHeight="22.0" text="Login :" />
-    <Button fx:id="buttonSubmit" mnemonicParsing="false" onAction="#handleSubmit" text="Submit" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
     <Label fx:id="labelLogin" layoutX="475.0" layoutY="28.0" text="Label" />
+    <Button id="handleDisconnect" fx:id="disconnect" layoutX="403.0" layoutY="604.0" mnemonicParsing="false" onAction="#handleDisconnect" text="Disconnect" />
+    <Button fx:id="buttonSubmit" layoutX="319.0" layoutY="604.0" mnemonicParsing="false" onAction="#handleSubmit" text="Submit" />
   </children>
 </AnchorPane>
