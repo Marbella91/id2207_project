@@ -76,7 +76,6 @@ public class SCSOInterfaceController  implements Initializable{
 		    		        currentStage.setWidth(600);
 		    		        currentStage.show();
 		    			} catch (IOException e) {
-		    				// TODO Auto-generated catch block
 		    				e.printStackTrace();
 		    			} 
 		        }

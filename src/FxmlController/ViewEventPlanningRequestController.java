@@ -118,7 +118,7 @@ public class ViewEventPlanningRequestController  implements Initializable{
 	                    	if(newComment != null)
 	                    	{
 	                    		request.setSCSOComments(newComment);
-	                    		//TODO mettre à jour fichier XML
+	                    		request.updateXml();
 	                    		Stage stage=(Stage) button.getScene().getWindow();
 	                    		reinitializeInterface(stage);
 	                    	}
@@ -133,7 +133,7 @@ public class ViewEventPlanningRequestController  implements Initializable{
 	                    @Override
 	                    public void handle(ActionEvent e) {
 	                    	request.setStatus(EventPlanningRequestStatus.PendingFinancialComments);
-	                    	//TODO mettre à jour fichier XML
+	                    	request.updateXml();
 	                    	Stage stage=(Stage) button1.getScene().getWindow();
 	                    	reinitializeInterface(stage);
 	                    }
@@ -143,7 +143,7 @@ public class ViewEventPlanningRequestController  implements Initializable{
 	                    @Override
 	                    public void handle(ActionEvent e) {
 	                    	request.setStatus(EventPlanningRequestStatus.Rejected);
-	                    	//TODO mettre à jour fichier XML
+	                    	request.updateXml();
 	                    	Stage stage=(Stage) button2.getScene().getWindow();
 	                    	reinitializeInterface(stage);
 	                    }

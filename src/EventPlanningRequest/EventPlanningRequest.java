@@ -17,6 +17,8 @@ import Login.Employee;
 
 public class EventPlanningRequest {
 
+	// unique id, generated first time the request is saved in the database
+	private int id;
 	
 	private int clientRecordNumber; // set to 0 if no client record
 	private String clientName;
@@ -71,6 +73,14 @@ public class EventPlanningRequest {
 		this.foodPreference = foodPreference;
 		this.drinkPreference = drinkPreference;
 		this.expectedBudget = expectedBudget;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getClientRecordNumber() {
@@ -202,13 +212,31 @@ public class EventPlanningRequest {
 	}
 	
 	public void fromRequestToXml(){
+		File dataDirectory = new File("data/Requests/EPRequests");
+		int i=dataDirectory.listFiles().length+1;
+		this.setId(i);
 		XStream xstream = new XStream(new StaxDriver());
 		xstream.alias("EventPlanningRequest", EventPlanningRequest.class);
 		String xml= xstream.toXML(this);
-		File dataDirectory = new File("data/Requests/EPRequests");
-		int i=dataDirectory.listFiles().length+1;
 		String fileName="data/Requests/EPRequests/request"+i+".xml";
-		File file = new File(fileName);
+		FileWriter fw;
+		try {
+			fw = new FileWriter(fileName);
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(xml);
+			bw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateXml(){
+		XStream xstream = new XStream(new StaxDriver());
+		xstream.alias("EventPlanningRequest", EventPlanningRequest.class);
+		String xml= xstream.toXML(this);
+		int i = this.getId();
+		String fileName="data/Requests/EPRequests/request"+i+".xml";
 		FileWriter fw;
 		try {
 			fw = new FileWriter(fileName);
