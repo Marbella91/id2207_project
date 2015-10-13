@@ -7,7 +7,7 @@ public class FinancialRequest {
 	// status can be open when the request is created , approved or rejected
 	private String status;
 	
-	public FinancialRequest(String department, int amount, String reason, String status) {
+	public FinancialRequest(String department, int amount, String reason) {
 		super();
 		this.department = department;
 		this.amount = amount;

@@ -68,6 +68,19 @@ public class NewHiringRequestController  implements Initializable{
 	
 	@FXML
 	public void handleSubmit(ActionEvent event){
+		String contractType="";
+		if (fullTimeBox.isSelected()){
+			contractType="fullTime";
+		}
+		else if (partTimeBox.isSelected()) {
+			contractType="partTime";
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Please choose a contract type!",
+					"", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+	
 		String department="";
 		if (adminBox.isSelected()){
 			department="administration";
@@ -81,16 +94,33 @@ public class NewHiringRequestController  implements Initializable{
 		else if (financialBox.isSelected()){
 			department="financial";
 		}
-		
-		String contractType="";
-		if (fullTimeBox.isSelected()){
-			contractType="fullTime";
+		else {
+				JOptionPane.showMessageDialog(null, "Please choose a department!",
+						"", JOptionPane.ERROR_MESSAGE);
+				return;
+			
 		}
-		else if (partTimeBox.isSelected()) {
-			contractType="partTime";
+		if (this.yearsExpText.getText().equals("")){
+			JOptionPane.showMessageDialog(null, "Please enter the experience year number !",
+					"", JOptionPane.ERROR_MESSAGE);
+			return;
 		}
+	
 		
+	
 		int years=Integer.parseInt(this.yearsExpText.getText());
+		
+		if (this.jobTitleText.getText().equals("")){
+			JOptionPane.showMessageDialog(null, "Please enter a job title !",
+					"", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		
+		if (this.jobDescriptionText.getText().equals("")){
+			JOptionPane.showMessageDialog(null, "Please enter a job description !",
+					"", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 		
 		HiringRequest hiringRequest=new HiringRequest(department,contractType,
 				years,this.jobTitleText.getText(),
@@ -98,6 +128,11 @@ public class NewHiringRequestController  implements Initializable{
 		
 		this.epr.getHiringRequest().add(hiringRequest);
 		this.epr.updateXml();
+		
+
+		JOptionPane.showMessageDialog(null, "The hiring request has been "
+				+ "created successfully!",
+				"", JOptionPane.INFORMATION_MESSAGE);
 		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/ViewEventPlanningRequest.fxml"));
         ViewEventPlanningRequestController controller = new  ViewEventPlanningRequestController(this.employee, this.epr);
