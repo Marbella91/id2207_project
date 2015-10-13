@@ -276,14 +276,30 @@ public class ViewEventPlanningRequestController  implements Initializable{
 						button.setOnAction(new EventHandler<ActionEvent>() {
 							@Override
 							public void handle(ActionEvent e) {
-								//TODO open create hiring request interface
+								FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/NewHiringRequest.fxml"));
+						        NewHiringRequestController controller = new NewHiringRequestController(employee, request);
+						        loader.setController(controller); 
+						        Parent root;
+								
+								try {
+								 Stage currentStage= (Stage) buttonLogout.getScene().getWindow();
+									root = (Parent) loader.load();
+									Scene scene = new Scene(root);
+								       currentStage.setScene(scene);
+								       currentStage.setTitle("New Hiring Request"); 
+								       currentStage.setHeight(800);
+								       currentStage.setWidth(600);
+								       currentStage.show();
+								} catch (IOException e1) {
+									e1.printStackTrace();
+								}
 							}
 						});
 						this.hboxButton.getChildren().add(button);
 					}
 					// see hiring requests if at least one exists
 					if (!hiringRequests.isEmpty()){
-						Button  button = new Button("View the Hiring Request");
+						Button  button = new Button("View Hiring Requests");
 						button.setOnAction(new EventHandler<ActionEvent>() {
 							@Override
 							public void handle(ActionEvent e) {
