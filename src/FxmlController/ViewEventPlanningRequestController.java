@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
+import EventPlanningRequest.Application;
 import EventPlanningRequest.EventPlanningRequest;
 import EventPlanningRequest.EventPlanningRequestStatus;
 import EventPlanningRequest.HiringRequest;
@@ -32,6 +33,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class ViewEventPlanningRequestController  implements Initializable{
@@ -53,7 +55,7 @@ public class ViewEventPlanningRequestController  implements Initializable{
 	@FXML private Label labelDrinks;
 	@FXML private Label labelBudget;
 	@FXML private Label labelExistingComments;
-	@FXML private HBox hboxButton;
+	@FXML private VBox vboxButton;
 	
 	public ViewEventPlanningRequestController(Employee employee, EventPlanningRequest request){
 		this.employee=employee;
@@ -127,7 +129,7 @@ public class ViewEventPlanningRequestController  implements Initializable{
 	                    	}
 	                    }
 	                });
-	                this.hboxButton.getChildren().add(button);
+	                this.vboxButton.getChildren().add(button);
 				}
 				else if (this.request.getStatus().equals(EventPlanningRequestStatus.PendingSCSOComments) &&
 						this.request.getSCSOComments() != null	){
@@ -151,8 +153,8 @@ public class ViewEventPlanningRequestController  implements Initializable{
 	                    	reinitializeInterface(stage);
 	                    }
 	                });
-	                this.hboxButton.getChildren().add(button1);
-	                this.hboxButton.getChildren().add(button2);
+	                this.vboxButton.getChildren().add(button1);
+	                this.vboxButton.getChildren().add(button2);
 				}
 				break;
 			
@@ -173,7 +175,7 @@ public class ViewEventPlanningRequestController  implements Initializable{
 	                    	}
 	                    }
 	                });
-	                this.hboxButton.getChildren().add(button);
+	                this.vboxButton.getChildren().add(button);
 				}
 				else if (this.request.getStatus().equals(EventPlanningRequestStatus.PendingFinancialComments) &&
 						this.request.getFinancialComments() != null	){
@@ -187,7 +189,7 @@ public class ViewEventPlanningRequestController  implements Initializable{
 	                    	reinitializeInterface(stage);
 	                    }
 	                });
-	                this.hboxButton.getChildren().add(button);
+	                this.vboxButton.getChildren().add(button);
 	            }
 				break;
 			
@@ -208,7 +210,7 @@ public class ViewEventPlanningRequestController  implements Initializable{
 	                    	}
 	                    }
 	                });
-	                this.hboxButton.getChildren().add(button);
+	                this.vboxButton.getChildren().add(button);
 				}
 				else if (this.request.getStatus().equals(EventPlanningRequestStatus.PendingAdministrationComments) &&
 						this.request.getAdministrationComments() != null	){
@@ -232,8 +234,8 @@ public class ViewEventPlanningRequestController  implements Initializable{
 	                    	reinitializeInterface(stage);
 	                    }
 	                });
-	                this.hboxButton.getChildren().add(button1);
-	                this.hboxButton.getChildren().add(button2);
+	                this.vboxButton.getChildren().add(button1);
+	                this.vboxButton.getChildren().add(button2);
 				}
 				break;
 				
@@ -254,9 +256,16 @@ public class ViewEventPlanningRequestController  implements Initializable{
 							@Override
 							public void handle(ActionEvent e) {
 								//TODO open create application interface
+								request.setProductionApplication(new Application("production"));
+								request.updateXml();
+								JOptionPane.showMessageDialog(null, "The application has been "
+										+ "created successfully!",
+										"", JOptionPane.INFORMATION_MESSAGE);
+	                    		Stage stage=(Stage) button.getScene().getWindow();
+	                    		reinitializeInterface(stage);
 							}
 						});
-						this.hboxButton.getChildren().add(button);
+						this.vboxButton.getChildren().add(button);
 					}
 					// see the application if it exists
 					if (this.request.getProductionApplication() != null){
@@ -264,10 +273,26 @@ public class ViewEventPlanningRequestController  implements Initializable{
 						button.setOnAction(new EventHandler<ActionEvent>() {
 							@Override
 							public void handle(ActionEvent e) {
-								//TODO view the application interface
+								FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/ViewApplication.fxml"));
+						        ViewApplicationController controller = new ViewApplicationController(employee, request);
+						        loader.setController(controller); 
+						        Parent root;
+								
+								try {
+								 Stage currentStage= (Stage) buttonLogout.getScene().getWindow();
+									root = (Parent) loader.load();
+									Scene scene = new Scene(root);
+								       currentStage.setScene(scene);
+								       currentStage.setTitle("View Application"); 
+								       currentStage.setHeight(800);
+								       currentStage.setWidth(600);
+								       currentStage.show();
+								} catch (IOException e1) {
+									e1.printStackTrace();
+								}
 							}
 						});
-						this.hboxButton.getChildren().add(button);
+						this.vboxButton.getChildren().add(button);
 					}
 					// possibility to create a hiring request if the application
 					// has not been created yet
@@ -295,7 +320,7 @@ public class ViewEventPlanningRequestController  implements Initializable{
 								}
 							}
 						});
-						this.hboxButton.getChildren().add(button);
+						this.vboxButton.getChildren().add(button);
 					}
 					// see hiring requests if at least one exists
 					if (!hiringRequests.isEmpty()){
@@ -306,7 +331,7 @@ public class ViewEventPlanningRequestController  implements Initializable{
 								//TODO view the Hiring request interface
 							}
 						});
-						this.hboxButton.getChildren().add(button);
+						this.vboxButton.getChildren().add(button);
 					}
 					// possibility to create a financial request if there is no existing
 					// financial request and if the application's status is "open"
@@ -320,7 +345,7 @@ public class ViewEventPlanningRequestController  implements Initializable{
 								//TODO open create financial request interface
 							}
 						});
-						this.hboxButton.getChildren().add(button);
+						this.vboxButton.getChildren().add(button);
 					}
 					// see the financial request if it exists
 					if (this.request.getFinancialRequest() != null){
@@ -331,7 +356,7 @@ public class ViewEventPlanningRequestController  implements Initializable{
 								//TODO view the application interface
 							}
 						});
-						this.hboxButton.getChildren().add(button);
+						this.vboxButton.getChildren().add(button);
 					}
 					// possibility to set status from "open" to "in progress" if there is no
 					// open financial request
@@ -339,7 +364,7 @@ public class ViewEventPlanningRequestController  implements Initializable{
 							(this.request.getProductionApplication().getStatus().equals("open")) &&
 							((this.request.getFinancialRequest() == null) ||
 									!this.request.getFinancialRequest().getStatus().equals("open"))){
-						Button  button = new Button("View the Financial Request");
+						Button  button = new Button("Set the Application's status to 'in progress'");
 						button.setOnAction(new EventHandler<ActionEvent>() {
 							@Override
 							public void handle(ActionEvent e) {
@@ -349,7 +374,7 @@ public class ViewEventPlanningRequestController  implements Initializable{
 		                    	reinitializeInterface(stage);
 							}
 						});
-						this.hboxButton.getChildren().add(button);
+						this.vboxButton.getChildren().add(button);
 					}
 					break;
 					

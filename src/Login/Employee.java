@@ -66,6 +66,11 @@ public class Employee {
 		this.job = job;
 	}
 	
+	@Override
+	public String toString(){
+		return this.name;
+	}
+	
 	public static String toXml(Employee data)
 	{
 		XStream xstream = new XStream(new StaxDriver());
@@ -111,12 +116,24 @@ public class Employee {
 		String mike = toXml(new Employee("Mike", "mike", "mikepassword",Job.AdministrationManager));
 		String alice = toXml(new Employee("Alice", "alice", "alicepassword",Job.FinancialManager));
 		String jack = toXml(new Employee("Jack", "jack", "jackpassword",Job.ProductionManager));
+		String antony = toXml(new Employee("Antony", "antony", "antonypassword",Job.MusicEmployee));
+		String adam = toXml(new Employee("Adam", "adam", "adampassword",Job.MusicEmployee));
+		String magy = toXml(new Employee("Magy", "magy", "magypassword",Job.DecorationEmployee));
+		String angelina = toXml(new Employee("Angelina", "angelina", "angelinapassword",Job.DecorationEmployee));
+		String dom = toXml(new Employee("Dom", "dom", "dompassword",Job.DecorationEmployee));
+		String tom = toXml(new Employee("Tom", "tom", "tompassword",Job.DecorationEmployee));
 		
 		fromXmlToFile(janet, "data/Employees/janet.xml");
 		fromXmlToFile(sarah, "data/Employees/sarah.xml");
 		fromXmlToFile(mike, "data/Employees/mike.xml");
 		fromXmlToFile(alice, "data/Employees/alice.xml");
 		fromXmlToFile(jack, "data/Employees/jack.xml");
+		fromXmlToFile(antony, "data/Employees/antony.xml");
+		fromXmlToFile(adam, "data/Employees/adam.xml");
+		fromXmlToFile(magy, "data/Employees/magy.xml");
+		fromXmlToFile(angelina, "data/Employees/angelina.xml");
+		fromXmlToFile(dom, "data/Employees/dom.xml");
+		fromXmlToFile(tom, "data/Employees/tom.xml");
 		
 	}
 	

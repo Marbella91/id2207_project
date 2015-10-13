@@ -10,7 +10,7 @@
   <!-- TODO Add Nodes -->
   <children>
     <Button fx:id="buttonMenu" layoutX="35.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleMenu" text="Menu" />
-    <Pane layoutX="51.0" layoutY="50.0" prefHeight="554.0" prefWidth="538.0">
+    <Pane layoutX="51.0" layoutY="50.0" prefHeight="604.0" prefWidth="538.0">
       <children>
         <Label layoutX="31.0" layoutY="19.0" text="Event Planning Request" />
         <HBox layoutX="0.0" layoutY="78.0" prefHeight="43.0" prefWidth="394.0">
@@ -143,7 +143,7 @@
           </children>
         </HBox>
         <Label id="labelRecordNumber" fx:id="labelExistingComments" contentDisplay="LEFT" layoutX="9.0" layoutY="403.0" prefHeight="74.0" prefWidth="492.0" text="Label" />
-        <HBox fx:id="hboxButton" layoutX="9.0" layoutY="462.0" prefHeight="35.0" prefWidth="394.0" />
+        <VBox fx:id="vboxButton" layoutX="21.0" layoutY="486.0" prefHeight="104.0" prefWidth="217.0" />
       </children>
     </Pane>
     <HBox layoutX="393.0" layoutY="22.0" prefHeight="21.0" prefWidth="85.0">

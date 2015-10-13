@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="654.0" prefWidth="638.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <!-- TODO Add Nodes -->
+  <children>
+    <Button fx:id="buttonMenu" layoutX="35.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleMenu" text="Menu" />
+    <HBox layoutX="393.0" layoutY="22.0" prefHeight="21.0" prefWidth="85.0">
+      <children>
+        <Label text="Login:" />
+        <Label fx:id="labelLogin" text="login" />
+      </children>
+    </HBox>
+    <Button id="" fx:id="buttonLogout" layoutX="494.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleLogOut" text="Log out" />
+    <TabPane layoutX="35.0" layoutY="136.0" prefHeight="261.0" prefWidth="528.0" tabClosingPolicy="UNAVAILABLE">
+      <tabs>
+        <Tab text="Decorations">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <children>
+                <HBox id="" layoutX="33.0" layoutY="37.0" prefHeight="75.0" prefWidth="451.0">
+                  <children>
+                    <Label prefHeight="75.0" prefWidth="101.00009999999747" text="Description:" />
+                    <HBox id="boxMusicDescription" fx:id="boxDecorationDescription" alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="324.0" />
+                  </children>
+                </HBox>
+                <HBox id="" layoutX="33.0" layoutY="128.0" prefHeight="16.0" prefWidth="311.0">
+                  <children>
+                    <Label prefHeight="16.0" prefWidth="102.0" text="Assigned to:" />
+                    <HBox id="boxMusicAssign" fx:id="boxDecorationAssign" alignment="CENTER_LEFT" prefHeight="16.0" prefWidth="214.0" />
+                  </children>
+                </HBox>
+                <HBox id="" layoutX="33.0" layoutY="159.0" prefHeight="16.0" prefWidth="311.0">
+                  <children>
+                    <Label prefHeight="16.0" prefWidth="102.0" text="Priority:" />
+                    <HBox id="boxMusicPriority" fx:id="boxDecorationPriority" alignment="BOTTOM_LEFT" prefHeight="16.0" prefWidth="212.0" />
+                  </children>
+                </HBox>
+                <HBox id="boxMusicButton" fx:id="boxDecorationButton" layoutX="321.0" layoutY="193.0" prefHeight="30.0" prefWidth="146.0" />
+                <Label id="labelMusicExistingTask" fx:id="labelDecorationExistingTask" layoutX="33.0" layoutY="21.0" text="Label" />
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+        <Tab text="Music">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="238.0" prefWidth="539.0">
+              <children>
+                <HBox id="" layoutX="33.0" layoutY="37.0" prefHeight="75.0" prefWidth="451.0">
+                  <children>
+                    <Label prefHeight="75.0" prefWidth="101.00009999999747" text="Description:" />
+                    <HBox fx:id="boxMusicDescription" alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="337.0" />
+                  </children>
+                </HBox>
+                <HBox id="" layoutX="33.0" layoutY="128.0" prefHeight="16.0" prefWidth="311.0">
+                  <children>
+                    <Label prefHeight="16.0" prefWidth="100.99990844726562" text="Assigned to:" />
+                    <HBox fx:id="boxMusicAssign" alignment="CENTER_LEFT" prefHeight="16.0" prefWidth="214.0" />
+                  </children>
+                </HBox>
+                <HBox id="" layoutX="33.0" layoutY="159.0" prefHeight="16.0" prefWidth="311.0">
+                  <children>
+                    <Label prefHeight="16.0" prefWidth="102.0" text="Priority:" />
+                    <HBox fx:id="boxMusicPriority" alignment="BOTTOM_LEFT" prefHeight="16.0" prefWidth="212.0" />
+                  </children>
+                </HBox>
+                <HBox fx:id="boxMusicButton" layoutX="321.0" layoutY="193.0" prefHeight="30.0" prefWidth="146.0" />
+                <Label fx:id="labelMusicExistingTask" layoutX="33.0" layoutY="21.0" text="Label" />
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+      </tabs>
+    </TabPane>
+    <HBox layoutX="35.0" layoutY="74.0" prefHeight="30.0" prefWidth="311.0">
+      <children>
+        <Label prefHeight="30.0" prefWidth="118.99990000000253" text="Project reference:" />
+        <Label fx:id="labelProjectRef" prefHeight="30.0" prefWidth="119.0" text="label" />
+      </children>
+    </HBox>
+  </children>
+</AnchorPane>

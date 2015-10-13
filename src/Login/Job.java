@@ -4,5 +4,7 @@ public enum Job {
     SeniorCustomerServiceOfficer,
     FinancialManager,
     AdministrationManager,
-    ProductionManager
+    ProductionManager,
+    MusicEmployee,
+    DecorationEmployee
 }
