@@ -270,6 +270,8 @@ public class EventPlanningRequest {
 			case AdministrationManager:
 				return (this.status.equals(EventPlanningRequestStatus.PendingAdministrationComments) ||
 						this.status.equals(EventPlanningRequestStatus.Approved));
+			case ProductionManager:
+				return (this.status.equals(EventPlanningRequestStatus.Approved));
 			default:
 				return false;
 		}

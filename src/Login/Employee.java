@@ -14,6 +14,7 @@ import com.thoughtworks.xstream.io.xml.StaxDriver;
 import FxmlController.AdministrationManagerInterfaceController;
 import FxmlController.FinancialManagerInterfaceController;
 import FxmlController.NewRequestController;
+import FxmlController.ProductionManagerInterfaceController;
 import FxmlController.SCSOInterfaceController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -109,11 +110,13 @@ public class Employee {
 		String sarah = toXml(new Employee("Sarah", "sarah", "sarahpassword", Job.CustomerServiceOfficer));
 		String mike = toXml(new Employee("Mike", "mike", "mikepassword",Job.AdministrationManager));
 		String alice = toXml(new Employee("Alice", "alice", "alicepassword",Job.FinancialManager));
+		String jack = toXml(new Employee("Jack", "jack", "jackpassword",Job.ProductionManager));
 		
 		fromXmlToFile(janet, "data/Employees/janet.xml");
 		fromXmlToFile(sarah, "data/Employees/sarah.xml");
 		fromXmlToFile(mike, "data/Employees/mike.xml");
 		fromXmlToFile(alice, "data/Employees/alice.xml");
+		fromXmlToFile(jack, "data/Employees/jack.xml");
 		
 	}
 	
@@ -200,6 +203,20 @@ public class Employee {
 					scene = new Scene(root);
 	    	        currentStage.setScene(scene);
 	    	        currentStage.setTitle("Administration Manager Interface"); 
+	    	        currentStage.setMinHeight(700);
+	    	        currentStage.setMinWidth(1100);
+	    	        currentStage.show();
+	        		break;
+	        	
+	        	case ProductionManager: 
+	        		loader = new FXMLLoader(getClass().getResource("../Fxml/ProductionManagerInterface.fxml"));
+	        		ProductionManagerInterfaceController productionManagercontroller =
+	        				new  ProductionManagerInterfaceController(this);
+	    	        loader.setController(productionManagercontroller);
+	    	        root = (Parent) loader.load();
+					scene = new Scene(root);
+	    	        currentStage.setScene(scene);
+	    	        currentStage.setTitle("Production Manager Interface"); 
 	    	        currentStage.setMinHeight(700);
 	    	        currentStage.setMinWidth(1100);
 	    	        currentStage.show();

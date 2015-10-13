@@ -3,5 +3,6 @@ public enum Job {
 	CustomerServiceOfficer,
     SeniorCustomerServiceOfficer,
     FinancialManager,
-    AdministrationManager
+    AdministrationManager,
+    ProductionManager
 }
