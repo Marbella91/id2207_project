@@ -33,6 +33,10 @@ public class EventPlanningRequest {
 	private boolean drinkPreference;
 	private int expectedBudget;
 	
+	private HiringRequest hiringRequest;
+	private FinancialRequest financialRequest;
+	private Application productionApplication;
+	
 	// status: waiting for a type of comment, approved or rejected
 	private EventPlanningRequestStatus status = EventPlanningRequestStatus.PendingSCSOComments;
 	
@@ -211,6 +215,30 @@ public class EventPlanningRequest {
 		this.administrationComments = administrationComments;
 	}
 	
+	public HiringRequest getHiringRequest() {
+		return hiringRequest;
+	}
+
+	public void setHiringRequest(HiringRequest hiringRequest) {
+		this.hiringRequest = hiringRequest;
+	}
+
+	public FinancialRequest getFinancialRequest() {
+		return financialRequest;
+	}
+
+	public void setFinancialRequest(FinancialRequest financialRequest) {
+		this.financialRequest = financialRequest;
+	}
+
+	public Application getProductionApplication() {
+		return productionApplication;
+	}
+
+	public void setProductionApplication(Application productionApplication) {
+		this.productionApplication = productionApplication;
+	}
+
 	public void fromRequestToXml(){
 		File dataDirectory = new File("data/Requests/EPRequests");
 		int i=dataDirectory.listFiles().length+1;

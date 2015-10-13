@@ -235,8 +235,102 @@ public class ViewEventPlanningRequestController  implements Initializable{
 	                this.hboxButton.getChildren().add(button2);
 				}
 				break;
-			
-			
+				
+				case ProductionManager:
+					// possibility to create application if there is no existing application
+					// and there is either no hiring request or an approved or rejected hiring request
+					if ((this.request.getProductionApplication() == null) &&
+							((this.request.getHiringRequest() == null) ||
+									(!this.request.getHiringRequest().getStatus().equals("open")))){
+						Button  button = new Button("Create an Application");
+						button.setOnAction(new EventHandler<ActionEvent>() {
+							@Override
+							public void handle(ActionEvent e) {
+								//TODO open create application interface
+							}
+						});
+						this.hboxButton.getChildren().add(button);
+					}
+					// see the application if it exists
+					if (this.request.getProductionApplication() != null){
+						Button  button = new Button("View the Application");
+						button.setOnAction(new EventHandler<ActionEvent>() {
+							@Override
+							public void handle(ActionEvent e) {
+								//TODO view the application interface
+							}
+						});
+						this.hboxButton.getChildren().add(button);
+					}
+					// possibility to create a hiring request if there is no existing
+					// hiring request and if the application has not been created yet
+					if ((this.request.getHiringRequest() == null) &&
+							(this.request.getProductionApplication() == null)){
+						Button  button = new Button("Create a Hiring Request");
+						button.setOnAction(new EventHandler<ActionEvent>() {
+							@Override
+							public void handle(ActionEvent e) {
+								//TODO open create hiring request interface
+							}
+						});
+						this.hboxButton.getChildren().add(button);
+					}
+					// see the hiring request if it exists
+					if (this.request.getHiringRequest() != null){
+						Button  button = new Button("View the Hiring Request");
+						button.setOnAction(new EventHandler<ActionEvent>() {
+							@Override
+							public void handle(ActionEvent e) {
+								//TODO view the Hiring request interface
+							}
+						});
+						this.hboxButton.getChildren().add(button);
+					}
+					// possibility to create a financial request if there is no existing
+					// financial request and if the application's status is "open"
+					if ((this.request.getFinancialRequest() == null) &&
+							(this.request.getProductionApplication() != null) &&
+							this.request.getProductionApplication().getStatus().equals("open")){
+						Button  button = new Button("Create a Financial Request");
+						button.setOnAction(new EventHandler<ActionEvent>() {
+							@Override
+							public void handle(ActionEvent e) {
+								//TODO open create financial request interface
+							}
+						});
+						this.hboxButton.getChildren().add(button);
+					}
+					// see the financial request if it exists
+					if (this.request.getFinancialRequest() != null){
+						Button  button = new Button("View the Financial Request");
+						button.setOnAction(new EventHandler<ActionEvent>() {
+							@Override
+							public void handle(ActionEvent e) {
+								//TODO view the application interface
+							}
+						});
+						this.hboxButton.getChildren().add(button);
+					}
+					// possibility to set status from "open" to "in progress" if there is no
+					// open financial request
+					if ((this.request.getProductionApplication() != null) &&
+							(this.request.getProductionApplication().getStatus().equals("open")) &&
+							((this.request.getFinancialRequest() == null) ||
+									!this.request.getFinancialRequest().getStatus().equals("open"))){
+						Button  button = new Button("View the Financial Request");
+						button.setOnAction(new EventHandler<ActionEvent>() {
+							@Override
+							public void handle(ActionEvent e) {
+								request.getProductionApplication().setStatus("inprogress");
+		                    	request.updateXml();
+		                    	Stage stage=(Stage) button.getScene().getWindow();
+		                    	reinitializeInterface(stage);
+							}
+						});
+						this.hboxButton.getChildren().add(button);
+					}
+					break;
+					
 				
 			default:
 				break;
