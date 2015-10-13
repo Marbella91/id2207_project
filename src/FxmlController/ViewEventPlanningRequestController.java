@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 
 import EventPlanningRequest.EventPlanningRequest;
 import EventPlanningRequest.EventPlanningRequestStatus;
+import EventPlanningRequest.HiringRequest;
 import Login.Employee;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -238,10 +239,16 @@ public class ViewEventPlanningRequestController  implements Initializable{
 				
 				case ProductionManager:
 					// possibility to create application if there is no existing application
-					// and there is either no hiring request or an approved or rejected hiring request
+					// and there is either no hiring request or only approved or rejected hiring request
+					LinkedList<HiringRequest> hiringRequests = this.request.getHiringRequest();
+					boolean isNoOpenHiringRequests = true;
+					for (int i = 0; i < hiringRequests.size(); i++){
+						if (hiringRequests.get(i).getStatus().equals("open")){
+							isNoOpenHiringRequests = false;
+						}
+					}
 					if ((this.request.getProductionApplication() == null) &&
-							((this.request.getHiringRequest() == null) ||
-									(!this.request.getHiringRequest().getStatus().equals("open")))){
+							(isNoOpenHiringRequests)){
 						Button  button = new Button("Create an Application");
 						button.setOnAction(new EventHandler<ActionEvent>() {
 							@Override
@@ -262,10 +269,9 @@ public class ViewEventPlanningRequestController  implements Initializable{
 						});
 						this.hboxButton.getChildren().add(button);
 					}
-					// possibility to create a hiring request if there is no existing
-					// hiring request and if the application has not been created yet
-					if ((this.request.getHiringRequest() == null) &&
-							(this.request.getProductionApplication() == null)){
+					// possibility to create a hiring request if the application
+					// has not been created yet
+					if (this.request.getProductionApplication() == null){
 						Button  button = new Button("Create a Hiring Request");
 						button.setOnAction(new EventHandler<ActionEvent>() {
 							@Override
@@ -275,8 +281,8 @@ public class ViewEventPlanningRequestController  implements Initializable{
 						});
 						this.hboxButton.getChildren().add(button);
 					}
-					// see the hiring request if it exists
-					if (this.request.getHiringRequest() != null){
+					// see hiring requests if at least one exists
+					if (!hiringRequests.isEmpty()){
 						Button  button = new Button("View the Hiring Request");
 						button.setOnAction(new EventHandler<ActionEvent>() {
 							@Override

@@ -33,7 +33,7 @@ public class EventPlanningRequest {
 	private boolean drinkPreference;
 	private int expectedBudget;
 	
-	private HiringRequest hiringRequest;
+	private LinkedList<HiringRequest> hiringRequests;
 	private FinancialRequest financialRequest;
 	private Application productionApplication;
 	
@@ -60,6 +60,7 @@ public class EventPlanningRequest {
 		this.foodPreference = foodPreference;
 		this.drinkPreference = drinkPreference;
 		this.expectedBudget = expectedBudget;
+		this.hiringRequests = new LinkedList<HiringRequest>();
 	}
 
 	public EventPlanningRequest(String clientName, String eventType, String fromDate, String toDate,
@@ -77,6 +78,7 @@ public class EventPlanningRequest {
 		this.foodPreference = foodPreference;
 		this.drinkPreference = drinkPreference;
 		this.expectedBudget = expectedBudget;
+		this.hiringRequests = new LinkedList<HiringRequest>();
 	}
 
 	public int getId() {
@@ -215,12 +217,12 @@ public class EventPlanningRequest {
 		this.administrationComments = administrationComments;
 	}
 	
-	public HiringRequest getHiringRequest() {
-		return hiringRequest;
+	public LinkedList<HiringRequest> getHiringRequest() {
+		return hiringRequests;
 	}
 
-	public void setHiringRequest(HiringRequest hiringRequest) {
-		this.hiringRequest = hiringRequest;
+	public void setHiringRequest(LinkedList<HiringRequest> hiringRequests) {
+		this.hiringRequests = hiringRequests;
 	}
 
 	public FinancialRequest getFinancialRequest() {
