@@ -34,6 +34,7 @@ public class ProductionManagerInterfaceController  implements Initializable{
 	private LinkedList<EventPlanningRequest> EPRequests;
 	
 	@FXML private Label labelLogin;
+	@FXML private Button buttonLogout;
 	
 	@FXML private TableView<EventPlanningRequest> tableApprovedRequests;
 	@FXML private TableColumn<EventPlanningRequest, String> columnApproved_ClientName;
@@ -91,6 +92,26 @@ public class ProductionManagerInterfaceController  implements Initializable{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@FXML
+	public void handleLogOut(ActionEvent event) throws IOException{
+		
+		int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to quit?", "", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+		if(option == JOptionPane.OK_OPTION){
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../Main/LoginInterface.fxml"));
+	        LoginController controller = new  LoginController();
+	        loader.setController(controller); 
+	        Parent root = (Parent) loader.load();
+	        Stage primaryStage=(Stage) buttonLogout.getScene().getWindow();
+	        Scene scene = new Scene(root);
+	        primaryStage.setScene(scene);
+	        primaryStage.setTitle("Login"); 
+	        primaryStage.setHeight(250);
+	        primaryStage.setWidth(400);
+	        primaryStage.show();
+	    }
 	}
 
 	    

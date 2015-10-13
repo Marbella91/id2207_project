@@ -8,7 +8,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="654.0" prefWidth="638.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <!-- TODO Add Nodes -->
   <children>
-    <TabPane layoutX="22.0" layoutY="30.0" prefHeight="595.0" prefWidth="554.0" tabClosingPolicy="UNAVAILABLE">
+    <TabPane layoutX="22.0" layoutY="35.0" prefHeight="595.0" prefWidth="554.0" tabClosingPolicy="UNAVAILABLE">
       <tabs>
         <Tab text="Event Planning Requests">
           <content>
@@ -43,11 +43,12 @@
         </Tab>
       </tabs>
     </TabPane>
-    <HBox layoutX="468.0" layoutY="5.0" prefHeight="35.0" prefWidth="100.0">
+    <HBox layoutX="414.0" layoutY="9.0" prefHeight="21.0" prefWidth="85.0">
       <children>
         <Label text="Login:" />
         <Label fx:id="labelLogin" text="login" />
       </children>
     </HBox>
+    <Button id="handleDisconnect" fx:id="buttonLogout" layoutX="515.0" layoutY="7.0" mnemonicParsing="false" onAction="#handleLogOut" text="Log out" />
   </children>
 </AnchorPane>

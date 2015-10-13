@@ -39,7 +39,7 @@ public class NewRequestController  implements Initializable{
 	@FXML private TextField clientNameText;
 	@FXML private TextField eventTypeText;
 	@FXML private Button buttonSubmit;
-	@FXML private Button disconnect;
+	@FXML private Button buttonLogout;
 	@FXML private TextField fromText;
 	@FXML private TextField toText;
 	@FXML private TextField expectedText;
@@ -195,7 +195,7 @@ public class NewRequestController  implements Initializable{
 	}
 	
 	@FXML
-	public void handleDisconnect(ActionEvent event) throws IOException{
+	public void handleLogOut(ActionEvent event) throws IOException{
 		
 		int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to quit?", "", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
@@ -204,17 +204,16 @@ public class NewRequestController  implements Initializable{
 	        LoginController controller = new  LoginController();
 	        loader.setController(controller); 
 	        Parent root = (Parent) loader.load();
-	        Stage primaryStage=(Stage) disconnect.getScene().getWindow();
+	        Stage primaryStage=(Stage) buttonLogout.getScene().getWindow();
 	        Scene scene = new Scene(root);
 	        primaryStage.setScene(scene);
 	        primaryStage.setTitle("Login"); 
 	        primaryStage.setHeight(250);
 	        primaryStage.setWidth(400);
 	        primaryStage.show();
-	         
-		}
-	
+	    }
 	}
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub

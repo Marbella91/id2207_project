@@ -5,5 +5,6 @@ public enum EventPlanningRequestStatus {
 	PendingFinancialComments,
 	PendingAdministrationComments,
 	Approved,
-	Rejected
+	Rejected,
+	Closed
 }

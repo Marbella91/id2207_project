@@ -142,9 +142,9 @@
         <TextField layoutX="264.0" layoutY="423.0" prefWidth="122.0" />
       </children>
     </Pane>
-    <Label layoutX="406.0" layoutY="25.0" prefHeight="22.0" text="Login :" />
-    <Label fx:id="labelLogin" layoutX="475.0" layoutY="28.0" text="Label" />
-    <Button id="handleDisconnect" fx:id="disconnect" layoutX="403.0" layoutY="604.0" mnemonicParsing="false" onAction="#handleDisconnect" text="Disconnect" />
+    <Label layoutX="376.0" layoutY="25.0" prefHeight="22.0" text="Login :" />
+    <Label fx:id="labelLogin" layoutX="422.0" layoutY="28.0" text="Label" />
     <Button fx:id="buttonSubmit" layoutX="319.0" layoutY="604.0" mnemonicParsing="false" onAction="#handleSubmit" text="Submit" />
+    <Button id="handleDisconnect" fx:id="buttonLogout" layoutX="505.0" layoutY="26.0" mnemonicParsing="false" onAction="#handleLogOut" text="Log out" />
   </children>
 </AnchorPane>
