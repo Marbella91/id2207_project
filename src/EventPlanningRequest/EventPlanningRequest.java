@@ -20,7 +20,7 @@ public class EventPlanningRequest {
 	// unique id, generated first time the request is saved in the database
 	private int id;
 	
-	private int clientRecordNumber; // set to 0 if no client record
+	private String clientRecordRef;
 	private String clientName;
 	private String eventType;
 	private String fromDate;
@@ -45,28 +45,9 @@ public class EventPlanningRequest {
 	private String financialComments;
 	private String administrationComments;
 	
-	public EventPlanningRequest(int clientRecordNumber, String clientName, String eventType, String fromDate,
-			String toDate, int expectedAttendeesNumber, boolean decorationPreference, boolean partiesPreference,
-			boolean photoPreference, boolean foodPreference, boolean drinkPreference, int expectedBudget) {
-		this.clientRecordNumber = clientRecordNumber;
-		this.clientName = clientName;
-		this.eventType = eventType;
-		this.fromDate = fromDate;
-		this.toDate = toDate;
-		this.expectedAttendeesNumber = expectedAttendeesNumber;
-		this.decorationPreference = decorationPreference;
-		this.partiesPreference = partiesPreference;
-		this.photoPreference = photoPreference;
-		this.foodPreference = foodPreference;
-		this.drinkPreference = drinkPreference;
-		this.expectedBudget = expectedBudget;
-		this.hiringRequests = new LinkedList<HiringRequest>();
-	}
-
 	public EventPlanningRequest(String clientName, String eventType, String fromDate, String toDate,
 			int expectedAttendeesNumber, boolean decorationPreference, boolean partiesPreference,
 			boolean photoPreference, boolean foodPreference, boolean drinkPreference, int expectedBudget) {
-		this.clientRecordNumber = 0;
 		this.clientName = clientName;
 		this.eventType = eventType;
 		this.fromDate = fromDate;
@@ -89,12 +70,12 @@ public class EventPlanningRequest {
 		this.id = id;
 	}
 
-	public int getClientRecordNumber() {
-		return clientRecordNumber;
+	public String getClientRecordRef() {
+		return clientRecordRef;
 	}
 
-	public void setClientRecordNumber(int clientRecordNumber) {
-		this.clientRecordNumber = clientRecordNumber;
+	public void setClientRecordRef(String clientRecordRef) {
+		this.clientRecordRef = clientRecordRef;
 	}
 
 	public String getClientName() {
@@ -242,13 +223,13 @@ public class EventPlanningRequest {
 	}
 
 	public void fromRequestToXml(){
-		File dataDirectory = new File("data/Requests/EPRequests");
+		File dataDirectory = new File("data/EPRequests");
 		int i=dataDirectory.listFiles().length+1;
 		this.setId(i);
 		XStream xstream = new XStream(new StaxDriver());
 		xstream.alias("EventPlanningRequest", EventPlanningRequest.class);
 		String xml= xstream.toXML(this);
-		String fileName="data/Requests/EPRequests/request"+i+".xml";
+		String fileName="data/EPRequests/request"+i+".xml";
 		FileWriter fw;
 		try {
 			fw = new FileWriter(fileName);
@@ -266,7 +247,7 @@ public class EventPlanningRequest {
 		xstream.alias("EventPlanningRequest", EventPlanningRequest.class);
 		String xml= xstream.toXML(this);
 		int i = this.getId();
-		String fileName="data/Requests/EPRequests/request"+i+".xml";
+		String fileName="data/EPRequests/request"+i+".xml";
 		FileWriter fw;
 		try {
 			fw = new FileWriter(fileName);
@@ -309,7 +290,7 @@ public class EventPlanningRequest {
 	
 	public static LinkedList<EventPlanningRequest> generateAuthorizedEPRequestsList(Employee e)
 	{
-		File dataDirectory = new File("data/Requests/EPRequests");
+		File dataDirectory = new File("data/EPRequests");
 		File[] fileList = dataDirectory.listFiles(); 
 		
 		LinkedList<EventPlanningRequest>  EPRequestsList = new LinkedList<EventPlanningRequest>();

@@ -80,7 +80,7 @@ public class ClientRecord {
 		XStream xstream = new XStream(new StaxDriver());
 		xstream.alias("ClientRecord", ClientRecord.class);
 		String xml= xstream.toXML(this);
-		String fileName="data/Requests/EPRequests/"+this.recordRef+".xml";
+		String fileName="data/Clients/"+this.recordRef+".xml";
 		FileWriter fw;
 		try {
 			fw = new FileWriter(fileName);
@@ -122,6 +122,11 @@ public class ClientRecord {
 			}
 		}
 		return clientRecordsList;
+	}
+	
+	@Override
+	public String toString() {
+		return this.recordRef;
 	}
 	
 }
