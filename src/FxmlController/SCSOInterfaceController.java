@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
+import EventPlanningRequest.ClientRecord;
 import EventPlanningRequest.EventPlanningRequest;
 import Login.Employee;
 import javafx.collections.FXCollections;
@@ -37,6 +38,7 @@ public class SCSOInterfaceController  implements Initializable{
 	private LinkedList<EventPlanningRequest> pendingAdministrationRequests;
 	private LinkedList<EventPlanningRequest> approvedRequests;
 	private LinkedList<EventPlanningRequest> rejectedRequests;
+	private LinkedList<ClientRecord> clientRecords;
 	
 	@FXML private Label labelLogin;
 	@FXML private Button buttonLogout;
@@ -71,8 +73,14 @@ public class SCSOInterfaceController  implements Initializable{
 	@FXML private TableColumn<EventPlanningRequest, Calendar> columnRejected_From;
 	@FXML private TableColumn<EventPlanningRequest, Calendar> columnRejected_To;
 	
+	@FXML private TableView<ClientRecord> tableClientRecords;
+	@FXML private TableColumn<ClientRecord, String> columnRecordReference;
+	@FXML private TableColumn<ClientRecord, String> columnClientName;
+	@FXML private Button buttonCreateClient;
+	
 	public SCSOInterfaceController(Employee employee){
 		this.employee=employee;
+		this.clientRecords =ClientRecord.generateClientRecordList();
 		this.EPRequests = EventPlanningRequest.generateAuthorizedEPRequestsList(employee);
 		
 		this.pendingSCSORequests = new LinkedList<EventPlanningRequest>();
@@ -99,13 +107,14 @@ public class SCSOInterfaceController  implements Initializable{
 				case Rejected:
 					this.rejectedRequests.add(request);
 					break;
+				default:
+					break;
 			}
 		}
 	}
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		this.labelLogin.setText(this.employee.getLogin());
 		
 		
@@ -198,6 +207,22 @@ public class SCSOInterfaceController  implements Initializable{
 		    });
 		    return row ;
 		});
+		
+		// client records table
+		columnRecordReference.setCellValueFactory(new PropertyValueFactory<ClientRecord, String>("recordRef"));
+		columnClientName.setCellValueFactory(new PropertyValueFactory<ClientRecord, String>("clientName"));
+		tableClientRecords.setItems(FXCollections.observableList(this.clientRecords));
+					
+		tableClientRecords.setRowFactory( tv -> {
+		    TableRow<ClientRecord> row = new TableRow<>();
+		    row.setOnMouseClicked(event -> {
+		        if (! row.isEmpty()) {
+		        	Stage currentStage= (Stage) this.tableClientRecords.getScene().getWindow();
+		        	generateViewRecord(currentStage, row.getItem());
+		        }
+		    });
+		    return row ;
+		});
 	}
 	
 	
@@ -220,6 +245,45 @@ public class SCSOInterfaceController  implements Initializable{
 			e.printStackTrace();
 		}
 	}
+	
+	public void generateViewRecord(Stage currentStage, ClientRecord record)
+	{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/ViewClientRecord.fxml"));
+        ViewClientRecordController controller = new  ViewClientRecordController(this.employee, record);
+        loader.setController(controller); 
+        Parent root;
+		
+		try {
+			root = (Parent) loader.load();
+			Scene scene = new Scene(root);
+		       currentStage.setScene(scene);
+		       currentStage.setTitle("View Client Record"); 
+		       currentStage.setHeight(800);
+		       currentStage.setWidth(600);
+		       currentStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	public void handleCreateClient(ActionEvent event) throws IOException{
+		String clientRecordRef = JOptionPane.showInputDialog("Enter the new client record reference");
+		if(clientRecordRef != null){
+    		if (clientRecordRef.equals("")) {
+    		JOptionPane.showMessageDialog(null, "Please enter the reference!",
+					"", JOptionPane.ERROR_MESSAGE);
+    		return;
+    		}
+    		ClientRecord record = new ClientRecord(clientRecordRef);
+    		record.fromRecordToXml();
+    		JOptionPane.showMessageDialog(null, "The client record has been "
+    				+ "created successfully!",
+    				"", JOptionPane.INFORMATION_MESSAGE);
+    		Stage currentStage= (Stage) this.buttonCreateClient.getScene().getWindow();
+    		generateViewRecord(currentStage, record);
+    	}
+    }
 	
 	@FXML
 	public void handleLogOut(ActionEvent event) throws IOException{
