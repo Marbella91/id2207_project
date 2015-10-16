@@ -18,11 +18,11 @@ public class ClientRecord {
 	private String clientName;
 	private String Descritpion;
 	
-	LinkedList<EventPlanningRequest> events;
+	LinkedList<Integer> eventsIds;
 
 	public ClientRecord(String recordRef) {
 		this.recordRef = recordRef;
-		this.events = new LinkedList<EventPlanningRequest>();
+		this.eventsIds = new LinkedList<Integer>();
 	}
 
 	public String getRecordRef() {
@@ -49,12 +49,12 @@ public class ClientRecord {
 		Descritpion = descritpion;
 	}
 
-	public LinkedList<EventPlanningRequest> getEvents() {
-		return events;
+	public LinkedList<Integer> getEventsIds() {
+		return eventsIds;
 	}
 
-	public void setEvents(LinkedList<EventPlanningRequest> events) {
-		this.events = events;
+	public void setEventsIds(LinkedList<Integer> eventsIds) {
+		this.eventsIds = eventsIds;
 	}
 	
 	public void fromRecordToXml(){

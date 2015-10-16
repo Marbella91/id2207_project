@@ -237,7 +237,6 @@ public class EventPlanningRequest {
 			bw.write(xml);
 			bw.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -255,7 +254,6 @@ public class EventPlanningRequest {
 			bw.write(xml);
 			bw.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -308,7 +306,6 @@ public class EventPlanningRequest {
 				br.close();
 				fr.close();
 			} catch (IOException ex) {
-				// TODO Auto-generated catch block
 				ex.printStackTrace();
 			}
 		}
@@ -316,11 +313,53 @@ public class EventPlanningRequest {
 	}
 	
 	
+	public static LinkedList<EventPlanningRequest> generateEPRequestsWithoutClientList(Employee e)
+	{
+		File dataDirectory = new File("data/EPRequests");
+		File[] fileList = dataDirectory.listFiles(); 
+		LinkedList<EventPlanningRequest>  EPRequestsWithoutClientList = new LinkedList<EventPlanningRequest>();
+		
+		for (int i = 0; i < fileList.length; i++)
+		{
+			FileReader fr;
+			try {
+				fr = new FileReader(fileList[i]);
+				BufferedReader br = new BufferedReader(fr);
+				String requestXml = br.readLine();
+				EventPlanningRequest request = fromXmlToRequest(requestXml);
+				if (request.getClientRecordRef().equals(""))
+					EPRequestsWithoutClientList.add(request);
+				br.close();
+				fr.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+		return EPRequestsWithoutClientList;
+	}
 	
+	@Override
+	public String toString() {
+		return this.eventType + " for " + this.clientName;
+	}
 	
-	
-	
-	
+	public static EventPlanningRequest fromXmlIdToRequest(int id)
+	{
+		File file = new File("data/EPRequests/request" + id + ".xml");
+		FileReader fr;
+		try {
+			fr = new FileReader(file);
+			BufferedReader br = new BufferedReader(fr);
+			String requestXml = br.readLine();
+			EventPlanningRequest request = fromXmlToRequest(requestXml);
+			br.close();
+			fr.close();
+			return request;
+		} catch (IOException ex) {
+			ex.printStackTrace();
+			return null;
+		}
+	}
 	
 	
 }

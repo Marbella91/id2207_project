@@ -160,16 +160,19 @@ public class NewRequestController  implements Initializable{
 		EventPlanningRequest request=new EventPlanningRequest(this.clientName,
 				this.eventType,this.fromText.getText(),this.toText.getText(),Integer.parseInt(this.expectedText.getText()),
 				this.decorationPreference,this.partiesPreference,photoPreference,foodPreference,this.drinkPreference,0);
+				request.fromRequestToXml();
 				
 		//if a client has been selected, update the client record with the new request
+		// and update the new request with the client ref
 		if (clientRecord != null)
 		{	
 			request.setClientRecordRef(clientRecord.getRecordRef());
-			clientRecord.getEvents().add(request);
+			request.updateXml();
+			clientRecord.getEventsIds().add(request.getId());
 			clientRecord.updateXml();
 		}
 		
-		request.fromRequestToXml();
+		
 		
 		JOptionPane.showMessageDialog(null, "The event planning request has been "
 				+ "created successfully!",
@@ -220,6 +223,7 @@ public class NewRequestController  implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		this.labelLogin.setText(this.employee.getLogin());
+		//TODO ability to remove a selected company
 		this.clientRefBox.setItems(FXCollections.observableList(ClientRecord.generateClientRecordList()));
 	}
 	

@@ -42,6 +42,8 @@ import javafx.stage.Stage;
 public class ViewClientRecordController  implements Initializable{
 	private Employee employee;
 	private ClientRecord record;
+	private LinkedList<EventPlanningRequest> events;
+	
 	@FXML private Label labelLogin;
 	@FXML private Button buttonLogout;
 	@FXML private Button buttonMenu;
@@ -60,6 +62,10 @@ public class ViewClientRecordController  implements Initializable{
 	public ViewClientRecordController(Employee employee, ClientRecord record){
 		this.employee=employee;
 		this.record = record;
+		this.events = new LinkedList<EventPlanningRequest>();
+		for (int i = 0; i < record.getEventsIds().size(); i++){
+			this.events.add(EventPlanningRequest.fromXmlIdToRequest(record.getEventsIds().get(i)));
+		}
 	}
 	
 	@Override
@@ -74,13 +80,13 @@ public class ViewClientRecordController  implements Initializable{
 		columnFrom.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("fromDate"));
 		columnTo.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("toDate"));
 		columnStatus.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("status"));
-		tableEvents.setItems(FXCollections.observableList(this.record.getEvents()));
+		tableEvents.setItems(FXCollections.observableList(this.events));
 		
 		//TODO generate list EPR without clients
 	}
 	
 	//TODO handle button
-	
+	/*
 	public void reinitializeInterface(Stage currentStage)
 	{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/ViewEventPlanningRequest.fxml"));
@@ -99,7 +105,7 @@ public class ViewClientRecordController  implements Initializable{
 			e.printStackTrace();
 		} 
 	}
-	
+	*/
 	@FXML
 	public void handleMenu(ActionEvent event){
 		Stage currentStage = (Stage) this.buttonMenu.getScene().getWindow();
