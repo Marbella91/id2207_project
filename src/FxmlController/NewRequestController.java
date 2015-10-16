@@ -92,7 +92,7 @@ public class NewRequestController  implements Initializable{
 
 	@FXML
 	public void handleSubmit(ActionEvent event){
-	//	setRecordNumber(this.recordNumberText.getText());
+		setRecordNumber(Integer.parseInt(this.recordNumberText.getText()));
 		
 		
 		if(this.clientNameText.getText().equals("")){
@@ -111,13 +111,6 @@ public class NewRequestController  implements Initializable{
 			return;
 		}
 		
-		
-	/*	try {
-			fromDate=new SimpleDateFormat("dd/MM/yy", Locale.ENGLISH).parse(fromText.toString());
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}*/
 		if(this.toText.getText().equals("")){
 			JOptionPane.showMessageDialog(null, "Please inter the end date!",
 					"", JOptionPane.ERROR_MESSAGE);
@@ -161,10 +154,9 @@ public class NewRequestController  implements Initializable{
 		else {
 			this.foodPreference=true;
 		}
-	
 		
 		EventPlanningRequest request=new EventPlanningRequest(this.clientName,
-				this.eventType,this.fromText.getText(),this.toText.getText(),0,
+				this.eventType,this.fromText.getText(),this.toText.getText(),Integer.parseInt(this.expectedText.getText()),
 				this.decorationPreference,this.partiesPreference,photoPreference,foodPreference,this.drinkPreference,0);
 		request.fromRequestToXml();
 		

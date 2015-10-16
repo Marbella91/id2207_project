@@ -328,7 +328,23 @@ public class ViewEventPlanningRequestController  implements Initializable{
 						button.setOnAction(new EventHandler<ActionEvent>() {
 							@Override
 							public void handle(ActionEvent e) {
-								//TODO view the Hiring request interface
+								FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/ViewHiringRequests.fxml"));
+						        ViewHiringRequestsController controller = new ViewHiringRequestsController(employee, request);
+						        loader.setController(controller); 
+						        Parent root;
+								
+								try {
+								 Stage currentStage= (Stage) buttonLogout.getScene().getWindow();
+									root = (Parent) loader.load();
+									Scene scene = new Scene(root);
+								       currentStage.setScene(scene);
+								       currentStage.setTitle("Hiring request list"); 
+								       currentStage.setHeight(800);
+								       currentStage.setWidth(600);
+								       currentStage.show();
+								} catch (IOException e1) {
+									e1.printStackTrace();
+								}
 							}
 						});
 						this.vboxButton.getChildren().add(button);
@@ -342,7 +358,23 @@ public class ViewEventPlanningRequestController  implements Initializable{
 						button.setOnAction(new EventHandler<ActionEvent>() {
 							@Override
 							public void handle(ActionEvent e) {
-								//TODO open create financial request interface
+								FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/NewFinancialRequest.fxml"));
+						        NewFinancialRequestController controller = new NewFinancialRequestController(employee, request);
+						        loader.setController(controller); 
+						        Parent root;
+								
+								try {
+								 Stage currentStage= (Stage) buttonLogout.getScene().getWindow();
+									root = (Parent) loader.load();
+									Scene scene = new Scene(root);
+								       currentStage.setScene(scene);
+								       currentStage.setTitle("New Financial Request"); 
+								       currentStage.setHeight(800);
+								       currentStage.setWidth(600);
+								       currentStage.show();
+								} catch (IOException e1) {
+									e1.printStackTrace();
+								}
 							}
 						});
 						this.vboxButton.getChildren().add(button);
@@ -353,7 +385,23 @@ public class ViewEventPlanningRequestController  implements Initializable{
 						button.setOnAction(new EventHandler<ActionEvent>() {
 							@Override
 							public void handle(ActionEvent e) {
-								//TODO view the application interface
+								FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/ViewFinancialRequests.fxml"));
+						        ViewFinancialRequestController controller = new ViewFinancialRequestController(employee, request.getFinancialRequest());
+						        loader.setController(controller); 
+						        Parent root;
+								
+								try {
+								 Stage currentStage= (Stage) buttonLogout.getScene().getWindow();
+									root = (Parent) loader.load();
+									Scene scene = new Scene(root);
+								       currentStage.setScene(scene);
+								       currentStage.setTitle("View Financial Request"); 
+								       currentStage.setHeight(800);
+								       currentStage.setWidth(600);
+								       currentStage.show();
+								} catch (IOException e1) {
+									e1.printStackTrace();
+								}
 							}
 						});
 						this.vboxButton.getChildren().add(button);
