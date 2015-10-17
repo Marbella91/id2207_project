@@ -313,7 +313,7 @@ public class EventPlanningRequest {
 	}
 	
 	
-	public static LinkedList<EventPlanningRequest> generateEPRequestsWithoutClientList(Employee e)
+	public static LinkedList<EventPlanningRequest> generateEPRequestsWithoutClientList()
 	{
 		File dataDirectory = new File("data/EPRequests");
 		File[] fileList = dataDirectory.listFiles(); 
@@ -327,7 +327,7 @@ public class EventPlanningRequest {
 				BufferedReader br = new BufferedReader(fr);
 				String requestXml = br.readLine();
 				EventPlanningRequest request = fromXmlToRequest(requestXml);
-				if (request.getClientRecordRef().equals(""))
+				if (request.getClientRecordRef() == null)
 					EPRequestsWithoutClientList.add(request);
 				br.close();
 				fr.close();

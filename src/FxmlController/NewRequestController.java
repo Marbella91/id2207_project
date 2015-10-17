@@ -193,7 +193,6 @@ public class NewRequestController  implements Initializable{
 		        currentStage.setWidth(600);
 		        currentStage.show();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -223,8 +222,8 @@ public class NewRequestController  implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		this.labelLogin.setText(this.employee.getLogin());
-		//TODO ability to remove a selected company
 		this.clientRefBox.setItems(FXCollections.observableList(ClientRecord.generateClientRecordList()));
+		this.clientRefBox.getItems().add(null);
 	}
 	
 }

@@ -70,7 +70,6 @@ public class ViewClientRecordController  implements Initializable{
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		this.labelLogin.setText(this.employee.getLogin());
 		this.labelRecordReference.setText(this.record.getRecordRef());
 		this.textClientName.setText(this.record.getClientName());
@@ -81,11 +80,49 @@ public class ViewClientRecordController  implements Initializable{
 		columnTo.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("toDate"));
 		columnStatus.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("status"));
 		tableEvents.setItems(FXCollections.observableList(this.events));
+		//TODO open event when click on it
 		
-		//TODO generate list EPR without clients
+		this.boxAddEvent.setItems(FXCollections.observableList(EventPlanningRequest.generateEPRequestsWithoutClientList()));
+		boxAddEvent.getItems().add(null);
 	}
 	
 	//TODO handle button
+	@FXML
+	public void handleUpdate(ActionEvent event){
+		this.record.setClientName(this.textClientName.getText());
+		this.record.setDescritpion(this.textDescription.getText());
+		EventPlanningRequest addedEvent = this.boxAddEvent.getValue();
+		if (addedEvent != null){
+			this.record.getEventsIds().add(addedEvent.getId());
+			addedEvent.setClientRecordRef(this.record.getRecordRef());
+			addedEvent.updateXml();
+		}
+		record.updateXml();
+		JOptionPane.showMessageDialog(null, "The client record has been "
+				+ "updated successfully!",
+				"", JOptionPane.INFORMATION_MESSAGE);
+		
+		
+		// reinitialize interface
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/ViewClientRecord.fxml"));
+        ViewClientRecordController controller = new  ViewClientRecordController(this.employee, this.record);
+        loader.setController(controller); 
+        Parent root;
+		try {
+			root = (Parent) loader.load();
+			Scene scene = new Scene(root);
+			Stage currentStage=(Stage) buttonUpdate.getScene().getWindow();
+			currentStage.setScene(scene);
+			currentStage.setTitle("View Client Record"); 
+			currentStage.setHeight(800);
+			currentStage.setWidth(600);
+			currentStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	/*
 	public void reinitializeInterface(Stage currentStage)
 	{
