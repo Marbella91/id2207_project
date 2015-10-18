@@ -3,11 +3,9 @@ package EventPlanningRequest;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.LinkedList;
 
 import com.thoughtworks.xstream.XStream;
@@ -249,14 +247,36 @@ public class EventPlanningRequest {
 	public void setDescription(String description) {
 		Description = description;
 	}
-
-	public void fromRequestToXml(){
+	
+	
+	@Override
+	public String toString() {
+		return this.eventType + " for " + this.clientName;
+	}
+	
+	
+	/*
+	 * Functions to manage XML files
+	 */
+	public String toXml(){
+		XStream xstream = new XStream(new StaxDriver());
+		xstream.alias("EventPlanningRequest", EventPlanningRequest.class);
+		return xstream.toXML(this);
+	}
+	
+	public static EventPlanningRequest fromXml(String xml){
+		XStream xstream = new XStream(new StaxDriver());
+		xstream.processAnnotations(EventPlanningRequest.class);
+		xstream.alias("EventPlanningRequest", EventPlanningRequest.class);
+		return (EventPlanningRequest) xstream.fromXML(xml);
+	}
+	
+	//save the request in a new data file
+	public void fromRequestToXmlFile(){
 		File dataDirectory = new File("data/EPRequests");
 		int i=dataDirectory.listFiles().length+1;
 		this.setId(i);
-		XStream xstream = new XStream(new StaxDriver());
-		xstream.alias("EventPlanningRequest", EventPlanningRequest.class);
-		String xml= xstream.toXML(this);
+		String xml= this.toXml();
 		String fileName="data/EPRequests/request"+i+".xml";
 		FileWriter fw;
 		try {
@@ -270,9 +290,7 @@ public class EventPlanningRequest {
 	}
 	
 	public void updateXml(){
-		XStream xstream = new XStream(new StaxDriver());
-		xstream.alias("EventPlanningRequest", EventPlanningRequest.class);
-		String xml= xstream.toXML(this);
+		String xml= this.toXml();
 		int i = this.getId();
 		String fileName="data/EPRequests/request"+i+".xml";
 		FileWriter fw;
@@ -286,11 +304,22 @@ public class EventPlanningRequest {
 		}
 	}
 	
-	public static EventPlanningRequest fromXmlToRequest(String xml){
-		XStream xstream = new XStream(new StaxDriver());
-		xstream.processAnnotations(EventPlanningRequest.class);
-		xstream.alias("EventPlanningRequest", EventPlanningRequest.class);
-		return (EventPlanningRequest) xstream.fromXML(xml);
+	public static EventPlanningRequest fromXmlIdToRequest(int id)
+	{
+		File file = new File("data/EPRequests/request" + id + ".xml");
+		FileReader fr;
+		try {
+			fr = new FileReader(file);
+			BufferedReader br = new BufferedReader(fr);
+			String requestXml = br.readLine();
+			EventPlanningRequest request = fromXml(requestXml);
+			br.close();
+			fr.close();
+			return request;
+		} catch (IOException ex) {
+			ex.printStackTrace();
+			return null;
+		}
 	}
 	
 	
@@ -328,7 +357,7 @@ public class EventPlanningRequest {
 				fr = new FileReader(fileList[i]);
 				BufferedReader br = new BufferedReader(fr);
 				String requestXml = br.readLine();
-				EventPlanningRequest request = fromXmlToRequest(requestXml);
+				EventPlanningRequest request = fromXml(requestXml);
 				if (request.isVisible(e))
 					EPRequestsList.add(request);
 				br.close();
@@ -353,7 +382,7 @@ public class EventPlanningRequest {
 				fr = new FileReader(fileList[i]);
 				BufferedReader br = new BufferedReader(fr);
 				String requestXml = br.readLine();
-				EventPlanningRequest request = fromXmlToRequest(requestXml);
+				EventPlanningRequest request = fromXml(requestXml);
 
 				if (request.getClientRecordRef() == null)
 					EPRequestsWithoutClientList.add(request);
@@ -367,28 +396,7 @@ public class EventPlanningRequest {
 	}
 
 	
-	@Override
-	public String toString() {
-		return this.eventType + " for " + this.clientName;
-	}
 	
-	public static EventPlanningRequest fromXmlIdToRequest(int id)
-	{
-		File file = new File("data/EPRequests/request" + id + ".xml");
-		FileReader fr;
-		try {
-			fr = new FileReader(file);
-			BufferedReader br = new BufferedReader(fr);
-			String requestXml = br.readLine();
-			EventPlanningRequest request = fromXmlToRequest(requestXml);
-			br.close();
-			fr.close();
-			return request;
-		} catch (IOException ex) {
-			ex.printStackTrace();
-			return null;
-		}
-	}
 	
 	
 }

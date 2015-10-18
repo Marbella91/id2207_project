@@ -1,7 +1,6 @@
 package EventPlanningRequest;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 
 public class Application {
 	private String department;

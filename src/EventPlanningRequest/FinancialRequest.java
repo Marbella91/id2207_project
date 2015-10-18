@@ -8,7 +8,6 @@ public class FinancialRequest {
 	private String status;
 	
 	public FinancialRequest(String department, int amount, String reason) {
-		super();
 		this.department = department;
 		this.amount = amount;
 		this.reason = reason;

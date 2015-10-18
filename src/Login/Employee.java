@@ -89,7 +89,6 @@ public class Employee {
 	
 	public static void fromXmlToFile(String xml, String fileName)
 	{
-		File file = new File(fileName);
 		FileWriter fw;
 		try {
 			fw = new FileWriter(fileName);
@@ -97,19 +96,17 @@ public class Employee {
 			bw.write(xml);
 			bw.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	public static void generateDataFiles()
+	public static void generateEmployeesDataFiles()
 	{
 		File dataDirectory = new File("data/Employees");
 		try{
 	        dataDirectory.mkdir();
 		} catch(SecurityException se){
-	        //handle it
-			se.printStackTrace();
+	        se.printStackTrace();
 	    }
 		
 		String janet = toXml(new Employee("Janet", "janet", "janetpassword", Job.SeniorCustomerServiceOfficer));
@@ -138,6 +135,7 @@ public class Employee {
 		fromXmlToFile(tom, "data/Employees/tom.xml");
 		fromXmlToFile(simon,"data/Employees/simon.xml");
 		
+		System.out.println("Employees data files generated\n");
 	}
 	
 	public static LinkedList<Employee> generateEmployeeList()
@@ -158,7 +156,6 @@ public class Employee {
 				br.close();
 				fr.close();
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();

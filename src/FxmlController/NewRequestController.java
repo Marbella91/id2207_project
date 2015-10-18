@@ -160,7 +160,7 @@ public class NewRequestController  implements Initializable{
 		EventPlanningRequest request=new EventPlanningRequest(this.clientName,
 				this.eventType,this.fromText.getText(),this.toText.getText(),Integer.parseInt(this.expectedText.getText()),
 				this.decorationPreference,this.partiesPreference,photoPreference,foodPreference,this.drinkPreference,0);
-				request.fromRequestToXml();
+				request.fromRequestToXmlFile();
 				
 		//if a client has been selected, update the client record with the new request
 		// and update the new request with the client ref

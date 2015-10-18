@@ -23,7 +23,6 @@ public class HiringRequest {
 
 	public HiringRequest(String department, String contractType, int experience, String jobTitle,
 			String jobDescription) {
-		super();
 		this.department = department;
 		this.contractType = contractType;
 		this.experience = experience;

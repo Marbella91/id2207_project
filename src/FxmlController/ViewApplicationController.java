@@ -80,7 +80,7 @@ public class ViewApplicationController  implements Initializable{
 			this.labelMusicExistingTask.setText("A task has already been assigned for the music.");
 			Task task = this.application.getTasks().get("music");
 			this.boxMusicDescription.getChildren().add(new Label(task.getDescription()));
-			this.boxMusicAssign.getChildren().add(new Label(task.getAssgnedTo().toString()));
+			this.boxMusicAssign.getChildren().add(new Label(task.getAssignedTo().toString()));
 			this.boxMusicPriority.getChildren().add(new Label(task.getPriority()));
 		}
 		
@@ -154,7 +154,7 @@ public class ViewApplicationController  implements Initializable{
 			this.labelDecorationExistingTask.setText("A task has already been assigned for the decorations.");
 			Task task = this.application.getTasks().get("decoration");
 			this.boxDecorationDescription.getChildren().add(new Label(task.getDescription()));
-			this.boxDecorationAssign.getChildren().add(new Label(task.getAssgnedTo().toString()));
+			this.boxDecorationAssign.getChildren().add(new Label(task.getAssignedTo().toString()));
 			this.boxDecorationPriority.getChildren().add(new Label(task.getPriority()));
 		}
 		

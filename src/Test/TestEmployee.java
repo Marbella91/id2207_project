@@ -1,38 +1,44 @@
 package Test;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-
 import Login.Employee;
 import Login.Job;
 
 public class TestEmployee {
-	public static void testToXml()
+	
+	public static void testEmployee()
 	{
-		Employee employee = new Employee("Janet", "janet", "password", Job.SeniorCustomerServiceOfficer );
-		System.out.println(Employee.toXml(employee));
+		Employee e = new Employee("name", "login", "password", Job.CustomerServiceOfficer);
+		if (e.getName().equals("name") &&
+				e.getLogin().equals("login") &&
+				e.getPassword().equals("password") &&
+				e.getJob().equals(Job.CustomerServiceOfficer)){
+			System.out.println("Employee creation ok");
+		} else {
+			System.out.println("Error in creation of employee");
+		}
+	}
+	
+	public static void testEmployeeToString()
+	{
+		Employee e = new Employee("name", "login", "password", Job.CustomerServiceOfficer);
+		if (e.toString().equals("name"))
+			System.out.println("Employee function toString() ok");
+		else
+			System.out.println("Error in Employee function toString()");
 	}
 	
 	public static void testToFromXml()
 	{
-		Employee employee = new Employee("Janet", "janet", "password", Job.SeniorCustomerServiceOfficer );
+		Employee employee = new Employee("name", "login", "password", Job.CustomerServiceOfficer );
 		String employeeXML = Employee.toXml(employee);
 		Employee employeebis = Employee.fromXml(employeeXML);
-		System.out.println("Name: " + employeebis.getName());
-		System.out.println("Login: " + employeebis.getLogin());
-		System.out.println("Password: " + employeebis.getPassword());
-		System.out.println("Job: " + employeebis.getJob().toString());
-	}
-	
-	public static void testGenerateEmployeeList()
-	{
-		LinkedList<Employee> employeeList = Employee.generateEmployeeList();
-		for (int i = 0; i < employeeList.size(); i++){ 
-			Employee employee = employeeList.get(i);
-			System.out.println("Name: " + employee.getName());
-			System.out.println("Login: " + employee.getLogin());
-			System.out.println("Password: " + employee.getPassword());
-			System.out.println("Job: " + employee.getJob().toString());
+		if (employeebis.getName().equals(employee.getName()) &&
+				employeebis.getLogin().equals(employee.getLogin()) &&
+				employeebis.getPassword().equals(employee.getPassword()) &&
+				employeebis.getJob().equals(employee.getJob())){
+			System.out.println("Employee to/from xml functions ok");
+		} else {
+			System.out.println("Error in Employee to/from xml functions");
 		}
 	}
 	

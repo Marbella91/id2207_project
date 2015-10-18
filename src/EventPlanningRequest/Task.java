@@ -5,20 +5,20 @@ import Login.Employee;
 public class Task {
 	private Employee sender;
 	private String description;
-	private Employee assgnedTo;
+	private Employee assignedTo;
 	
 	//high or medium
 	private String priority;
 	private String senderName;
 	private String employeeName;
 
-	public Task(Employee sender, String description, Employee assgnedTo, String priority) {
+	public Task(Employee sender, String description, Employee assignedTo, String priority) {
 		this.sender = sender;
 		this.description = description;
-		this.assgnedTo = assgnedTo;
+		this.assignedTo = assignedTo;
 		this.priority = priority;
 		this.senderName=sender.getName();
-		this.employeeName=assgnedTo.getName();
+		this.employeeName=assignedTo.getName();
 	}
 
 	public String getDescription() {
@@ -37,12 +37,12 @@ public class Task {
 		this.sender = sender;
 	}
 
-	public Employee getAssgnedTo() {
-		return assgnedTo;
+	public Employee getAssignedTo() {
+		return assignedTo;
 	}
 
-	public void setAssgnedTo(Employee assgnedTo) {
-		this.assgnedTo = assgnedTo;
+	public void setAssignedTo(Employee assgnedTo) {
+		this.assignedTo = assgnedTo;
 	}
 
 	public String getPriority() {
