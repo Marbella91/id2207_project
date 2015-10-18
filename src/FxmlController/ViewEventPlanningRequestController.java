@@ -42,7 +42,7 @@ public class ViewEventPlanningRequestController  implements Initializable{
 	@FXML private Label labelLogin;
 	@FXML private Button buttonLogout;
 	@FXML private Button buttonMenu;
-	@FXML private Label labelRecordNumber;
+	@FXML private Label labelClientRef;
 	@FXML private Label labelClientName;
 	@FXML private Label labelEventType;
 	@FXML private Label labelFromDate;
@@ -66,11 +66,7 @@ public class ViewEventPlanningRequestController  implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		this.labelLogin.setText(this.employee.getLogin());
-		if (this.request.getClientRecordNumber() == 0){
-			this.labelRecordNumber.setText("");
-		} else {
-			this.labelRecordNumber.setText(String.valueOf(this.request.getClientRecordNumber()));
-		}
+		this.labelClientRef.setText(this.request.getClientRecordRef());
 		this.labelClientName.setText(this.request.getClientName());
 		this.labelEventType.setText(this.request.getEventType());
 		this.labelFromDate.setText(this.request.getFromDate());

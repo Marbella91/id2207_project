@@ -59,7 +59,7 @@
           <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
               <children>
-                <Label prefHeight="19.0" text="Record number">
+                <Label prefHeight="19.0" text="Client reference">
                   <HBox.margin>
                     <Insets top="10.0" />
                   </HBox.margin>
@@ -68,7 +68,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
               <children>
-                <Label fx:id="labelRecordNumber" contentDisplay="LEFT" text="Label" />
+                <Label id="labelRecordNumber" fx:id="labelClientRef" contentDisplay="LEFT" text="Label" />
               </children>
             </HBox>
           </children>

@@ -10,8 +10,10 @@ import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
+import EventPlanningRequest.ClientRecord;
 import EventPlanningRequest.EventPlanningRequest;
 import Login.Employee;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,13 +22,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class NewRequestController  implements Initializable{
 	private Employee employee;
-	private double recordNumber;
+	private ClientRecord clientRecord;
 	private String clientName;
 	private String eventType;
 	private boolean decorationPreference;
@@ -35,7 +38,7 @@ public class NewRequestController  implements Initializable{
 	private boolean foodPreference;
 	private boolean drinkPreference;
 	@FXML private Label labelLogin;
-	@FXML private TextField recordNumberText;
+	@FXML private ChoiceBox<ClientRecord> clientRefBox;
 	@FXML private TextField clientNameText;
 	@FXML private TextField eventTypeText;
 	@FXML private Button buttonSubmit;
@@ -54,12 +57,12 @@ public class NewRequestController  implements Initializable{
 		this.employee=employee;
 	}
 	
-	public double getRecordNumber() {
-		return recordNumber;
+	public ClientRecord getClientRecord() {
+		return clientRecord;
 	}
 
-	public void setRecordNumber(double recordNumber) {
-		this.recordNumber = recordNumber;
+	public void setClientRecord(ClientRecord clientRecord) {
+		this.clientRecord = clientRecord;
 	}
 
 	public String getClientName() {
@@ -92,9 +95,8 @@ public class NewRequestController  implements Initializable{
 
 	@FXML
 	public void handleSubmit(ActionEvent event){
-		setRecordNumber(Integer.parseInt(this.recordNumberText.getText()));
-		
-		
+		setClientRecord(this.clientRefBox.getValue());
+				
 		if(this.clientNameText.getText().equals("")){
 			JOptionPane.showMessageDialog(null, "Please inter the client name!",
 					"", JOptionPane.ERROR_MESSAGE);
@@ -158,7 +160,19 @@ public class NewRequestController  implements Initializable{
 		EventPlanningRequest request=new EventPlanningRequest(this.clientName,
 				this.eventType,this.fromText.getText(),this.toText.getText(),Integer.parseInt(this.expectedText.getText()),
 				this.decorationPreference,this.partiesPreference,photoPreference,foodPreference,this.drinkPreference,0);
-		request.fromRequestToXml();
+				request.fromRequestToXml();
+				
+		//if a client has been selected, update the client record with the new request
+		// and update the new request with the client ref
+		if (clientRecord != null)
+		{	
+			request.setClientRecordRef(clientRecord.getRecordRef());
+			request.updateXml();
+			clientRecord.getEventsIds().add(request.getId());
+			clientRecord.updateXml();
+		}
+		
+		
 		
 		JOptionPane.showMessageDialog(null, "The event planning request has been "
 				+ "created successfully!",
@@ -179,7 +193,6 @@ public class NewRequestController  implements Initializable{
 		        currentStage.setWidth(600);
 		        currentStage.show();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -208,8 +221,9 @@ public class NewRequestController  implements Initializable{
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		this.labelLogin.setText(this.employee.getLogin());
+		this.clientRefBox.setItems(FXCollections.observableList(ClientRecord.generateClientRecordList()));
+		this.clientRefBox.getItems().add(null);
 	}
 	
 }
