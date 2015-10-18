@@ -251,14 +251,29 @@ public class ViewEventPlanningRequestController  implements Initializable{
 						button.setOnAction(new EventHandler<ActionEvent>() {
 							@Override
 							public void handle(ActionEvent e) {
-								//TODO open create application interface
 								request.setProductionApplication(new Application("production"));
 								request.updateXml();
 								JOptionPane.showMessageDialog(null, "The application has been "
 										+ "created successfully!",
 										"", JOptionPane.INFORMATION_MESSAGE);
-	                    		Stage stage=(Stage) button.getScene().getWindow();
-	                    		reinitializeInterface(stage);
+								
+								// open the application
+								FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/ViewApplication.fxml"));
+						        ViewApplicationController controller = new ViewApplicationController(employee, request);
+						        loader.setController(controller); 
+						        Parent root;
+								try {
+								 Stage currentStage= (Stage) buttonLogout.getScene().getWindow();
+									root = (Parent) loader.load();
+									Scene scene = new Scene(root);
+								       currentStage.setScene(scene);
+								       currentStage.setTitle("View Application"); 
+								       currentStage.setHeight(800);
+								       currentStage.setWidth(600);
+								       currentStage.show();
+								} catch (IOException e1) {
+									e1.printStackTrace();
+								}
 							}
 						});
 						this.vboxButton.getChildren().add(button);
