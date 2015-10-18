@@ -48,7 +48,7 @@ public class ViewApplicationController  implements Initializable{
 	@FXML private Label labelLogin;
 	@FXML private Button buttonLogout;
 	@FXML private Button buttonMenu;
-	@FXML private Label labelProjectRef;
+	@FXML private Label labelEvent;
 	
 	@FXML private Label labelMusicExistingTask;
 	@FXML private HBox boxMusicDescription;
@@ -72,7 +72,7 @@ public class ViewApplicationController  implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		this.labelLogin.setText(this.employee.getLogin());
-		this.labelProjectRef.setText(String.valueOf(this.epr.getId()));
+		this.labelEvent.setText(this.epr.toString());
 		
 		// if the music task already exists
 		if (this.application.getTasks().containsKey("music"))
@@ -84,8 +84,8 @@ public class ViewApplicationController  implements Initializable{
 			this.boxMusicPriority.getChildren().add(new Label(task.getPriority()));
 		}
 		
-		// else possibility to create a task
-		else {
+		// else if the application's status is open, possibility to create a task
+		else if (this.application.getStatus().equals("open")){
 			this.labelMusicExistingTask.setText("No task has been assigned for the music.");
 			LinkedList<Employee> employeeList = Employee.generateEmployeeList();
 			LinkedList<Employee> musicEmployees = new LinkedList<Employee>();
@@ -143,6 +143,11 @@ public class ViewApplicationController  implements Initializable{
 			this.boxMusicButton.getChildren().add(button);
 		}
 		
+		// else no more task can be created
+		else {
+			this.labelMusicExistingTask.setText("No task has been assigned for the music.");
+		}
+		
 		// if the decoration task already exists
 		if (this.application.getTasks().containsKey("decoration"))
 		{
@@ -152,9 +157,9 @@ public class ViewApplicationController  implements Initializable{
 			this.boxDecorationAssign.getChildren().add(new Label(task.getAssgnedTo().toString()));
 			this.boxDecorationPriority.getChildren().add(new Label(task.getPriority()));
 		}
-				
-		// else possibility to create a task
-		else {
+		
+		// else if the application's status is open, possibility to create a task
+		else if (this.application.getStatus().equals("open")){
 			this.labelDecorationExistingTask.setText("No task has been assigned for the decorations.");
 			LinkedList<Employee> employeeList = Employee.generateEmployeeList();
 			LinkedList<Employee> decorationEmployees = new LinkedList<Employee>();
@@ -210,6 +215,11 @@ public class ViewApplicationController  implements Initializable{
 				}
 			});
 			this.boxDecorationButton.getChildren().add(button);
+		}
+		
+		// else no more task can be created
+		else {
+			this.labelDecorationExistingTask.setText("No task has been assigned for the decorations.");
 		}
 	}	
 		
