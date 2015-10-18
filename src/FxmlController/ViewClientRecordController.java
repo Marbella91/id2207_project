@@ -80,13 +80,37 @@ public class ViewClientRecordController  implements Initializable{
 		columnTo.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("toDate"));
 		columnStatus.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("status"));
 		tableEvents.setItems(FXCollections.observableList(this.events));
-		//TODO open event when click on it
+		
+		tableEvents.setRowFactory( tv -> {
+		    TableRow<EventPlanningRequest> row = new TableRow<>();
+		    row.setOnMouseClicked(event -> {
+		        if (! row.isEmpty()) {
+		        	Stage currentStage= (Stage) this.tableEvents.getScene().getWindow();
+		        	FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/ViewEvent.fxml"));
+		            ViewEventController controller = new  ViewEventController(this.employee, row.getItem());
+		            loader.setController(controller); 
+		            Parent root;
+		    		
+		    		try {
+		    			root = (Parent) loader.load();
+		    			Scene scene = new Scene(root);
+		    		       currentStage.setScene(scene);
+		    		       currentStage.setTitle("View Event"); 
+		    		       currentStage.setHeight(800);
+		    		       currentStage.setWidth(600);
+		    		       currentStage.show();
+		    		} catch (IOException e) {
+		    			e.printStackTrace();
+		    		}
+		        }
+		    });
+		    return row ;
+		});
 		
 		this.boxAddEvent.setItems(FXCollections.observableList(EventPlanningRequest.generateEPRequestsWithoutClientList()));
 		boxAddEvent.getItems().add(null);
 	}
 	
-	//TODO handle button
 	@FXML
 	public void handleUpdate(ActionEvent event){
 		this.record.setClientName(this.textClientName.getText());
@@ -123,26 +147,6 @@ public class ViewClientRecordController  implements Initializable{
 	}
 	
 	
-	/*
-	public void reinitializeInterface(Stage currentStage)
-	{
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/ViewEventPlanningRequest.fxml"));
-        ViewClientRecordController controller = new  ViewClientRecordController(this.employee, this.request);
-        loader.setController(controller); 
-        Parent root;
-		try {
-			root = (Parent) loader.load();
-			Scene scene = new Scene(root);
-			currentStage.setScene(scene);
-			currentStage.setTitle("View Event Planning Request"); 
-			currentStage.setHeight(800);
-			currentStage.setWidth(600);
-			currentStage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} 
-	}
-	*/
 	@FXML
 	public void handleMenu(ActionEvent event){
 		Stage currentStage = (Stage) this.buttonMenu.getScene().getWindow();

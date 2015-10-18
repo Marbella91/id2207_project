@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="654.0" prefWidth="638.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <!-- TODO Add Nodes -->
+  <children>
+    <Button fx:id="buttonMenu" layoutX="35.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleMenu" text="Menu" />
+    <Pane layoutX="51.0" layoutY="50.0" prefHeight="604.0" prefWidth="538.0">
+      <children>
+        <Label layoutX="93.0" layoutY="6.0" text="Event" />
+        <HBox layoutX="0.0" layoutY="99.0" prefHeight="43.0" prefWidth="394.0">
+          <children>
+            <HBox prefHeight="43.0" prefWidth="191.9998779296875">
+              <children>
+                <Label prefHeight="19.0" text="Client name">
+                  <HBox.margin>
+                    <Insets top="10.0" />
+                  </HBox.margin>
+                </Label>
+              </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+              <children>
+                <Label id="labelRecordNumber" fx:id="labelClientName" contentDisplay="LEFT" text="Label" />
+              </children>
+            </HBox>
+          </children>
+          <padding>
+            <Insets right="10.0" />
+          </padding>
+        </HBox>
+        <HBox layoutX="-2.0" layoutY="131.0" prefHeight="43.0" prefWidth="394.0">
+          <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+              <children>
+                <Label prefHeight="19.0" text="Event type">
+                  <HBox.margin>
+                    <Insets top="10.0" />
+                  </HBox.margin>
+                </Label>
+              </children>
+            </HBox>
+            <HBox id="labelEventType" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+              <children>
+                <Label id="labelRecordNumber" fx:id="labelEventType" contentDisplay="LEFT" text="Label" />
+              </children>
+            </HBox>
+          </children>
+          <padding>
+            <Insets right="10.0" />
+          </padding>
+        </HBox>
+        <HBox layoutX="0.0" layoutY="66.0" prefHeight="43.0" prefWidth="393.9998779296875">
+          <children>
+            <HBox prefHeight="43.0" prefWidth="191.9998779296875">
+              <children>
+                <Label prefHeight="19.0" text="Client reference">
+                  <HBox.margin>
+                    <Insets top="10.0" />
+                  </HBox.margin>
+                </Label>
+              </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+              <children>
+                <Label id="labelRecordNumber" fx:id="labelClientRef" contentDisplay="LEFT" text="Label" />
+              </children>
+            </HBox>
+          </children>
+          <padding>
+            <Insets right="10.0" />
+          </padding>
+        </HBox>
+        <HBox layoutX="0.0" layoutY="159.0" prefHeight="43.0" prefWidth="394.0">
+          <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+          </children>
+        </HBox>
+        <HBox layoutX="0.0" layoutY="169.0" prefHeight="43.0" prefWidth="538.000022070315">
+          <children>
+            <Label prefHeight="43.0" prefWidth="79.0" text="From" />
+            <Label id="labelRecordNumber" fx:id="labelFromDate" contentDisplay="LEFT" prefHeight="43.0" prefWidth="62.0" text="Label" />
+            <Label prefHeight="43.0" prefWidth="49.0" text="   To" />
+            <Label id="labelRecordNumber" fx:id="labelToDate" contentDisplay="LEFT" prefHeight="43.0" prefWidth="62.0" text="Label" />
+          </children>
+        </HBox>
+        <HBox layoutX="3.0" layoutY="274.0" prefHeight="43.0" prefWidth="468.0">
+          <children>
+            <HBox prefHeight="43.0" prefWidth="196.0">
+              <children>
+                <Label prefHeight="19.0" prefWidth="180.00009999999747" text="Expected number of attendees">
+                  <HBox.margin>
+                    <Insets top="10.0" />
+                  </HBox.margin>
+                </Label>
+              </children>
+            </HBox>
+            <HBox prefHeight="43.0" prefWidth="245.0">
+              <children>
+                <Label id="labelRecordNumber" fx:id="labelAttendees" contentDisplay="LEFT" prefHeight="43.0" prefWidth="62.0" text="Label" />
+              </children>
+              <HBox.margin>
+                <Insets left="50.0" />
+              </HBox.margin>
+            </HBox>
+          </children>
+          <padding>
+            <Insets right="10.0" />
+          </padding>
+        </HBox>
+        <HBox layoutX="3.0" layoutY="351.0" prefHeight="28.0" prefWidth="511.0">
+          <children>
+            <Label prefWidth="231.0" text="Expected budget" />
+            <Label id="labelRecordNumber" fx:id="labelBudget" contentDisplay="LEFT" prefHeight="16.0" prefWidth="62.0" text="Label" />
+          </children>
+        </HBox>
+        <Label layoutX="0.0" layoutY="214.0" text="" />
+        <HBox alignment="CENTER_LEFT" layoutX="-2.0" layoutY="207.0" prefHeight="69.0" prefWidth="363.0">
+          <children>
+            <Label prefHeight="28.0" prefWidth="137.0" text="Descritpion of the event" />
+            <TextArea id="textDescritpion" fx:id="textDescription" prefHeight="78.0" prefWidth="226.0" wrapText="true" />
+          </children>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" layoutX="0.0" layoutY="32.0" prefHeight="35.0" prefWidth="393.9998779296875">
+          <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="192.0">
+              <children>
+                <Label text="Status" />
+              </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+              <children>
+                <Label id="labelRecordNumber" fx:id="labelStatus" contentDisplay="LEFT" prefHeight="38.0" text="Label" />
+              </children>
+            </HBox>
+          </children>
+          <padding>
+            <Insets right="10.0" />
+          </padding>
+        </HBox>
+        <HBox layoutX="3.0" layoutY="303.0" prefHeight="43.0" prefWidth="468.0">
+          <children>
+            <HBox prefHeight="43.0" prefWidth="188.0">
+              <children>
+                <Label prefHeight="19.0" prefWidth="180.0" text="Final number of attendees">
+                  <HBox.margin>
+                    <Insets top="10.0" />
+                  </HBox.margin>
+                </Label>
+              </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="241.0">
+              <children>
+                <TextField fx:id="textFinalAttendees" prefWidth="200.0" />
+              </children>
+              <HBox.margin>
+                <Insets left="50.0" />
+              </HBox.margin>
+            </HBox>
+          </children>
+          <padding>
+            <Insets right="10.0" />
+          </padding>
+        </HBox>
+        <HBox layoutX="4.0" layoutY="365.0" prefHeight="43.0" prefWidth="468.0">
+          <children>
+            <HBox prefHeight="43.0" prefWidth="188.0">
+              <children>
+                <Label prefHeight="19.0" prefWidth="180.0" text="Final budget">
+                  <HBox.margin>
+                    <Insets top="10.0" />
+                  </HBox.margin>
+                </Label>
+              </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="241.0">
+              <children>
+                <TextField id="textFinalAttendees" fx:id="textFinalBudget" prefWidth="200.0" />
+              </children>
+              <HBox.margin>
+                <Insets left="50.0" />
+              </HBox.margin>
+            </HBox>
+          </children>
+          <padding>
+            <Insets right="10.0" />
+          </padding>
+        </HBox>
+        <HBox layoutX="4.0" layoutY="420.0" prefHeight="80.0" prefWidth="496.0">
+          <children>
+            <VBox prefHeight="96.0" prefWidth="264.0">
+              <children>
+                <Label text="Description of Decorations Task" />
+                <Label fx:id="labelDecorations" prefHeight="64.0" prefWidth="248.0" text="Label" />
+              </children>
+            </VBox>
+            <VBox prefHeight="96.0" prefWidth="264.0">
+              <children>
+                <Label text="Description of Music Task" />
+                <Label fx:id="labelMusic" prefHeight="64.0" prefWidth="248.0" text="Label" />
+              </children>
+            </VBox>
+          </children>
+        </HBox>
+        <Button fx:id="buttonUpdate" layoutX="340.0" layoutY="520.0" mnemonicParsing="false" onAction="#handleUpdate" text="Save updates" />
+      </children>
+    </Pane>
+    <HBox layoutX="393.0" layoutY="22.0" prefHeight="21.0" prefWidth="85.0">
+      <children>
+        <Label text="Login:" />
+        <Label fx:id="labelLogin" text="login" />
+      </children>
+    </HBox>
+    <Button id="" fx:id="buttonLogout" layoutX="494.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleLogOut" text="Log out" />
+  </children>
+</AnchorPane>

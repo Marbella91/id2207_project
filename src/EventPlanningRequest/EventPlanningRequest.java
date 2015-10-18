@@ -45,6 +45,10 @@ public class EventPlanningRequest {
 	private String financialComments;
 	private String administrationComments;
 	
+	private int finalAttendeesNumber;
+	private int finalBudget;
+	private String Description;
+	
 	public EventPlanningRequest(String clientName, String eventType, String fromDate, String toDate,
 			int expectedAttendeesNumber, boolean decorationPreference, boolean partiesPreference,
 			boolean photoPreference, boolean foodPreference, boolean drinkPreference, int expectedBudget) {
@@ -220,6 +224,30 @@ public class EventPlanningRequest {
 
 	public void setProductionApplication(Application productionApplication) {
 		this.productionApplication = productionApplication;
+	}
+	
+	public int getFinalAttendeesNumber() {
+		return finalAttendeesNumber;
+	}
+
+	public void setFinalAttendeesNumber(int finalAttendeesNumber) {
+		this.finalAttendeesNumber = finalAttendeesNumber;
+	}
+
+	public int getFinalBudget() {
+		return finalBudget;
+	}
+
+	public void setFinalBudget(int finalBudget) {
+		this.finalBudget = finalBudget;
+	}
+
+	public String getDescription() {
+		return Description;
+	}
+
+	public void setDescription(String description) {
+		Description = description;
 	}
 
 	public void fromRequestToXml(){
