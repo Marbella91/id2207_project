@@ -94,7 +94,8 @@ public class FinancialManagerInterfaceController  implements Initializable{
 					break;
 			}
 			FinancialRequest fRequest=EPRequests.get(i).getFinancialRequest();
-			switch (fRequest.getStatus()){
+			if(fRequest !=null){
+				switch (fRequest.getStatus()){
 				case "open":
 					this.openFinancialRequests.add(fRequest); break;
 				case "approved":
@@ -102,6 +103,8 @@ public class FinancialManagerInterfaceController  implements Initializable{
 				case "rejected":
 					this.rejectedFinancialRequests.add(fRequest);break;
 			}
+			}
+			
 		}
 	}
 	

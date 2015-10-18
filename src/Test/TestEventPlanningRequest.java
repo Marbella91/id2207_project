@@ -7,10 +7,12 @@ import EventPlanningRequest.EventPlanningRequest;
 public class TestEventPlanningRequest {
 	
 	public static void testCreateEventPlanningRequest(){
-		Calendar fromDate = Calendar.getInstance();
-		fromDate.set(2015, 1, 1);
-		Calendar toDate = Calendar.getInstance();
-		toDate.set(2015, 1, 2);
+		//Calendar fromDate = Calendar.getInstance();
+		//fromDate.set(2015, 1, 1);
+		//Calendar toDate = Calendar.getInstance();
+		//toDate.set(2015, 1, 2);
+		String fromDate="10/10/10";
+		String toDate="12/10/10";
 		EventPlanningRequest e = new EventPlanningRequest(
 				123,
 				"clientName",
@@ -48,10 +50,8 @@ public class TestEventPlanningRequest {
 	}
 	
 	public void testCreateXmlFile(){
-		Calendar fromDate = Calendar.getInstance();
-		fromDate.set(2015, 1, 1);
-		Calendar toDate = Calendar.getInstance();
-		toDate.set(2015, 1, 2);
+		String fromDate="10/10/10";
+		String toDate="12/10/10";
 		EventPlanningRequest e = new EventPlanningRequest(
 				123,
 				"clientName",

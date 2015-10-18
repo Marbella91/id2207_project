@@ -10,35 +10,44 @@
   <children>
     <TabPane layoutX="22.0" layoutY="35.0" prefHeight="595.0" prefWidth="554.0" tabClosingPolicy="UNAVAILABLE">
       <tabs>
-        <Tab text="Event Planning Requests">
+        <Tab text="Hiring Requests">
           <content>
             <AnchorPane id="Content" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="431.0" prefWidth="554.0">
               <children>
-                <Label layoutX="23.0" layoutY="8.0" text="Requests pending for comments from Financial Manager" />
-                <TableView id="labelPendingCommentsRequests" fx:id="tablePendingFinancialCommentsRequests" layoutX="23.0" layoutY="28.0" prefHeight="80.0" prefWidth="451.0">
+                <Label layoutX="23.0" layoutY="8.0" text="Open Requests" />
+                <TableView fx:id="tableOpen" layoutX="23.0" layoutY="28.0" prefHeight="80.0" prefWidth="451.0">
                   <columns>
-                    <TableColumn prefWidth="75.0" text="Client name" fx:id="columnPendingFinancial_ClientName" />
-                    <TableColumn prefWidth="75.0" text="Event type" fx:id="columnPendingFinancial_EventType" />
-                    <TableColumn prefWidth="75.0" text="From" fx:id="columnPendingFinancial_From" />
-                    <TableColumn prefWidth="75.0" text="To" fx:id="columnPendingFinancial_To" />
+                    <TableColumn id="departmentOpen" maxWidth="5000.0" minWidth="10.0" prefWidth="96.0" text="Department" fx:id="departmentOpen" />
+                    <TableColumn id="contractOpen" maxWidth="5000.0" minWidth="10.0" prefWidth="106.0" text="Contract type" fx:id="contractOpen" />
+                    <TableColumn id="experienceOpen" maxWidth="5000.0" minWidth="10.0" prefWidth="82.0" text="Experience" fx:id="experienceOpen" />
+                    <TableColumn id="jobTitleOpen" maxWidth="5000.0" minWidth="10.0" prefWidth="60.0" text="Job Title" fx:id="jobTitleOpen" />
+                    <TableColumn id="jobDescriptionOpen" maxWidth="5000.0" minWidth="10.0" prefWidth="107.0" text="Job Description" fx:id="jobDescriptionOpen" />
                   </columns>
                 </TableView>
                 <Label layoutX="23.0" layoutY="116.0" text="Approved Requests" />
-                <TableView id="labelPendingCommentsRequests" fx:id="tableApprovedRequests" layoutX="23.0" layoutY="136.0" prefHeight="80.0" prefWidth="451.0">
+                <Label layoutX="23.0" layoutY="225.0" text="Rejected Requests" />
+                <TableView fx:id="tableApproved" layoutX="23.0" layoutY="145.0" prefHeight="80.0" prefWidth="451.0">
                   <columns>
-                    <TableColumn prefWidth="75.0" text="Client name" fx:id="columnApproved_ClientName" />
-                    <TableColumn prefWidth="75.0" text="Event type" fx:id="columnApproved_EventType" />
-                    <TableColumn prefWidth="75.0" text="From" fx:id="columnApproved_From" />
-                    <TableColumn prefWidth="75.0" text="To" fx:id="columnApproved_To" />
+                    <TableColumn id="departmentApproved" maxWidth="5000.0" minWidth="10.0" prefWidth="96.0" text="Department" fx:id="departmentApproved" />
+                    <TableColumn id="contractApproved" maxWidth="5000.0" minWidth="10.0" prefWidth="106.0" text="Contract type" fx:id="contractApproved" />
+                    <TableColumn id="experienceApproved" maxWidth="5000.0" minWidth="10.0" prefWidth="82.0" text="Experience" fx:id="experienceApproved" />
+                    <TableColumn id="jobTitleApproved" maxWidth="5000.0" minWidth="10.0" prefWidth="60.0" text="Job Title" fx:id="jobTitleApproved" />
+                    <TableColumn id="jobDescriptionApproved" maxWidth="5000.0" minWidth="10.0" prefWidth="107.0" text="Job Description" fx:id="jobDescriptionApproved" />
                   </columns>
                 </TableView>
+                <TableView fx:id="tableRejected" layoutX="23.0" layoutY="253.0" prefHeight="80.0" prefWidth="451.0">
+                  <columns>
+                    <TableColumn id="departmentRejected" maxWidth="5000.0" minWidth="10.0" prefWidth="96.0" text="Department" fx:id="departmentRejected" />
+                    <TableColumn id="contractRejected" maxWidth="5000.0" minWidth="10.0" prefWidth="106.0" text="Contract type" fx:id="contractRejected" />
+                    <TableColumn id="experienceRejected" maxWidth="5000.0" minWidth="10.0" prefWidth="82.0" text="Experience" fx:id="experienceRejected" />
+                    <TableColumn id="jobTitleRejected" maxWidth="5000.0" minWidth="10.0" prefWidth="60.0" text="Job Title" fx:id="jobTitleRejected" />
+                    <TableColumn id="jobDescriptionRejected" maxWidth="5000.0" minWidth="10.0" prefWidth="107.0" text="Job Description" fx:id="jobDescriptionRejected" />
+                  </columns>
+                </TableView>
+                <Button fx:id="approveButton" layoutX="277.0" layoutY="385.0" mnemonicParsing="false" text="Approve" />
+                <Button fx:id="rejectButton" layoutX="372.0" layoutY="385.0" mnemonicParsing="false" text="Reject" />
               </children>
             </AnchorPane>
-          </content>
-        </Tab>
-        <Tab text="Financial Requests">
-          <content>
-            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
           </content>
         </Tab>
       </tabs>

@@ -29,7 +29,18 @@
         </Tab>
         <Tab text="Employees schedule">
           <content>
-            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <children>
+                <TableView fx:id="table" layoutX="27.0" layoutY="42.0" prefHeight="208.0" prefWidth="456.0000999999975">
+                  <columns>
+                    <TableColumn id="employeeColumn" prefWidth="75.0" text="Employee" fx:id="employeeColumn" />
+                    <TableColumn id="sender" prefWidth="75.0" text="sender" fx:id="sender" />
+                    <TableColumn id="priority" prefWidth="75.0" text="priority" fx:id="priority" />
+                    <TableColumn id="description" maxWidth="5000.0" minWidth="10.0" prefWidth="230.0" text="Description" fx:id="description" />
+                  </columns>
+                </TableView>
+              </children>
+            </AnchorPane>
           </content>
         </Tab>
       </tabs>

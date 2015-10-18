@@ -6,5 +6,6 @@ public enum Job {
     AdministrationManager,
     ProductionManager,
     MusicEmployee,
-    DecorationEmployee
+    DecorationEmployee,
+    HR
 }

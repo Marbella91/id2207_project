@@ -335,6 +335,33 @@ public class EventPlanningRequest {
 	}
 	
 	
+	public static LinkedList<EventPlanningRequest> generateEPRequestsList()
+	{
+		File dataDirectory = new File("data/Requests/EPRequests");
+		File[] fileList = dataDirectory.listFiles(); 
+		
+		LinkedList<EventPlanningRequest>  EPRequestsList = new LinkedList<EventPlanningRequest>();
+		
+		for (int i = 0; i < fileList.length; i++)
+		{
+			FileReader fr;
+			try {
+				fr = new FileReader(fileList[i]);
+				BufferedReader br = new BufferedReader(fr);
+				String requestXml = br.readLine();
+				EventPlanningRequest request = fromXmlToRequest(requestXml);
+				
+					EPRequestsList.add(request);
+				br.close();
+				fr.close();
+			} catch (IOException ex) {
+				// TODO Auto-generated catch block
+				ex.printStackTrace();
+			}
+		}
+		return EPRequestsList;
+	}
+	
 	
 	
 	

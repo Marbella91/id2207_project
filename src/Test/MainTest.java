@@ -7,12 +7,12 @@ import Login.Employee;
 public class MainTest {
 
 	public static void main(String[] args) {
-		//Employee.generateDataFiles();
-		//TestEmployee.testGenerateEmployeeList();
-		//TestEventPlanningRequest.testCreateEventPlanningRequest();
+		Employee.generateDataFiles();
+		TestEmployee.testGenerateEmployeeList();
+		TestEventPlanningRequest.testCreateEventPlanningRequest();
 		
-		//TestEventPlanningRequest t=new TestEventPlanningRequest();
-		//t.testCreateXmlFile();
+		TestEventPlanningRequest t=new TestEventPlanningRequest();
+		t.testCreateXmlFile();
 			
 	}
 

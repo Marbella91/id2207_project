@@ -9,12 +9,16 @@ public class Task {
 	
 	//high or medium
 	private String priority;
+	private String senderName;
+	private String employeeName;
 
 	public Task(Employee sender, String description, Employee assgnedTo, String priority) {
 		this.sender = sender;
 		this.description = description;
 		this.assgnedTo = assgnedTo;
 		this.priority = priority;
+		this.senderName=sender.getName();
+		this.employeeName=assgnedTo.getName();
 	}
 
 	public String getDescription() {
@@ -47,6 +51,14 @@ public class Task {
 
 	public void setPriority(String priority) {
 		this.priority = priority;
+	}
+	
+	public String getSenderName(){
+		return this.senderName;
+	}
+	
+	public String getEmployeeName(){
+		return this.employeeName;
 	}
 
 	

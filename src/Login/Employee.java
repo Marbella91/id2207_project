@@ -13,6 +13,7 @@ import com.thoughtworks.xstream.io.xml.StaxDriver;
 
 import FxmlController.AdministrationManagerInterfaceController;
 import FxmlController.FinancialManagerInterfaceController;
+import FxmlController.HRInterfaceController;
 import FxmlController.NewRequestController;
 import FxmlController.ProductionManagerInterfaceController;
 import FxmlController.SCSOInterfaceController;
@@ -122,6 +123,7 @@ public class Employee {
 		String angelina = toXml(new Employee("Angelina", "angelina", "angelinapassword",Job.DecorationEmployee));
 		String dom = toXml(new Employee("Dom", "dom", "dompassword",Job.DecorationEmployee));
 		String tom = toXml(new Employee("Tom", "tom", "tompassword",Job.DecorationEmployee));
+		String simon = toXml(new Employee("Simon", "simon", "simonpassword",Job.HR));
 		
 		fromXmlToFile(janet, "data/Employees/janet.xml");
 		fromXmlToFile(sarah, "data/Employees/sarah.xml");
@@ -134,6 +136,7 @@ public class Employee {
 		fromXmlToFile(angelina, "data/Employees/angelina.xml");
 		fromXmlToFile(dom, "data/Employees/dom.xml");
 		fromXmlToFile(tom, "data/Employees/tom.xml");
+		fromXmlToFile(simon,"data/Employees/simon.xml");
 		
 	}
 	
@@ -238,9 +241,22 @@ public class Employee {
 	    	        currentStage.setMinWidth(1100);
 	    	        currentStage.show();
 	        		break;
+	        	case HR:
+	        		loader = new FXMLLoader(getClass().getResource("../Fxml/HRInterface.fxml"));
+	        		HRInterfaceController hrInterfaceController =
+	        				new  HRInterfaceController(this);
+	    	        loader.setController(hrInterfaceController);
+	    	        root = (Parent) loader.load();
+					scene = new Scene(root);
+	    	        currentStage.setScene(scene);
+	    	        currentStage.setTitle("Human Ressources Interface"); 
+	    	        currentStage.setMinHeight(700);
+	    	        currentStage.setMinWidth(1100);
+	    	        currentStage.show();
+	        		break;
 	        	
 	        	default:
-	        		System.out.println("Cas pas encore traité");
+	        		System.out.println("Cas pas encore traitï¿½");
 	        		currentStage.close();
 	        		break;
 			}
