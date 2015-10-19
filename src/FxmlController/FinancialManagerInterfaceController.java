@@ -15,6 +15,7 @@ import EventPlanningRequest.FinancialRequest;
 import Login.Employee;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -41,6 +42,8 @@ public class FinancialManagerInterfaceController  implements Initializable{
 	
 	@FXML private Label labelLogin;
 	@FXML private Button buttonLogout;
+	@FXML private Button approveButton;
+	@FXML private Button rejectButton;
 	
 	@FXML private TableView<EventPlanningRequest> tablePendingFinancialCommentsRequests;
 	@FXML private TableColumn<EventPlanningRequest, String> columnPendingFinancial_ClientName;
@@ -112,56 +115,57 @@ public class FinancialManagerInterfaceController  implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		this.labelLogin.setText(this.employee.getLogin());
-		
-		
-		// Pending Financial Comments Requests table
-		columnPendingFinancial_ClientName.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("clientName"));
-		columnPendingFinancial_EventType.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("eventType"));
-		columnPendingFinancial_From.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, Calendar>("fromDate"));
-		columnPendingFinancial_To.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, Calendar>("toDate"));
-		tablePendingFinancialCommentsRequests.setItems(FXCollections.observableList(this.pendingFinancialRequests));
-				
-		tablePendingFinancialCommentsRequests.setRowFactory( tv -> {
-		    TableRow<EventPlanningRequest> row = new TableRow<>();
-		    row.setOnMouseClicked(event -> {
-		        if (! row.isEmpty()) {
-		        	Stage currentStage= (Stage) this.tablePendingFinancialCommentsRequests.getScene().getWindow();
-		        	generateViewRequest(currentStage, row.getItem());
-		        }
-		    });
-		    return row ;
-		});
-		
-		
-		
-		// Approved Requests table
-				columnApproved_ClientName.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("clientName"));
-				columnApproved_EventType.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("eventType"));
-				columnApproved_From.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, Calendar>("fromDate"));
-				columnApproved_To.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, Calendar>("toDate"));
-				tableApprovedRequests.setItems(FXCollections.observableList(this.approvedRequests));
-							
-				tableApprovedRequests.setRowFactory( tv -> {
-				    TableRow<EventPlanningRequest> row = new TableRow<>();
-				    row.setOnMouseClicked(event -> {
-				        if (! row.isEmpty()) {
-				        	Stage currentStage= (Stage) this.tableApprovedRequests.getScene().getWindow();
-				        	generateViewRequest(currentStage, row.getItem());
-				        }
-				    });
-				    return row ;
-				});
-		
+		 approveButton.setVisible(false);
+	     rejectButton.setVisible(false);
+	 	// Pending Financial Comments Requests table
+			columnPendingFinancial_ClientName.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("clientName"));
+			columnPendingFinancial_EventType.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("eventType"));
+			columnPendingFinancial_From.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, Calendar>("fromDate"));
+			columnPendingFinancial_To.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, Calendar>("toDate"));
+			tablePendingFinancialCommentsRequests.setItems(FXCollections.observableList(this.pendingFinancialRequests));
+					
+			tablePendingFinancialCommentsRequests.setRowFactory( tv -> {
+			    TableRow<EventPlanningRequest> row = new TableRow<>();
+			    row.setOnMouseClicked(event -> {
+			        if (! row.isEmpty()) {
+			        	Stage currentStage= (Stage) this.tablePendingFinancialCommentsRequests.getScene().getWindow();
+			        	generateViewRequest(currentStage, row.getItem());
+			        }
+			    });
+			    return row ;
+			});
+			
+			
+			
+			// Approved Requests table
+					columnApproved_ClientName.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("clientName"));
+					columnApproved_EventType.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("eventType"));
+					columnApproved_From.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, Calendar>("fromDate"));
+					columnApproved_To.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, Calendar>("toDate"));
+					tableApprovedRequests.setItems(FXCollections.observableList(this.approvedRequests));
+								
+					tableApprovedRequests.setRowFactory( tv -> {
+					    TableRow<EventPlanningRequest> row = new TableRow<>();
+					    row.setOnMouseClicked(event -> {
+					        if (! row.isEmpty()) {
+					        	Stage currentStage= (Stage) this.tableApprovedRequests.getScene().getWindow();
+					        	generateViewRequest(currentStage, row.getItem());
+					        }
+					    });
+					    return row ;
+					});
+	     traceTable();
+	}
+	
+	public void traceTable(){
+			
 				// Approved Financial Requests table
 				departmentColumn.setCellValueFactory(new PropertyValueFactory<FinancialRequest, String>("department"));
 				amountColumn.setCellValueFactory(new PropertyValueFactory<FinancialRequest, String>("amount"));
 				reasonColumn.setCellValueFactory(new PropertyValueFactory<FinancialRequest, Calendar>("reason"));
 				tableApproved.setItems(FXCollections.observableList(this.approvedFinancialRequests));
 							
-				tableApproved.setRowFactory( tv -> {
-				    TableRow<FinancialRequest> row = new TableRow<>();
-				    return row ;
-				});
+			
 				
 				
 				// Open Financial Requests table
@@ -172,19 +176,57 @@ public class FinancialManagerInterfaceController  implements Initializable{
 							
 				tableOpen.setRowFactory( tv -> {
 				    TableRow<FinancialRequest> row = new TableRow<>();
+				    row.setOnMouseClicked(event -> {
+				    	 if (! row.isEmpty()) {
+				    		 approveButton.setVisible(true);
+						     rejectButton.setVisible(true);
+						        		approveButton.setOnAction(new EventHandler<ActionEvent>() {
+
+											@Override
+											public void handle(ActionEvent arg0) {
+												approvedFinancialRequests.add(row.getItem());
+												openFinancialRequests.remove(row.getItem());
+												approveButton.setVisible(false);
+										        rejectButton.setVisible(false);
+												traceTable();
+												int id=row.getItem().getIdEPR();
+												EventPlanningRequest eventPla=EventPlanningRequest.fromXmlIdToRequest(id);
+												eventPla.getFinancialRequest().setStatus("approved");
+												eventPla.updateXml();
+												
+											}
+						        			
+						        		});
+						        		rejectButton.setOnAction(new EventHandler<ActionEvent>() {
+
+											@Override
+											public void handle(ActionEvent arg0) {
+												rejectedFinancialRequests.add(row.getItem());
+												openFinancialRequests.remove(row.getItem());
+												approveButton.setVisible(false);
+										        rejectButton.setVisible(false);
+												traceTable();
+												int id=row.getItem().getIdEPR();
+												EventPlanningRequest eventPla=EventPlanningRequest.fromXmlIdToRequest(id);
+												eventPla.getFinancialRequest().setStatus("rejected");
+												eventPla.updateXml();
+											
+												
+											}
+						        			
+						        		});
+						        		
+				    		 
+				    	 }
+				    });
 				    return row ;
 				});
-				
 				// Rejected Financial Requests table
 				departmentRejected.setCellValueFactory(new PropertyValueFactory<FinancialRequest, String>("department"));
 				amountRejected.setCellValueFactory(new PropertyValueFactory<FinancialRequest, String>("amount"));
 				reasonRejected.setCellValueFactory(new PropertyValueFactory<FinancialRequest, Calendar>("reason"));
 				tableRejected.setItems(FXCollections.observableList(this.rejectedFinancialRequests));
 							
-				tableRejected.setRowFactory( tv -> {
-				    TableRow<FinancialRequest> row = new TableRow<>();
-				    return row ;
-				});
 				
 		
 	}

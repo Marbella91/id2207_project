@@ -64,6 +64,8 @@
                     <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="122.0" text="Reason" fx:id="reasonRejected" />
                   </columns>
                 </TableView>
+                <Button fx:id="approveButton" layoutX="306.0" layoutY="407.0" mnemonicParsing="false" text="Approve" />
+                <Button fx:id="rejectButton" layoutX="408.0" layoutY="407.0" mnemonicParsing="false" text="Reject" />
               </children>
             </AnchorPane>
           </content>

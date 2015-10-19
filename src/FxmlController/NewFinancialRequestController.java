@@ -94,7 +94,7 @@ public class NewFinancialRequestController   implements Initializable{
 		
 		int amount=Integer.parseInt(this.amountText.getText());
 		FinancialRequest financialRequest=new FinancialRequest(department,amount,
-				this.reasonText.getText());
+				this.reasonText.getText(), epr.getId());
 		
 		this.epr.setFinancialRequest(financialRequest);
 		epr.updateXml();

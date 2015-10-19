@@ -6,12 +6,14 @@ public class FinancialRequest {
 	private String reason;
 	// status can be open when the request is created , approved or rejected
 	private String status;
+	private int idEPR;
 	
-	public FinancialRequest(String department, int amount, String reason) {
+	public FinancialRequest(String department, int amount, String reason, int idEPR) {
 		this.department = department;
 		this.amount = amount;
 		this.reason = reason;
 		this.status = "open";
+		this.idEPR=idEPR;
 	}
 
 	public String getDepartment() {
@@ -39,5 +41,12 @@ public class FinancialRequest {
 		this.status = status;
 	}
 	
+	public void setIdEPR(int id){
+		this.idEPR=id;
+	}
+	
+	public int getIdEPR(){
+		return this.idEPR;
+	}
 
 }
