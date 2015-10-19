@@ -12,15 +12,13 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
 
 import FxmlController.AdministrationManagerInterfaceController;
+import FxmlController.Controller;
 import FxmlController.FinancialManagerInterfaceController;
 import FxmlController.HRInterfaceController;
 import FxmlController.NewRequestController;
 import FxmlController.ProductionEmployeeInterfaceController;
 import FxmlController.ProductionManagerInterfaceController;
 import FxmlController.SCSOInterfaceController;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Employee {
@@ -167,115 +165,44 @@ public class Employee {
 	}
 	
 	public void generateInterface(Stage currentStage){
-		FXMLLoader loader;
-		Parent root;
-		Scene scene;
-		try {
-			switch (this.job) {
-	        	case CustomerServiceOfficer: 
-	        		loader = new FXMLLoader(getClass().getResource("../Fxml/NewRequest.fxml"));
-	    	        NewRequestController CSOcontroller = new  NewRequestController(this);
-	    	        loader.setController(CSOcontroller);
-	    	        root = (Parent) loader.load();
-					scene = new Scene(root);
-	    	        currentStage.setScene(scene);
-	    	        currentStage.setTitle("Initialize a new Request"); 
-	    	        currentStage.setHeight(800);
-	    	        currentStage.setWidth(600);
-	    	        currentStage.show();
-	        		break;
-	        	
-	        	case SeniorCustomerServiceOfficer: 
-	        		loader = new FXMLLoader(getClass().getResource("../Fxml/SCSOInterface.fxml"));
-	        		SCSOInterfaceController SCSOcontroller = new  SCSOInterfaceController(this);
-	    	        loader.setController(SCSOcontroller);
-	    	        root = (Parent) loader.load();
-					scene = new Scene(root);
-	    	        currentStage.setScene(scene);
-	    	        currentStage.setTitle("Senior Customer Service Officer Interface"); 
-	    	        currentStage.setMinHeight(700);
-	    	        currentStage.setMinWidth(1100);
-	    	        currentStage.show();
-	        		break;
-	        	
-	        	case FinancialManager: 
-	        		loader = new FXMLLoader(getClass().getResource("../Fxml/FinancialManagerInterface.fxml"));
-	        		FinancialManagerInterfaceController financialManagercontroller =
-	        				new  FinancialManagerInterfaceController(this);
-	    	        loader.setController(financialManagercontroller);
-	    	        root = (Parent) loader.load();
-					scene = new Scene(root);
-	    	        currentStage.setScene(scene);
-	    	        currentStage.setTitle("Financial Manager Interface"); 
-	    	        currentStage.setMinHeight(700);
-	    	        currentStage.setMinWidth(1100);
-	    	        currentStage.show();
-	        		break;
-	        	
-	        	case AdministrationManager: 
-	        		loader = new FXMLLoader(getClass().getResource("../Fxml/AdministrationManagerInterface.fxml"));
-	        		AdministrationManagerInterfaceController administrationManagercontroller =
-	        				new  AdministrationManagerInterfaceController(this);
-	    	        loader.setController(administrationManagercontroller);
-	    	        root = (Parent) loader.load();
-					scene = new Scene(root);
-	    	        currentStage.setScene(scene);
-	    	        currentStage.setTitle("Administration Manager Interface"); 
-	    	        currentStage.setMinHeight(700);
-	    	        currentStage.setMinWidth(1100);
-	    	        currentStage.show();
-	        		break;
-	        	
-	        	case ProductionManager: 
-	        		loader = new FXMLLoader(getClass().getResource("../Fxml/ProductionManagerInterface.fxml"));
-	        		ProductionManagerInterfaceController productionManagercontroller =
-	        				new  ProductionManagerInterfaceController(this);
-	    	        loader.setController(productionManagercontroller);
-	    	        root = (Parent) loader.load();
-					scene = new Scene(root);
-	    	        currentStage.setScene(scene);
-	    	        currentStage.setTitle("Production Manager Interface"); 
-	    	        currentStage.setMinHeight(700);
-	    	        currentStage.setMinWidth(1100);
-	    	        currentStage.show();
-	        		break;
-	        	case HR:
-	        		loader = new FXMLLoader(getClass().getResource("../Fxml/HRInterface.fxml"));
-	        		HRInterfaceController hrInterfaceController =
-	        				new  HRInterfaceController(this);
-	    	        loader.setController(hrInterfaceController);
-	    	        root = (Parent) loader.load();
-					scene = new Scene(root);
-	    	        currentStage.setScene(scene);
-	    	        currentStage.setTitle("Human Ressources Interface"); 
-	    	        currentStage.setMinHeight(700);
-	    	        currentStage.setMinWidth(1100);
-	    	        currentStage.show();
-	        		break;
-	        	case MusicEmployee:
-	        	case DecorationEmployee:
-	        		loader = new FXMLLoader(getClass().getResource("../Fxml/ProductionEmployeeInterface.fxml"));
-	        		ProductionEmployeeInterfaceController peInterfaceController =
-	        				new  ProductionEmployeeInterfaceController(this);
-	    	        loader.setController(peInterfaceController);
-	    	        root = (Parent) loader.load();
-					scene = new Scene(root);
-	    	        currentStage.setScene(scene);
-	    	        currentStage.setTitle("Production Employee Interface"); 
-	    	        currentStage.setMinHeight(700);
-	    	        currentStage.setMinWidth(1100);
-	    	        currentStage.show();
-	    	        break;
-	        	default:
-	        		System.out.println("Cas pas encore trait�");
-	        		currentStage.close();
-	        		break;
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
+		switch (this.job) {
+			case CustomerServiceOfficer: 
+				Controller.generateInterface(this, new  NewRequestController(this),
+						"../Fxml/NewRequest.fxml", currentStage,
+						"Initialize a new Request");
+	        	break;
+	        case SeniorCustomerServiceOfficer:
+	        	Controller.generateInterface(this, new SCSOInterfaceController(this),
+	        			"../Fxml/SCSOInterface.fxml", currentStage,
+	        			"Senior Customer Service Officer Interface");
+	        	break;
+	        case FinancialManager:
+	        	Controller.generateInterface(this, new FinancialManagerInterfaceController(this),
+	        			"../Fxml/FinancialManagerInterface.fxml", currentStage,
+	        			"Financial Manager Interface");
+	        	break;
+	        case AdministrationManager:
+	        	Controller.generateInterface(this, new AdministrationManagerInterfaceController(this),
+	        			"../Fxml/AdministrationManagerInterface.fxml", currentStage,
+	        			"Administration Manager Interface");
+	        	break;
+	        case ProductionManager:
+	        	Controller.generateInterface(this, new ProductionManagerInterfaceController(this),
+	        			"../Fxml/ProductionManagerInterface.fxml", currentStage,
+	        			"Production Manager Interface");
+	        	break;
+	        case HR:
+	        	Controller.generateInterface(this, new HRInterfaceController(this),
+	        			"../Fxml/HRInterface.fxml", currentStage,
+	        			"Human Ressources Interface");
+	        	break;
+	        case MusicEmployee:
+	        case DecorationEmployee:
+	        	Controller.generateInterface(this, new ProductionEmployeeInterfaceController(this),
+	        			"../Fxml/ProductionEmployeeInterface.fxml", currentStage,
+	        			"Production Employee Interface");
+	        	break;
 		}
-		
-		
 	}
 	
 	
