@@ -46,32 +46,32 @@ public class SCSOInterfaceController  implements Initializable{
 	@FXML private TableView<EventPlanningRequest> tablePendingSCSOCommentsRequests;
 	@FXML private TableColumn<EventPlanningRequest, String> columnPendingSCSO_ClientName;
 	@FXML private TableColumn<EventPlanningRequest, String> columnPendingSCSO_EventType;
-	@FXML private TableColumn<EventPlanningRequest, Calendar> columnPendingSCSO_From;
-	@FXML private TableColumn<EventPlanningRequest, Calendar> columnPendingSCSO_To;
+	@FXML private TableColumn<EventPlanningRequest, String> columnPendingSCSO_From;
+	@FXML private TableColumn<EventPlanningRequest, String> columnPendingSCSO_To;
 	
 	@FXML private TableView<EventPlanningRequest> tablePendingFinancialCommentsRequests;
 	@FXML private TableColumn<EventPlanningRequest, String> columnPendingFinancial_ClientName;
 	@FXML private TableColumn<EventPlanningRequest, String> columnPendingFinancial_EventType;
-	@FXML private TableColumn<EventPlanningRequest, Calendar> columnPendingFinancial_From;
-	@FXML private TableColumn<EventPlanningRequest, Calendar> columnPendingFinancial_To;
+	@FXML private TableColumn<EventPlanningRequest, String> columnPendingFinancial_From;
+	@FXML private TableColumn<EventPlanningRequest, String> columnPendingFinancial_To;
 	
 	@FXML private TableView<EventPlanningRequest> tablePendingAdministrationCommentsRequests;
 	@FXML private TableColumn<EventPlanningRequest, String> columnPendingAdministration_ClientName;
 	@FXML private TableColumn<EventPlanningRequest, String> columnPendingAdministration_EventType;
-	@FXML private TableColumn<EventPlanningRequest, Calendar> columnPendingAdministration_From;
-	@FXML private TableColumn<EventPlanningRequest, Calendar> columnPendingAdministration_To;
+	@FXML private TableColumn<EventPlanningRequest, String> columnPendingAdministration_From;
+	@FXML private TableColumn<EventPlanningRequest, String> columnPendingAdministration_To;
 	
 	@FXML private TableView<EventPlanningRequest> tableApprovedRequests;
 	@FXML private TableColumn<EventPlanningRequest, String> columnApproved_ClientName;
 	@FXML private TableColumn<EventPlanningRequest, String> columnApproved_EventType;
-	@FXML private TableColumn<EventPlanningRequest, Calendar> columnApproved_From;
-	@FXML private TableColumn<EventPlanningRequest, Calendar> columnApproved_To;
+	@FXML private TableColumn<EventPlanningRequest, String> columnApproved_From;
+	@FXML private TableColumn<EventPlanningRequest, String> columnApproved_To;
 	
 	@FXML private TableView<EventPlanningRequest> tableRejectedRequests;
 	@FXML private TableColumn<EventPlanningRequest, String> columnRejected_ClientName;
 	@FXML private TableColumn<EventPlanningRequest, String> columnRejected_EventType;
-	@FXML private TableColumn<EventPlanningRequest, Calendar> columnRejected_From;
-	@FXML private TableColumn<EventPlanningRequest, Calendar> columnRejected_To;
+	@FXML private TableColumn<EventPlanningRequest, String> columnRejected_From;
+	@FXML private TableColumn<EventPlanningRequest, String> columnRejected_To;
 	
 	@FXML private TableView<ClientRecord> tableClientRecords;
 	@FXML private TableColumn<ClientRecord, String> columnRecordReference;
@@ -118,95 +118,45 @@ public class SCSOInterfaceController  implements Initializable{
 		this.labelLogin.setText(this.employee.getLogin());
 		
 		
-		// Pending SCSO Comments Requests table
-		columnPendingSCSO_ClientName.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("clientName"));
-		columnPendingSCSO_EventType.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("eventType"));
-		columnPendingSCSO_From.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, Calendar>("fromDate"));
-		columnPendingSCSO_To.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, Calendar>("toDate"));
-		tablePendingSCSOCommentsRequests.setItems(FXCollections.observableList(this.pendingSCSORequests));
+		Controller.initializeEventPlanningRequestsTable(this, this.employee,
+				this.tablePendingSCSOCommentsRequests,
+				this.columnPendingSCSO_ClientName,
+				this.columnPendingSCSO_EventType,
+				this.columnPendingSCSO_From,
+				this.columnPendingSCSO_To,
+				this.pendingSCSORequests);
 		
-		tablePendingSCSOCommentsRequests.setRowFactory( tv -> {
-		    TableRow<EventPlanningRequest> row = new TableRow<>();
-		    row.setOnMouseClicked(event -> {
-		        if (! row.isEmpty()) {
-		        	Stage currentStage= (Stage) this.tablePendingSCSOCommentsRequests.getScene().getWindow();
-		        	generateViewRequest(currentStage, row.getItem());
-		        }
-		    });
-		    return row ;
-		});
+		Controller.initializeEventPlanningRequestsTable(this, this.employee,
+				this.tablePendingFinancialCommentsRequests,
+				this.columnPendingFinancial_ClientName,
+				this.columnPendingFinancial_EventType,
+				this.columnPendingFinancial_From,
+				this.columnPendingFinancial_To,
+				this.pendingFinancialRequests);
 		
-		// Pending Financial Comments Requests table
-		columnPendingFinancial_ClientName.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("clientName"));
-		columnPendingFinancial_EventType.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("eventType"));
-		columnPendingFinancial_From.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, Calendar>("fromDate"));
-		columnPendingFinancial_To.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, Calendar>("toDate"));
-		tablePendingFinancialCommentsRequests.setItems(FXCollections.observableList(this.pendingFinancialRequests));
-				
-		tablePendingFinancialCommentsRequests.setRowFactory( tv -> {
-		    TableRow<EventPlanningRequest> row = new TableRow<>();
-		    row.setOnMouseClicked(event -> {
-		        if (! row.isEmpty()) {
-		        	Stage currentStage= (Stage) this.tablePendingFinancialCommentsRequests.getScene().getWindow();
-		        	generateViewRequest(currentStage, row.getItem());
-		        }
-		    });
-		    return row ;
-		});
+		Controller.initializeEventPlanningRequestsTable(this, this.employee,
+				this.tablePendingAdministrationCommentsRequests,
+				this.columnPendingAdministration_ClientName,
+				this.columnPendingAdministration_EventType,
+				this.columnPendingAdministration_From,
+				this.columnPendingAdministration_To,
+				this.pendingAdministrationRequests);
 		
-		// Pending Administration Comments Requests table
-		columnPendingAdministration_ClientName.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("clientName"));
-		columnPendingAdministration_EventType.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("eventType"));
-		columnPendingAdministration_From.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, Calendar>("fromDate"));
-		columnPendingAdministration_To.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, Calendar>("toDate"));
-		tablePendingAdministrationCommentsRequests.setItems(FXCollections.observableList(this.pendingAdministrationRequests));
-					
-		tablePendingAdministrationCommentsRequests.setRowFactory( tv -> {
-		    TableRow<EventPlanningRequest> row = new TableRow<>();
-		    row.setOnMouseClicked(event -> {
-		        if (! row.isEmpty()) {
-		        	Stage currentStage= (Stage) this.tablePendingAdministrationCommentsRequests.getScene().getWindow();
-		        	generateViewRequest(currentStage, row.getItem());
-		        }
-		    });
-		    return row ;
-		});
+		Controller.initializeEventPlanningRequestsTable(this, this.employee,
+				this.tableApprovedRequests,
+				this.columnApproved_ClientName,
+				this.columnApproved_EventType,
+				this.columnApproved_From,
+				this.columnApproved_To,
+				this.approvedRequests);
 		
-		// Approved Requests table
-		columnApproved_ClientName.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("clientName"));
-		columnApproved_EventType.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("eventType"));
-		columnApproved_From.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, Calendar>("fromDate"));
-		columnApproved_To.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, Calendar>("toDate"));
-		tableApprovedRequests.setItems(FXCollections.observableList(this.approvedRequests));
-					
-		tableApprovedRequests.setRowFactory( tv -> {
-		    TableRow<EventPlanningRequest> row = new TableRow<>();
-		    row.setOnMouseClicked(event -> {
-		        if (! row.isEmpty()) {
-		        	Stage currentStage= (Stage) this.tableApprovedRequests.getScene().getWindow();
-		        	generateViewRequest(currentStage, row.getItem());
-		        }
-		    });
-		    return row ;
-		});
-		
-		// Rejected Requests table
-		columnRejected_ClientName.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("clientName"));
-		columnRejected_EventType.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, String>("eventType"));
-		columnRejected_From.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, Calendar>("fromDate"));
-		columnRejected_To.setCellValueFactory(new PropertyValueFactory<EventPlanningRequest, Calendar>("toDate"));
-		tableRejectedRequests.setItems(FXCollections.observableList(this.rejectedRequests));
-					
-		tableRejectedRequests.setRowFactory( tv -> {
-		    TableRow<EventPlanningRequest> row = new TableRow<>();
-		    row.setOnMouseClicked(event -> {
-		        if (! row.isEmpty()) {
-		        	Stage currentStage= (Stage) this.tableRejectedRequests.getScene().getWindow();
-		        	generateViewRequest(currentStage, row.getItem());
-		        }
-		    });
-		    return row ;
-		});
+		Controller.initializeEventPlanningRequestsTable(this, this.employee,
+				this.tableRejectedRequests,
+				this.columnRejected_ClientName,
+				this.columnRejected_EventType,
+				this.columnRejected_From,
+				this.columnRejected_To,
+				this.rejectedRequests);
 		
 		// client records table
 		columnRecordReference.setCellValueFactory(new PropertyValueFactory<ClientRecord, String>("recordRef"));
@@ -228,6 +178,11 @@ public class SCSOInterfaceController  implements Initializable{
 	
 	public void generateViewRequest(Stage currentStage, EventPlanningRequest request)
 	{
+		Controller.generateInterface(this,
+				new  ViewEventPlanningRequestController(this.employee, request),
+				"../Fxml/ViewEventPlanningRequest.fxml", currentStage,
+				"View Event Planning Request");
+		/*
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/ViewEventPlanningRequest.fxml"));
         ViewEventPlanningRequestController controller = new  ViewEventPlanningRequestController(this.employee, request);
         loader.setController(controller); 
@@ -244,6 +199,7 @@ public class SCSOInterfaceController  implements Initializable{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		*/
 	}
 	
 	public void generateViewRecord(Stage currentStage, ClientRecord record)
