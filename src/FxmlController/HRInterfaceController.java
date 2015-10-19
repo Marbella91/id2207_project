@@ -137,7 +137,11 @@ public class HRInterfaceController implements Initializable{
 								approveButton.setVisible(false);
 						        rejectButton.setVisible(false);
 								traceTable();
-								row.getItem().setStatus("approved");
+								int idHiring=row.getItem().getidHiring();
+								int id=row.getItem().getIDEPR();
+								EventPlanningRequest eventPla=EventPlanningRequest.fromXmlIdToRequest(id);
+								eventPla.getHiringRequest().get(idHiring).setStatus("approved");
+								eventPla.updateXml();
 								
 			
 								}
@@ -152,6 +156,11 @@ public class HRInterfaceController implements Initializable{
 								approveButton.setVisible(false);
 						        rejectButton.setVisible(false);
 								traceTable();
+								int idHiring=row.getItem().getidHiring();
+								int id=row.getItem().getIDEPR();
+								EventPlanningRequest eventPla=EventPlanningRequest.fromXmlIdToRequest(id);
+								eventPla.getHiringRequest().get(idHiring).setStatus("rejected");
+								eventPla.updateXml();
 								}
 				        	}
 				        	);

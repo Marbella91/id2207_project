@@ -124,7 +124,7 @@ public class NewHiringRequestController  implements Initializable{
 		
 		HiringRequest hiringRequest=new HiringRequest(department,contractType,
 				years,this.jobTitleText.getText(),
-				this.jobDescriptionText.getText());
+				this.jobDescriptionText.getText(),epr.getId());
 		
 		this.epr.getHiringRequest().add(hiringRequest);
 		this.epr.updateXml();

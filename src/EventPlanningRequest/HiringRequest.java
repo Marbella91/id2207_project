@@ -9,6 +9,8 @@ public class HiringRequest {
 	private String jobDescription;
 	// status can be open when the request is created , approved or rejected
 	private String status; 
+	private int idEPR;
+	private int idHiring;
 	
 	
 	public String getStatus() {
@@ -22,13 +24,16 @@ public class HiringRequest {
 
 
 	public HiringRequest(String department, String contractType, int experience, String jobTitle,
-			String jobDescription) {
+			String jobDescription, int id) {
 		this.department = department;
 		this.contractType = contractType;
 		this.experience = experience;
 		this.jobTitle = jobTitle;
 		this.jobDescription = jobDescription;
 		this.status="open";
+		this.idEPR=id;
+		EventPlanningRequest eventPla=EventPlanningRequest.fromXmlIdToRequest(id);
+		this.idHiring=eventPla.getHiringRequest().size();
 	}
 
 
@@ -79,6 +84,22 @@ public class HiringRequest {
 
 	public void setJobDescription(String jobDescription) {
 		this.jobDescription = jobDescription;
+	}
+	
+	public void setIDEPR(int id){
+		this.idEPR=id;
+	}
+	
+	public int getIDEPR(){
+		return this.idEPR;
+	}
+	
+	public int getidHiring(){
+		return this.idHiring;
+	}
+	
+	public void setIdHiring(int id){
+		this.idHiring=id;
 	}
 
 }
