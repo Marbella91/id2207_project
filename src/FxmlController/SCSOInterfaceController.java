@@ -2,10 +2,7 @@ package FxmlController;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
@@ -22,11 +19,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -117,7 +112,7 @@ public class SCSOInterfaceController  implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		this.labelLogin.setText(this.employee.getLogin());
 		
-		
+		//initialize tables of epr
 		Controller.initializeEventPlanningRequestsTable(this, this.employee,
 				this.tablePendingSCSOCommentsRequests,
 				this.columnPendingSCSO_ClientName,
@@ -176,32 +171,6 @@ public class SCSOInterfaceController  implements Initializable{
 	}
 	
 	
-	public void generateViewRequest(Stage currentStage, EventPlanningRequest request)
-	{
-		Controller.generateInterface(this,
-				new  ViewEventPlanningRequestController(this.employee, request),
-				"../Fxml/ViewEventPlanningRequest.fxml", currentStage,
-				"View Event Planning Request");
-		/*
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/ViewEventPlanningRequest.fxml"));
-        ViewEventPlanningRequestController controller = new  ViewEventPlanningRequestController(this.employee, request);
-        loader.setController(controller); 
-        Parent root;
-		
-		try {
-			root = (Parent) loader.load();
-			Scene scene = new Scene(root);
-		       currentStage.setScene(scene);
-		       currentStage.setTitle("View Event Planning Request"); 
-		       currentStage.setHeight(800);
-		       currentStage.setWidth(600);
-		       currentStage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		*/
-	}
-	
 	public void generateViewRecord(Stage currentStage, ClientRecord record)
 	{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/ViewClientRecord.fxml"));
@@ -243,22 +212,7 @@ public class SCSOInterfaceController  implements Initializable{
 	
 	@FXML
 	public void handleLogOut(ActionEvent event) throws IOException{
-		
-		int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to quit?", "", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-		if(option == JOptionPane.OK_OPTION){
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("../Main/LoginInterface.fxml"));
-	        LoginController controller = new  LoginController();
-	        loader.setController(controller); 
-	        Parent root = (Parent) loader.load();
-	        Stage primaryStage=(Stage) buttonLogout.getScene().getWindow();
-	        Scene scene = new Scene(root);
-	        primaryStage.setScene(scene);
-	        primaryStage.setTitle("Login"); 
-	        primaryStage.setHeight(250);
-	        primaryStage.setWidth(400);
-	        primaryStage.show();
-	    }
+		Controller.logout(this, buttonLogout);
 	}
 
 	    

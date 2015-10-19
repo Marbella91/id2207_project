@@ -5,8 +5,6 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-import javax.swing.JOptionPane;
-
 import EventPlanningRequest.EventPlanningRequest;
 import EventPlanningRequest.HiringRequest;
 import Login.Employee;
@@ -14,17 +12,13 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 public class HRInterfaceController implements Initializable{
 	private Employee employee;
@@ -82,22 +76,7 @@ public class HRInterfaceController implements Initializable{
 	
 	@FXML
 	public void handleLogOut(ActionEvent event) throws IOException{
-		
-		int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to quit?", "", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-		if(option == JOptionPane.OK_OPTION){
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("../Main/LoginInterface.fxml"));
-	        LoginController controller = new  LoginController();
-	        loader.setController(controller); 
-	        Parent root = (Parent) loader.load();
-	        Stage primaryStage=(Stage) buttonLogout.getScene().getWindow();
-	        Scene scene = new Scene(root);
-	        primaryStage.setScene(scene);
-	        primaryStage.setTitle("Login"); 
-	        primaryStage.setHeight(250);
-	        primaryStage.setWidth(400);
-	        primaryStage.show();
-	    }
+		Controller.logout(this, buttonLogout);
 	}
 	
 	public void traceTable(){
@@ -192,8 +171,7 @@ public class HRInterfaceController implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-	   	this.labelLogin.setText(this.employee.getLogin());
+		this.labelLogin.setText(this.employee.getLogin());
 		 approveButton.setVisible(false);
 	     rejectButton.setVisible(false);
 	     traceTable();

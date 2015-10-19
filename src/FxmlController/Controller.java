@@ -40,12 +40,12 @@ public class Controller {
 	}
 	
 	
-	public static void logout(Object thisClass, Button buttonLogout)
+	public static void logout(Object thisObject, Button buttonLogout)
 	{
 		int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to quit?", "", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 		
 		if(option == JOptionPane.OK_OPTION){
-			FXMLLoader loader = new FXMLLoader(thisClass.getClass().getResource("../Main/LoginInterface.fxml"));
+			FXMLLoader loader = new FXMLLoader(thisObject.getClass().getResource("../Main/LoginInterface.fxml"));
 	        LoginController controller = new  LoginController();
 	        loader.setController(controller); 
 	        Parent root;

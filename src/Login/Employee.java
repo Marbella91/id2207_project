@@ -167,7 +167,7 @@ public class Employee {
 	public void generateInterface(Stage currentStage){
 		switch (this.job) {
 			case CustomerServiceOfficer: 
-				Controller.generateInterface(this, new  NewRequestController(this),
+				Controller.generateInterface(this, new NewRequestController(this),
 						"../Fxml/NewRequest.fxml", currentStage,
 						"Initialize a new Request");
 	        	break;
