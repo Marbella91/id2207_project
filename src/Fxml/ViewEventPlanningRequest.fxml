@@ -144,7 +144,7 @@
         </HBox>
         <HBox layoutX="3.0" layoutY="355.0" prefHeight="21.0" prefWidth="511.0">
           <children>
-            <Label prefWidth="118.0" text="Expected budget" />
+            <Label prefWidth="183.0" text="Expected budget (SEK):" />
             <Label id="labelRecordNumber" fx:id="labelBudget" contentDisplay="LEFT" prefHeight="16.0" prefWidth="61.999900000002526" text="Label" />
           </children>
         </HBox>

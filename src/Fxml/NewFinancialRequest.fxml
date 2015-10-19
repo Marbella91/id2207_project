@@ -6,63 +6,27 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="654.0" prefWidth="638.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
     <Pane prefHeight="520.0" prefWidth="512.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
       <children>
-        <Label layoutX="31.0" layoutY="19.0" text="Financial Request" />
-        <HBox layoutX="-2.0" layoutY="110.0" prefHeight="43.0" prefWidth="394.0">
-          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" />
-            <HBox prefHeight="100.0" prefWidth="200.0" />
-          </children>
-          <padding>
-            <Insets right="10.0" />
-          </padding>
-        </HBox>
-        <HBox layoutX="0.0" layoutY="45.0" prefHeight="43.0" prefWidth="394.0">
-          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-              <children>
-                <Label prefHeight="19.0" text="Department">
-                  <HBox.margin>
-                    <Insets top="10.0" />
-                  </HBox.margin>
-                </Label>
-              </children>
-            </HBox>
-            <HBox prefHeight="43.0" prefWidth="334.0">
-              <children>
-                <CheckBox fx:id="adminBox" mnemonicParsing="false" prefHeight="43.0" prefWidth="132.0" text="Administration" />
-                <CheckBox fx:id="servicesBox" mnemonicParsing="false" prefHeight="43.0" prefWidth="132.0" text="Services" />
-              </children>
-            </HBox>
-          </children>
-          <padding>
-            <Insets right="10.0" />
-          </padding>
-        </HBox>
+        <Label layoutX="63.0" layoutY="15.0" text="New Financial Request">
+          <font>
+            <Font name="System Bold" size="14.0" />
+          </font>
+        </Label>
         <HBox layoutX="0.0" layoutY="167.0" prefHeight="43.0" prefWidth="394.0">
           <children>
             <HBox prefHeight="100.0" prefWidth="200.0" />
           </children>
         </HBox>
-        <HBox layoutX="0.0" layoutY="167.0" prefHeight="43.0" prefWidth="538.000022070315">
-          <children>
-            <Label prefHeight="43.0" prefWidth="259.0000999999975" text="Project Reference" />
-            <TextField fx:id="ProjReferenceText" prefHeight="22.0" prefWidth="120.0">
-              <HBox.margin>
-                <Insets top="8.0" fx:id="x1" />
-              </HBox.margin>
-            </TextField>
-          </children>
-        </HBox>
-        <HBox layoutX="3.0" layoutY="223.0" prefHeight="43.0" prefWidth="468.0">
+        <HBox layoutX="3.0" layoutY="181.0" prefHeight="43.0" prefWidth="468.0">
           <children>
             <HBox prefHeight="43.0" prefWidth="241.0">
               <children>
-                <Label prefHeight="19.0" prefWidth="227.0" text="Requirement amount">
+                <Label prefHeight="19.0" prefWidth="227.0" text="Required amount (SEK)">
                   <HBox.margin>
                     <Insets top="10.0" />
                   </HBox.margin>
@@ -86,19 +50,67 @@
             <Insets right="10.0" />
           </padding>
         </HBox>
-        <Label layoutX="7.0" layoutY="305.0" text="Reason" />
-        <TextField fx:id="reasonText" layoutX="262.0" layoutY="305.0" prefWidth="122.0" />
-        <HBox layoutX="125.0" layoutY="87.0" prefHeight="43.0" prefWidth="259.0">
+        <HBox layoutX="3.0" layoutY="53.0" prefHeight="22.0" prefWidth="397.0">
           <children>
-            <CheckBox fx:id="prodBox" mnemonicParsing="false" prefHeight="43.0" prefWidth="132.0" text="Production" />
-            <CheckBox fx:id="financialBox" mnemonicParsing="false" prefHeight="43.0" prefWidth="132.0" text="Financial" />
+            <Label prefWidth="130.0" text="Event:" />
+            <Label fx:id="eventLabel" text="Label" />
           </children>
+        </HBox>
+        <HBox layoutX="5.0" layoutY="82.0" prefHeight="43.0" prefWidth="394.0">
+          <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+              <children>
+                <Label prefHeight="19.0" text="Department">
+                  <HBox.margin>
+                    <Insets top="10.0" />
+                  </HBox.margin>
+                </Label>
+              </children>
+            </HBox>
+            <HBox prefHeight="43.0" prefWidth="334.0">
+              <children>
+                <RadioButton fx:id="adminButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="130.0" text="Administration" />
+                <RadioButton fx:id="servicesButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="130.0" text="Services" />
+              </children>
+            </HBox>
+          </children>
+          <padding>
+            <Insets right="10.0" />
+          </padding>
+        </HBox>
+        <HBox layoutX="130.0" layoutY="124.0" prefHeight="43.0" prefWidth="259.0">
+          <children>
+            <RadioButton fx:id="prodButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="130.0" text="Production" />
+            <RadioButton fx:id="financialButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="130.0" text="Financial" />
+          </children>
+        </HBox>
+        <Button fx:id="buttonSubmit" layoutX="323.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleSubmit" text="Submit" />
+        <HBox layoutX="3.0" layoutY="225.0" prefHeight="43.0" prefWidth="468.0">
+          <children>
+            <HBox prefHeight="43.0" prefWidth="241.0">
+              <children>
+                <Label prefHeight="43.0" prefWidth="211.0" text="Reason" />
+              </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="227.0">
+              <children>
+                <TextField fx:id="reasonText" prefWidth="122.0" />
+              </children>
+              <HBox.margin>
+                <Insets left="50.0" />
+              </HBox.margin>
+            </HBox>
+          </children>
+          <padding>
+            <Insets right="10.0" />
+          </padding>
         </HBox>
       </children>
     </Pane>
     <Label layoutX="376.0" layoutY="25.0" prefHeight="22.0" text="Login :" />
     <Label fx:id="labelLogin" layoutX="422.0" layoutY="28.0" text="Label" />
-    <Button fx:id="buttonSubmit" layoutX="532.0" layoutY="604.0" mnemonicParsing="false" onAction="#handleSubmit" text="Submit" />
     <Button fx:id="buttonLogout" layoutX="505.0" layoutY="26.0" mnemonicParsing="false" onAction="#handleLogOut" text="Log out" />
+    <Button fx:id="buttonMenu" layoutX="45.0" layoutY="23.0" mnemonicParsing="false" onAction="#handleMenu" text="Menu" />
+    <Button fx:id="buttonBackEpr" layoutX="103.0" layoutY="23.0" mnemonicParsing="false" onAction="#handleBackEPR" text="Back to Event Planning Request" />
   </children>
 </AnchorPane>

@@ -5,6 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="654.0" prefWidth="638.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <!-- TODO Add Nodes -->
@@ -12,8 +13,12 @@
     <Button fx:id="buttonMenu" layoutX="35.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleMenu" text="Menu" />
     <Pane layoutX="51.0" layoutY="50.0" prefHeight="554.0" prefWidth="538.0">
       <children>
-        <Label layoutX="31.0" layoutY="19.0" text="Financial Request" />
-        <HBox layoutX="0.0" layoutY="78.0" prefHeight="43.0" prefWidth="394.0">
+        <Label layoutX="31.0" layoutY="19.0" text="Financial Request">
+          <font>
+            <Font name="System Bold" size="14.0" />
+          </font>
+        </Label>
+        <HBox layoutX="-1.0" layoutY="118.0" prefHeight="43.0" prefWidth="394.0">
           <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
               <children>
@@ -34,7 +39,7 @@
             <Insets right="10.0" />
           </padding>
         </HBox>
-        <HBox layoutX="-2.0" layoutY="110.0" prefHeight="43.0" prefWidth="394.0">
+        <HBox layoutX="-2.0" layoutY="155.0" prefHeight="43.0" prefWidth="394.0">
           <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
               <children>
@@ -55,7 +60,7 @@
             <Insets right="10.0" />
           </padding>
         </HBox>
-        <HBox layoutX="0.0" layoutY="45.0" prefHeight="43.0" prefWidth="394.0">
+        <HBox layoutX="0.0" layoutY="82.0" prefHeight="43.0" prefWidth="394.0">
           <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
               <children>
@@ -76,7 +81,7 @@
             <Insets right="10.0" />
           </padding>
         </HBox>
-        <HBox layoutX="0.0" layoutY="167.0" prefHeight="43.0" prefWidth="394.0">
+        <HBox layoutX="0.0" layoutY="204.0" prefHeight="43.0" prefWidth="394.0">
           <children>
             <HBox prefHeight="43.0" prefWidth="190.0">
               <children>
@@ -87,6 +92,27 @@
           </children>
         </HBox>
         <HBox fx:id="hboxButton" layoutX="9.0" layoutY="462.0" prefHeight="35.0" prefWidth="394.0" />
+        <HBox layoutX="0.0" layoutY="48.0" prefHeight="43.0" prefWidth="394.0">
+          <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+              <children>
+                <Label prefHeight="19.0" text="Event">
+                  <HBox.margin>
+                    <Insets top="10.0" />
+                  </HBox.margin>
+                </Label>
+              </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+              <children>
+                <Label id="eventLabel" fx:id="labelEvent" text="Label" />
+              </children>
+            </HBox>
+          </children>
+          <padding>
+            <Insets right="10.0" />
+          </padding>
+        </HBox>
       </children>
     </Pane>
     <HBox layoutX="393.0" layoutY="22.0" prefHeight="21.0" prefWidth="85.0">
@@ -96,5 +122,6 @@
       </children>
     </HBox>
     <Button id="" fx:id="buttonLogout" layoutX="494.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleLogOut" text="Log out" />
+    <Button fx:id="buttonBackEpr" layoutX="93.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleBackEPR" text="Back to Event Planning Request" />
   </children>
 </AnchorPane>

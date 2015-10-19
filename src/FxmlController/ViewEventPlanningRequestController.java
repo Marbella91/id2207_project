@@ -15,10 +15,7 @@ import Login.Employee;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -339,7 +336,7 @@ public class ViewEventPlanningRequestController  implements Initializable{
 							public void handle(ActionEvent e) {
 								Stage currentStage= (Stage) buttonLogout.getScene().getWindow();
 								Controller.generateInterface(this,
-										new ViewFinancialRequestController(employee, request.getFinancialRequest()),
+										new ViewFinancialRequestController(employee, request),
 												"../Fxml/ViewFinancialRequests.fxml", currentStage,
 												"View Financial Request");
 							}
