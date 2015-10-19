@@ -61,7 +61,6 @@ public class ProductionManagerInterfaceController  implements Initializable{
 				if(EPRequests.get(i).getProductionApplication().getTasks().size()!=0){
 					if(EPRequests.get(i).getProductionApplication().getTasks().get("music")!=null){
 						this.taskList.add(EPRequests.get(i).getProductionApplication().getTasks().get("music"));
-						System.out.println(EPRequests.get(i).getProductionApplication().getTasks().get("music").getEPR());
 					}
 					if(EPRequests.get(i).getProductionApplication().getTasks().get("decoration")!=null){
 						this.taskList.add(EPRequests.get(i).getProductionApplication().getTasks().get("decoration"));
@@ -103,13 +102,8 @@ public class ProductionManagerInterfaceController  implements Initializable{
 		sender.setCellValueFactory(new PropertyValueFactory<Task, String>("senderName"));
 		priority.setCellValueFactory(new PropertyValueFactory<Task, String>("priority"));
 		description.setCellValueFactory(new PropertyValueFactory<Task, String>("description"));
-		event.setCellValueFactory(new PropertyValueFactory<Task, String>("epr"));
+		event.setCellValueFactory(new PropertyValueFactory<Task, String>("EPR"));
 		table.setItems(FXCollections.observableList(this.taskList));
-					
-		table.setRowFactory( tv -> {
-		    TableRow<Task> row = new TableRow<>();
-		    return row ;
-		});
 		
 	}
 	
