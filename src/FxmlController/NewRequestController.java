@@ -37,6 +37,8 @@ public class NewRequestController  implements Initializable{
 	private boolean photoPreference;
 	private boolean foodPreference;
 	private boolean drinkPreference;
+	private int expectedAttendeesNumber;
+	private int expectedBudget;
 	@FXML private Label labelLogin;
 	@FXML private ChoiceBox<ClientRecord> clientRefBox;
 	@FXML private TextField clientNameText;
@@ -45,12 +47,13 @@ public class NewRequestController  implements Initializable{
 	@FXML private Button buttonLogout;
 	@FXML private TextField fromText;
 	@FXML private TextField toText;
-	@FXML private TextField expectedText;
+	@FXML private TextField expectedAttendeesText;
 	@FXML private CheckBox decorations;
 	@FXML private CheckBox parties;
 	@FXML private CheckBox food;
 	@FXML private CheckBox drinks;
 	@FXML private CheckBox photos;
+	@FXML private TextField expectedBudgetText;
 	
 	
 	public NewRequestController(Employee employee){
@@ -98,32 +101,27 @@ public class NewRequestController  implements Initializable{
 		setClientRecord(this.clientRefBox.getValue());
 				
 		if(this.clientNameText.getText().equals("")){
-			JOptionPane.showMessageDialog(null, "Please inter the client name!",
+			JOptionPane.showMessageDialog(null, "Please enter the client name!",
 					"", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		if(this.eventTypeText.getText().equals("")){
-			JOptionPane.showMessageDialog(null, "Please inter the event type!",
+			JOptionPane.showMessageDialog(null, "Please enter the event type!",
 					"", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		if(this.fromText.getText().equals("")){
-			JOptionPane.showMessageDialog(null, "Please inter the starting date!",
+			JOptionPane.showMessageDialog(null, "Please enter the starting date!",
 					"", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		
 		if(this.toText.getText().equals("")){
-			JOptionPane.showMessageDialog(null, "Please inter the end date!",
+			JOptionPane.showMessageDialog(null, "Please enter the end date!",
 					"", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		
-		if(this.expectedText.getText().equals("")){
-			JOptionPane.showMessageDialog(null, "Please inter the expected number of attendees!",
-					"", JOptionPane.ERROR_MESSAGE);
-			return;
-		}
 		setClientName(this.clientNameText.getText());
 		setEventType(this.eventTypeText.getText());
 		if (this.decorations.isDisabled()){
@@ -157,9 +155,36 @@ public class NewRequestController  implements Initializable{
 			this.foodPreference=true;
 		}
 		
+		String expectedAttendees = this.expectedAttendeesText.getText();
+		if (expectedAttendees.equals("")) {
+			JOptionPane.showMessageDialog(null, "Please enter the expected number of attendees!",
+					"", JOptionPane.ERROR_MESSAGE);
+			return;
+		} else try {  
+			this.expectedAttendeesNumber = Integer.parseInt(expectedAttendees);
+		} catch(NumberFormatException nfe) {  
+			JOptionPane.showMessageDialog(null, "The expected number of attendees should be a number!",
+					"", JOptionPane.ERROR_MESSAGE);
+			return; 
+		}
+		
+		String expectedBudget = this.expectedBudgetText.getText();
+		if (expectedBudget.equals("")) {
+			JOptionPane.showMessageDialog(null, "Please enter the expected budget!",
+					"", JOptionPane.ERROR_MESSAGE);
+			return;
+		} else try {  
+			this.expectedBudget = Integer.parseInt(expectedBudget);
+		} catch(NumberFormatException nfe) {  
+			JOptionPane.showMessageDialog(null, "The expected budget should be a number!",
+					"", JOptionPane.ERROR_MESSAGE);
+			return; 
+		}
+		
 		EventPlanningRequest request=new EventPlanningRequest(this.clientName,
-				this.eventType,this.fromText.getText(),this.toText.getText(),Integer.parseInt(this.expectedText.getText()),
-				this.decorationPreference,this.partiesPreference,photoPreference,foodPreference,this.drinkPreference,0);
+				this.eventType,this.fromText.getText(),this.toText.getText(),this.expectedAttendeesNumber,
+				this.decorationPreference,this.partiesPreference,photoPreference,foodPreference,this.drinkPreference,
+				this.expectedBudget);
 				request.fromRequestToXmlFile();
 				
 		//if a client has been selected, update the client record with the new request

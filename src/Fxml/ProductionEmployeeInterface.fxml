@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="654.0" prefWidth="638.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <!-- TODO Add Nodes -->
+  <children>
+    <TabPane layoutX="22.0" layoutY="35.0" prefHeight="595.0" prefWidth="554.0" tabClosingPolicy="UNAVAILABLE">
+      <tabs>
+        <Tab text="Event Planning Requests">
+          <content>
+            <AnchorPane id="Content" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="431.0" prefWidth="554.0">
+              <children>
+                <Label layoutX="23.0" layoutY="8.0" text="Approved Requests" />
+                <TableView id="labelPendingCommentsRequests" fx:id="tableApprovedRequests" layoutX="23.0" layoutY="27.0" prefHeight="208.0" prefWidth="456.0000999999975">
+                  <columns>
+                    <TableColumn prefWidth="75.0" text="Client name" fx:id="columnApproved_ClientName" />
+                    <TableColumn prefWidth="75.0" text="Event type" fx:id="columnApproved_EventType" />
+                    <TableColumn prefWidth="75.0" text="From" fx:id="columnApproved_From" />
+                    <TableColumn prefWidth="75.0" text="To" fx:id="columnApproved_To" />
+                  </columns>
+                </TableView>
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+        <Tab text="Employees schedule">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <children>
+                <TableView fx:id="table" layoutX="27.0" layoutY="42.0" prefHeight="208.0" prefWidth="456.0000999999975">
+                  <columns>
+                    <TableColumn id="employeeColumn" prefWidth="75.0" text="Employee" fx:id="employeeColumn" />
+                    <TableColumn id="sender" prefWidth="75.0" text="sender" fx:id="sender" />
+                    <TableColumn id="priority" prefWidth="75.0" text="priority" fx:id="priority" />
+                    <TableColumn id="description" maxWidth="5000.0" minWidth="10.0" prefWidth="230.0" text="Description" fx:id="description" />
+                  </columns>
+                </TableView>
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+      </tabs>
+    </TabPane>
+    <HBox layoutX="405.0" layoutY="10.0" prefHeight="21.0" prefWidth="85.0">
+      <children>
+        <Label text="Login:" />
+        <Label fx:id="labelLogin" text="login" />
+      </children>
+    </HBox>
+    <Button id="handleDisconnect" fx:id="buttonLogout" layoutX="506.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleLogOut" text="Log out" />
+  </children>
+</AnchorPane>
