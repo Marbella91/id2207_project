@@ -13,10 +13,7 @@ import Login.Employee;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -162,38 +159,20 @@ public class SCSOInterfaceController  implements Initializable{
 		    TableRow<ClientRecord> row = new TableRow<>();
 		    row.setOnMouseClicked(event -> {
 		        if (! row.isEmpty()) {
-		        	Stage currentStage= (Stage) this.tableClientRecords.getScene().getWindow();
-		        	generateViewRecord(currentStage, row.getItem());
+		        	Controller.generateInterface(this,
+		    				new  ViewClientRecordController(this.employee, row.getItem()),
+		    				"../Fxml/ViewClientRecord.fxml",
+		    				(Stage) this.tableClientRecords.getScene().getWindow(),
+		    				"View Client Record");
 		        }
 		    });
 		    return row ;
 		});
 	}
 	
-	
-	public void generateViewRecord(Stage currentStage, ClientRecord record)
-	{
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/ViewClientRecord.fxml"));
-        ViewClientRecordController controller = new  ViewClientRecordController(this.employee, record);
-        loader.setController(controller); 
-        Parent root;
-		
-		try {
-			root = (Parent) loader.load();
-			Scene scene = new Scene(root);
-		       currentStage.setScene(scene);
-		       currentStage.setTitle("View Client Record"); 
-		       currentStage.setHeight(800);
-		       currentStage.setWidth(600);
-		       currentStage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	@FXML
 	public void handleCreateClient(ActionEvent event) throws IOException{
-		String clientRecordRef = JOptionPane.showInputDialog("Enter the new client record reference");
+		String clientRecordRef = JOptionPane.showInputDialog("Enter the new client record reference","clientname");
 		if(clientRecordRef != null){
     		if (clientRecordRef.equals("")) {
     		JOptionPane.showMessageDialog(null, "Please enter the reference!",
@@ -205,8 +184,11 @@ public class SCSOInterfaceController  implements Initializable{
     		JOptionPane.showMessageDialog(null, "The client record has been "
     				+ "created successfully!",
     				"", JOptionPane.INFORMATION_MESSAGE);
-    		Stage currentStage= (Stage) this.buttonCreateClient.getScene().getWindow();
-    		generateViewRecord(currentStage, record);
+    		Controller.generateInterface(this,
+    				new  ViewClientRecordController(this.employee, record),
+    				"../Fxml/ViewClientRecord.fxml",
+    				(Stage) this.buttonCreateClient.getScene().getWindow(),
+    				"View Client Record");
     	}
     }
 	

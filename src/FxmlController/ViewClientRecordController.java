@@ -2,41 +2,27 @@ package FxmlController;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
-import EventPlanningRequest.Application;
 import EventPlanningRequest.ClientRecord;
 import EventPlanningRequest.EventPlanningRequest;
-import EventPlanningRequest.EventPlanningRequestStatus;
-import EventPlanningRequest.HiringRequest;
 import Login.Employee;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class ViewClientRecordController  implements Initializable{
@@ -85,23 +71,11 @@ public class ViewClientRecordController  implements Initializable{
 		    TableRow<EventPlanningRequest> row = new TableRow<>();
 		    row.setOnMouseClicked(event -> {
 		        if (! row.isEmpty()) {
-		        	Stage currentStage= (Stage) this.tableEvents.getScene().getWindow();
-		        	FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/ViewEvent.fxml"));
-		            ViewEventController controller = new  ViewEventController(this.employee, row.getItem());
-		            loader.setController(controller); 
-		            Parent root;
-		    		
-		    		try {
-		    			root = (Parent) loader.load();
-		    			Scene scene = new Scene(root);
-		    		       currentStage.setScene(scene);
-		    		       currentStage.setTitle("View Event"); 
-		    		       currentStage.setHeight(800);
-		    		       currentStage.setWidth(600);
-		    		       currentStage.show();
-		    		} catch (IOException e) {
-		    			e.printStackTrace();
-		    		}
+		        	Controller.generateInterface(this,
+		        			new  ViewEventController(this.employee, row.getItem(), this.record),
+		        			"../Fxml/ViewEvent.fxml",
+		        			(Stage) this.tableEvents.getScene().getWindow(),
+		        			"View Event");
 		        }
 		    });
 		    return row ;
@@ -128,22 +102,11 @@ public class ViewClientRecordController  implements Initializable{
 		
 		
 		// reinitialize interface
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/ViewClientRecord.fxml"));
-        ViewClientRecordController controller = new  ViewClientRecordController(this.employee, this.record);
-        loader.setController(controller); 
-        Parent root;
-		try {
-			root = (Parent) loader.load();
-			Scene scene = new Scene(root);
-			Stage currentStage=(Stage) buttonUpdate.getScene().getWindow();
-			currentStage.setScene(scene);
-			currentStage.setTitle("View Client Record"); 
-			currentStage.setHeight(800);
-			currentStage.setWidth(600);
-			currentStage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		Controller.generateInterface(this,
+				new  ViewClientRecordController(this.employee, this.record),
+				"../Fxml/ViewClientRecord.fxml",
+				(Stage) buttonUpdate.getScene().getWindow(),
+				"View Client Record");
 	}
 	
 	
@@ -155,22 +118,8 @@ public class ViewClientRecordController  implements Initializable{
 	
 	@FXML
 	public void handleLogOut(ActionEvent event) throws IOException{
+		Controller.logout(this, buttonLogout);
 		
-		int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to quit?", "", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-		if(option == JOptionPane.OK_OPTION){
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("../Main/LoginInterface.fxml"));
-	        LoginController controller = new  LoginController();
-	        loader.setController(controller); 
-	        Parent root = (Parent) loader.load();
-	        Stage primaryStage=(Stage) buttonLogout.getScene().getWindow();
-	        Scene scene = new Scene(root);
-	        primaryStage.setScene(scene);
-	        primaryStage.setTitle("Login"); 
-	        primaryStage.setHeight(250);
-	        primaryStage.setWidth(400);
-	        primaryStage.show();
-	    }
 	}
 
 	    

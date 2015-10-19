@@ -52,7 +52,7 @@
         </HBox>
         <HBox layoutX="3.0" layoutY="53.0" prefHeight="22.0" prefWidth="397.0">
           <children>
-            <Label prefWidth="130.0" text="Event:" />
+            <Label prefWidth="130.0" text="Event" />
             <Label fx:id="eventLabel" text="Label" />
           </children>
         </HBox>

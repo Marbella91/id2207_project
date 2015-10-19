@@ -1,55 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="654.0" prefWidth="638.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <!-- TODO Add Nodes -->
   <children>
-    <TabPane layoutX="22.0" layoutY="35.0" prefHeight="595.0" prefWidth="554.0" tabClosingPolicy="UNAVAILABLE">
-      <tabs>
-        <Tab text="Hiring Requests">
-          <content>
-            <AnchorPane id="Content" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="431.0" prefWidth="554.0">
-              <children>
-                <Label layoutX="23.0" layoutY="8.0" text="Approved Requests" />
-                <TableView id="labelPendingCommentsRequests" fx:id="tableApprovedRequests" layoutX="0.0" layoutY="27.0" prefHeight="143.0" prefWidth="554.0">
-                  <columns>
-                    <TableColumn id="columnApproved_Department" maxWidth="5000.0" minWidth="10.0" prefWidth="100.0" text="Department" fx:id="columnApproved_Department" />
-                    <TableColumn id="columnApproved_ContractType" maxWidth="5000.0" minWidth="10.0" prefWidth="111.0" text="Contract type" fx:id="columnApproved_ContractType" />
-                    <TableColumn id="columnApproved_Experience" maxWidth="5000.0" minWidth="10.0" prefWidth="98.0" text="Experience" fx:id="columnApproved_Experience" />
-                    <TableColumn id="columnApproved_JobTitle" prefWidth="75.0" text="Job title" fx:id="columnApproved_JobTitle" />
-                    <TableColumn id="columnApproved_JobDescription" maxWidth="5000.0" minWidth="10.0" prefWidth="170.0" text="Job description" fx:id="columnApproved_JobDescription" />
-                  </columns>
-                </TableView>
-                <TableView id="labelPendingCommentsRequests" fx:id="tableOpenRequests" layoutX="0.0" layoutY="190.0" prefHeight="163.0" prefWidth="554.0">
-                  <columns>
-                    <TableColumn id="columnOpen_Department" maxWidth="5000.0" minWidth="10.0" prefWidth="100.0" text="Department" fx:id="columnOpen_Department" />
-                    <TableColumn id="columnOpen_ContractType" maxWidth="5000.0" minWidth="10.0" prefWidth="111.0" text="Contract type" fx:id="columnOpen_ContractType" />
-                    <TableColumn id="columnOpen_Experience" maxWidth="5000.0" minWidth="10.0" prefWidth="98.0" text="Experience" fx:id="columnOpen_Experience" />
-                    <TableColumn id="columnOpen_JobTitle" prefWidth="75.0" text="Job title" fx:id="columnOpen_JobTitle" />
-                    <TableColumn id="columnOpen_JobDescription" maxWidth="5000.0" minWidth="10.0" prefWidth="170.0" text="Job description" fx:id="columnOpen_JobDescription" />
-                  </columns>
-                </TableView>
-                <TableView id="labelPendingCommentsRequests" fx:id="tableRejectedRequests" layoutX="0.0" layoutY="376.0" prefHeight="183.0" prefWidth="554.0">
-                  <columns>
-                    <TableColumn id="columnRejected_Department" maxWidth="5000.0" minWidth="10.0" prefWidth="100.0" text="Department" fx:id="columnRejected_Department" />
-                    <TableColumn id="columnRejected_ContractType" maxWidth="5000.0" minWidth="10.0" prefWidth="111.0" text="Contract type" fx:id="columnRejected_ContractType" />
-                    <TableColumn id="columnRejected_Experience" maxWidth="5000.0" minWidth="10.0" prefWidth="98.0" text="Experience" fx:id="columnRejected_Experience" />
-                    <TableColumn id="columnRejected_JobTitle" prefWidth="75.0" text="Job title" fx:id="columnRejected_JobTitle" />
-                    <TableColumn id="columnRejected_JobDescription" maxWidth="5000.0" minWidth="10.0" prefWidth="170.0" text="Job description" fx:id="columnRejected_JobDescription" />
-                  </columns>
-                </TableView>
-                <Label layoutX="23.0" layoutY="174.0" text="Open Requests" />
-                <Label layoutX="23.0" layoutY="360.0" text="Rejected Requests" />
-              </children>
-            </AnchorPane>
-          </content>
-        </Tab>
-      </tabs>
-    </TabPane>
     <HBox layoutX="405.0" layoutY="10.0" prefHeight="21.0" prefWidth="85.0">
       <children>
         <Label text="Login:" />
@@ -57,5 +17,51 @@
       </children>
     </HBox>
     <Button id="handleDisconnect" fx:id="buttonLogout" layoutX="506.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleLogOut" text="Log out" />
+    <Label layoutX="45.0" layoutY="122.0" text="Approved Requests" />
+    <TableView id="labelPendingCommentsRequests" fx:id="tableApprovedRequests" layoutX="22.0" layoutY="141.0" prefHeight="130.0" prefWidth="554.0">
+      <columns>
+        <TableColumn id="columnApproved_Department" maxWidth="5000.0" minWidth="10.0" prefWidth="100.0" text="Department" fx:id="columnApproved_Department" />
+        <TableColumn id="columnApproved_ContractType" maxWidth="5000.0" minWidth="10.0" prefWidth="108.0" text="Contract type" fx:id="columnApproved_ContractType" />
+        <TableColumn id="columnApproved_Experience" maxWidth="5000.0" minWidth="10.0" prefWidth="98.0" text="Experience" fx:id="columnApproved_Experience" />
+        <TableColumn id="columnApproved_JobTitle" prefWidth="75.0" text="Job title" fx:id="columnApproved_JobTitle" />
+        <TableColumn id="columnApproved_JobDescription" maxWidth="5000.0" minWidth="10.0" prefWidth="170.0" text="Job description" fx:id="columnApproved_JobDescription" />
+      </columns>
+    </TableView>
+    <TableView id="labelPendingCommentsRequests" fx:id="tableOpenRequests" layoutX="22.0" layoutY="295.0" prefHeight="130.0" prefWidth="554.0">
+      <columns>
+        <TableColumn id="columnOpen_Department" maxWidth="5000.0" minWidth="10.0" prefWidth="100.0" text="Department" fx:id="columnOpen_Department" />
+        <TableColumn id="columnOpen_ContractType" maxWidth="5000.0" minWidth="10.0" prefWidth="108.0" text="Contract type" fx:id="columnOpen_ContractType" />
+        <TableColumn id="columnOpen_Experience" maxWidth="5000.0" minWidth="10.0" prefWidth="98.0" text="Experience" fx:id="columnOpen_Experience" />
+        <TableColumn id="columnOpen_JobTitle" prefWidth="75.0" text="Job title" fx:id="columnOpen_JobTitle" />
+        <TableColumn id="columnOpen_JobDescription" maxWidth="5000.0" minWidth="10.0" prefWidth="170.0" text="Job description" fx:id="columnOpen_JobDescription" />
+      </columns>
+    </TableView>
+    <TableView id="labelPendingCommentsRequests" fx:id="tableRejectedRequests" layoutX="22.0" layoutY="451.0" prefHeight="130.0" prefWidth="554.0">
+      <columns>
+        <TableColumn id="columnRejected_Department" maxWidth="5000.0" minWidth="10.0" prefWidth="100.0" text="Department" fx:id="columnRejected_Department" />
+        <TableColumn id="columnRejected_ContractType" maxWidth="5000.0" minWidth="10.0" prefWidth="108.0" text="Contract type" fx:id="columnRejected_ContractType" />
+        <TableColumn id="columnRejected_Experience" maxWidth="5000.0" minWidth="10.0" prefWidth="98.0" text="Experience" fx:id="columnRejected_Experience" />
+        <TableColumn id="columnRejected_JobTitle" prefWidth="75.0" text="Job title" fx:id="columnRejected_JobTitle" />
+        <TableColumn id="columnRejected_JobDescription" maxWidth="5000.0" minWidth="10.0" prefWidth="170.0" text="Job description" fx:id="columnRejected_JobDescription" />
+      </columns>
+    </TableView>
+    <Label layoutX="45.0" layoutY="279.0" text="Open Requests" />
+    <Label layoutX="45.0" layoutY="435.0" text="Rejected Requests" />
+    <Button fx:id="buttonMenu" layoutX="28.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleMenu" text="Menu" />
+    <Button fx:id="buttonBackEpr" layoutX="86.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBackEPR" text="Back to Event Planning Request" />
+    <Label layoutX="119.0" layoutY="53.0" text="Hiring Requests">
+      <font>
+        <Font name="System Bold" size="14.0" />
+      </font>
+    </Label>
+    <HBox alignment="CENTER_LEFT" layoutX="22.0" layoutY="77.0" prefHeight="43.0" prefWidth="394.0">
+      <children>
+        <Label id="eventLabel" prefWidth="51.0" text="Event:" />
+        <Label fx:id="labelEvent" text="Label" />
+      </children>
+      <padding>
+        <Insets right="10.0" />
+      </padding>
+    </HBox>
   </children>
 </AnchorPane>

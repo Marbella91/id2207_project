@@ -90,8 +90,6 @@ public class NewFinancialRequestController   implements Initializable{
 		this.epr.setFinancialRequest(financialRequest);
 		epr.updateXml();
 		
-		
-
 		JOptionPane.showMessageDialog(null, "The financial request has been "
 				+ "created successfully!",
 				"", JOptionPane.INFORMATION_MESSAGE);

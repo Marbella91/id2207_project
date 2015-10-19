@@ -2,20 +2,13 @@ package FxmlController;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
-import org.omg.CORBA.Request;
-
 import EventPlanningRequest.Application;
 import EventPlanningRequest.EventPlanningRequest;
-import EventPlanningRequest.EventPlanningRequestStatus;
-import EventPlanningRequest.HiringRequest;
 import EventPlanningRequest.Task;
 import Login.Employee;
 import Login.Job;
@@ -23,31 +16,22 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-public class ViewApplicationController  implements Initializable{
+public class ViewApplicationController implements Initializable{
 	private Employee employee;
 	private EventPlanningRequest epr;
 	private Application application;
 	@FXML private Label labelLogin;
 	@FXML private Button buttonLogout;
 	@FXML private Button buttonMenu;
+	@FXML private Button buttonBackEpr;
 	@FXML private Label labelEvent;
 	
 	@FXML private Label labelMusicExistingTask;
@@ -70,7 +54,6 @@ public class ViewApplicationController  implements Initializable{
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		this.labelLogin.setText(this.employee.getLogin());
 		this.labelEvent.setText(this.epr.toString());
 		
@@ -116,17 +99,17 @@ public class ViewApplicationController  implements Initializable{
 					Employee assign = musicAssignBox.getValue();
 					String priority = musicPriorityBox.getValue();
 					if (description.equals("")){
-						JOptionPane.showMessageDialog(null, "Please enter a description !",
+						JOptionPane.showMessageDialog(null, "Please enter a description!",
 								"", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
 					if (assign == null){
-						JOptionPane.showMessageDialog(null, "Please choose an employee to assign the task !",
+						JOptionPane.showMessageDialog(null, "Please choose an employee to assign the task!",
 								"", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
 					if (priority == null){
-						JOptionPane.showMessageDialog(null, "Please select a priority !",
+						JOptionPane.showMessageDialog(null, "Please select a priority!",
 								"", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
@@ -190,17 +173,17 @@ public class ViewApplicationController  implements Initializable{
 					Employee assign = decorationAssignBox.getValue();
 					String priority = decorationPriorityBox.getValue();
 					if (description.equals("")){
-						JOptionPane.showMessageDialog(null, "Please enter a description !",
+						JOptionPane.showMessageDialog(null, "Please enter a description!",
 								"", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
 					if (assign == null){
-						JOptionPane.showMessageDialog(null, "Please choose an employee to assign the task !",
+						JOptionPane.showMessageDialog(null, "Please choose an employee to assign the task!",
 								"", JOptionPane.ERROR_MESSAGE);
 						return;
 					}	
 					if (priority == null){
-						JOptionPane.showMessageDialog(null, "Please select a priority !",
+						JOptionPane.showMessageDialog(null, "Please select a priority!",
 								"", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
@@ -224,50 +207,30 @@ public class ViewApplicationController  implements Initializable{
 	}	
 		
 	@FXML
+	public void handleLogOut(ActionEvent event) throws IOException{
+		Controller.logout(this, buttonLogout);
+	}
+	
+	@FXML
 	public void handleMenu(ActionEvent event){
 		Stage currentStage = (Stage) this.buttonMenu.getScene().getWindow();
 		this.employee.generateInterface(currentStage);
 	}
 	
 	@FXML
-	public void handleLogOut(ActionEvent event) throws IOException{
-		
-		int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to quit?", "", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-		if(option == JOptionPane.OK_OPTION){
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("../Main/LoginInterface.fxml"));
-	        LoginController controller = new  LoginController();
-	        loader.setController(controller); 
-	        Parent root = (Parent) loader.load();
-	        Stage primaryStage=(Stage) buttonLogout.getScene().getWindow();
-	        Scene scene = new Scene(root);
-	        primaryStage.setScene(scene);
-	        primaryStage.setTitle("Login"); 
-	        primaryStage.setHeight(250);
-	        primaryStage.setWidth(400);
-	        primaryStage.show();
-	    }
+	public void handleBackEPR(ActionEvent event){
+		Stage currentStage = (Stage) this.buttonBackEpr.getScene().getWindow();
+		Controller.generateInterface(this,
+				new ViewEventPlanningRequestController(this.employee, this.epr),
+				"../Fxml/ViewEventPlanningRequest.fxml", currentStage,
+				"View Event Planning Request");
 	}
 	
 	public void reinitializeInterface(Stage currentStage)
 	{
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/ViewApplication.fxml"));
-        ViewApplicationController controller = new  ViewApplicationController(this.employee, this.epr);
-        loader.setController(controller); 
-        Parent root;
-		try {
-			root = (Parent) loader.load();
-			Scene scene = new Scene(root);
-			currentStage.setScene(scene);
-			currentStage.setTitle("View Application"); 
-			currentStage.setHeight(800);
-			currentStage.setWidth(600);
-			currentStage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} 
+		Controller.generateInterface(this,
+				new ViewApplicationController(this.employee, this.epr),
+				"../Fxml/ViewApplication.fxml", currentStage,
+				"View Application");
 	}
-
-	    
-	
 }

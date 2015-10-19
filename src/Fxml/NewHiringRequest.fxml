@@ -6,13 +6,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="654.0" prefWidth="638.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
     <Pane prefHeight="520.0" prefWidth="512.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="50.0">
       <children>
-        <Label layoutX="31.0" layoutY="19.0" text="Hiring Request" />
-        <HBox layoutX="-2.0" layoutY="78.0" prefHeight="43.0" prefWidth="538.0">
+        <Label layoutX="31.0" layoutY="19.0" text="New Hiring Request">
+          <font>
+            <Font name="System Bold" size="14.0" />
+          </font>
+        </Label>
+        <HBox layoutX="-2.0" layoutY="124.0" prefHeight="43.0" prefWidth="538.0">
           <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
               <children>
@@ -25,8 +30,8 @@
             </HBox>
             <HBox prefHeight="43.0" prefWidth="340.0">
               <children>
-                <CheckBox fx:id="adminBox" mnemonicParsing="false" prefHeight="43.0" prefWidth="132.0" text="Administration" />
-                <CheckBox fx:id="servicesBox" mnemonicParsing="false" prefHeight="43.0" prefWidth="132.0" text="Services" />
+                <RadioButton id="fullTimeBox" fx:id="adminButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="132.0" text="Administration" />
+                <RadioButton id="fullTimeBox" fx:id="servicesButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="132.0" text="Services" />
               </children>
             </HBox>
           </children>
@@ -34,15 +39,7 @@
             <Insets right="10.0" />
           </padding>
         </HBox>
-        <HBox layoutX="-2.0" layoutY="110.0" prefHeight="43.0" prefWidth="540.0">
-          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" />
-          </children>
-          <padding>
-            <Insets right="10.0" />
-          </padding>
-        </HBox>
-        <HBox layoutX="-5.0" layoutY="45.0" prefHeight="43.0" prefWidth="506.0">
+        <HBox layoutX="-3.0" layoutY="85.0" prefHeight="43.0" prefWidth="506.0">
           <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
               <children>
@@ -55,8 +52,8 @@
             </HBox>
             <HBox prefHeight="43.0" prefWidth="306.0">
               <children>
-                <CheckBox fx:id="fullTimeBox" mnemonicParsing="false" prefHeight="43.0" prefWidth="132.0" text="Full time" />
-                <CheckBox id="prtTimeBox" fx:id="partTimeBox" mnemonicParsing="false" prefHeight="43.0" prefWidth="132.0" text="Part time" />
+                <RadioButton id="fullTimeBox" fx:id="fullTimeButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="132.0" text="Full time" />
+                <RadioButton id="fullTimeBox" fx:id="partTimeButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="132.0" text="Part time" />
               </children>
             </HBox>
           </children>
@@ -64,14 +61,13 @@
             <Insets right="10.0" />
           </padding>
         </HBox>
-        <HBox layoutX="0.0" layoutY="167.0" prefHeight="43.0" prefWidth="394.0" />
-        <HBox layoutX="192.0" layoutY="120.0" prefHeight="43.0" prefWidth="344.0">
+        <HBox layoutX="192.0" layoutY="166.0" prefHeight="43.0" prefWidth="344.0">
           <children>
-            <CheckBox fx:id="prodBox" mnemonicParsing="false" prefHeight="43.0" prefWidth="132.0" text="Production" />
-            <CheckBox fx:id="financialBox" mnemonicParsing="false" prefHeight="43.0" prefWidth="132.0" text="Financial" />
+            <RadioButton id="fullTimeBox" fx:id="prodButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="132.0" text="Production" />
+            <RadioButton id="fullTimeBox" fx:id="financialButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="132.0" text="Financial" />
           </children>
         </HBox>
-        <HBox layoutX="59.0" layoutY="233.0" prefHeight="43.0" prefWidth="394.0">
+        <HBox layoutX="62.0" layoutY="258.0" prefHeight="43.0" prefWidth="394.0">
           <children>
             <HBox prefHeight="100.0" prefWidth="200.0" />
             <HBox prefHeight="43.0" prefWidth="468.0">
@@ -137,7 +133,7 @@
             </HBox>
           </children>
         </HBox>
-        <HBox layoutX="114.0" layoutY="175.0" prefHeight="43.0" prefWidth="410.0">
+        <HBox layoutX="114.0" layoutY="212.0" prefHeight="43.0" prefWidth="410.0">
           <children>
             <HBox prefHeight="43.0" prefWidth="155.0">
               <children>
@@ -165,11 +161,19 @@
             <Insets right="10.0" />
           </padding>
         </HBox>
+        <HBox layoutX="0.0" layoutY="63.0" prefHeight="22.0" prefWidth="397.0">
+          <children>
+            <Label prefWidth="187.0" text="Event" />
+            <Label fx:id="eventLabel" text="Label" />
+          </children>
+        </HBox>
+        <Button fx:id="buttonSubmit" layoutX="379.0" layoutY="363.0" mnemonicParsing="false" onAction="#handleSubmit" text="Submit" />
       </children>
     </Pane>
     <Label layoutX="376.0" layoutY="25.0" prefHeight="22.0" text="Login :" />
     <Label fx:id="labelLogin" layoutX="422.0" layoutY="28.0" text="Label" />
-    <Button fx:id="buttonSubmit" layoutX="530.0" layoutY="597.0" mnemonicParsing="false" onAction="#handleSubmit" text="Submit" />
     <Button id="handleLogOut" fx:id="buttonLogout" layoutX="505.0" layoutY="26.0" mnemonicParsing="false" onAction="#handleLogOut" text="Log out" />
+    <Button fx:id="buttonMenu" layoutX="45.0" layoutY="23.0" mnemonicParsing="false" onAction="#handleMenu" text="Menu" />
+    <Button fx:id="buttonBackEpr" layoutX="103.0" layoutY="23.0" mnemonicParsing="false" onAction="#handleBackEPR" text="Back to Event Planning Request" />
   </children>
 </AnchorPane>

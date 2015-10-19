@@ -12,32 +12,35 @@ import EventPlanningRequest.HiringRequest;
 import Login.Employee;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 public class NewHiringRequestController  implements Initializable{
 	
 	@FXML private Label labelLogin;
 	@FXML private Button buttonLogout;
+	@FXML private Button buttonMenu;
+	@FXML private Button buttonBackEpr;
 	@FXML private Button buttonSubmit;
-	@FXML private CheckBox fullTimeBox;
-	@FXML private CheckBox partTimeBox;
-	@FXML private CheckBox adminBox;
-	@FXML private CheckBox servicesBox;
-	@FXML private CheckBox prodBox;
-	@FXML private CheckBox financialBox;
+	@FXML private Label eventLabel;
+	@FXML private RadioButton fullTimeButton;
+	@FXML private RadioButton partTimeButton;
+	@FXML private RadioButton adminButton;
+	@FXML private RadioButton servicesButton;
+	@FXML private RadioButton prodButton;
+	@FXML private RadioButton financialButton;
 	@FXML private TextField yearsExpText;
 	@FXML private TextField jobTitleText;
 	@FXML private TextField jobDescriptionText;
 	private Employee employee;
 	private EventPlanningRequest epr;
+	private ToggleGroup contractType;
+	private ToggleGroup department;
 	
 	public NewHiringRequestController(Employee employee,EventPlanningRequest epr){
 		this.employee=employee;
@@ -47,68 +50,40 @@ public class NewHiringRequestController  implements Initializable{
 	
 	@FXML
 	public void handleLogOut(ActionEvent event) throws IOException{
-		
-		int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to quit?", "", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-		if(option == JOptionPane.OK_OPTION){
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("../Main/LoginInterface.fxml"));
-	        LoginController controller = new  LoginController();
-	        loader.setController(controller); 
-	        Parent root = (Parent) loader.load();
-	        Stage primaryStage= (Stage) buttonLogout.getScene().getWindow();
-	        Scene scene = new Scene(root);
-	        primaryStage.setScene(scene);
-	        primaryStage.setTitle("Login"); 
-	        primaryStage.setHeight(250);
-	        primaryStage.setWidth(400);
-	        primaryStage.show();
-	         
-		}
+		Controller.logout(this, buttonLogout);
+	}
+	
+	@FXML
+	public void handleMenu(ActionEvent event){
+		Stage currentStage = (Stage) this.buttonMenu.getScene().getWindow();
+		this.employee.generateInterface(currentStage);
+	}
+	
+	@FXML
+	public void handleBackEPR(ActionEvent event){
+		Stage currentStage = (Stage) this.buttonBackEpr.getScene().getWindow();
+		Controller.generateInterface(this,
+				new ViewEventPlanningRequestController(this.employee, this.epr),
+				"../Fxml/ViewEventPlanningRequest.fxml", currentStage,
+				"View Event Planning Request");
 	}
 	
 	@FXML
 	public void handleSubmit(ActionEvent event){
-		String contractType="";
-		if (fullTimeBox.isSelected()){
-			contractType="fullTime";
-		}
-		else if (partTimeBox.isSelected()) {
-			contractType="partTime";
-		}
-		else {
-			JOptionPane.showMessageDialog(null, "Please choose a contract type!",
-					"", JOptionPane.ERROR_MESSAGE);
-			return;
-		}
-	
-		String department="";
-		if (adminBox.isSelected()){
-			department="administration";
-		}
-		else if (servicesBox.isSelected()){
-			department="services";
-			}
-		else if (prodBox.isSelected()){
-			department="production";
-		}
-		else if (financialBox.isSelected()){
-			department="financial";
-		}
-		else {
-				JOptionPane.showMessageDialog(null, "Please choose a department!",
-						"", JOptionPane.ERROR_MESSAGE);
-				return;
-			
-		}
-		if (this.yearsExpText.getText().equals("")){
-			JOptionPane.showMessageDialog(null, "Please enter the experience year number !",
-					"", JOptionPane.ERROR_MESSAGE);
-			return;
-		}
-	
 		
-	
-		int years=Integer.parseInt(this.yearsExpText.getText());
+		String yearsExpString = this.yearsExpText.getText();
+		int yearsExp = 0;
+		if (yearsExpString.equals("")) {
+			JOptionPane.showMessageDialog(null, "Please enter the years of experience number!",
+					"", JOptionPane.ERROR_MESSAGE);
+			return;
+		} else try {  
+			yearsExp = Integer.parseInt(yearsExpString);
+		} catch(NumberFormatException nfe) {  
+			JOptionPane.showMessageDialog(null, "The years of experience should be a number!",
+					"", JOptionPane.ERROR_MESSAGE);
+			return; 
+		}
 		
 		if (this.jobTitleText.getText().equals("")){
 			JOptionPane.showMessageDialog(null, "Please enter a job title !",
@@ -122,8 +97,11 @@ public class NewHiringRequestController  implements Initializable{
 			return;
 		}
 		
-		HiringRequest hiringRequest=new HiringRequest(department,contractType,
-				years,this.jobTitleText.getText(),
+		HiringRequest hiringRequest=new HiringRequest(
+				department.getSelectedToggle().getUserData().toString(),
+				contractType.getSelectedToggle().getUserData().toString(),
+				yearsExp,
+				this.jobTitleText.getText(),
 				this.jobDescriptionText.getText(),epr.getId());
 		
 		this.epr.getHiringRequest().add(hiringRequest);
@@ -134,32 +112,36 @@ public class NewHiringRequestController  implements Initializable{
 				+ "created successfully!",
 				"", JOptionPane.INFORMATION_MESSAGE);
 		
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fxml/ViewEventPlanningRequest.fxml"));
-        ViewEventPlanningRequestController controller = new  ViewEventPlanningRequestController(this.employee, this.epr);
-        loader.setController(controller); 
-        Parent root;
-		
-		try {
-		 Stage currentStage= (Stage) buttonLogout.getScene().getWindow();
-			root = (Parent) loader.load();
-			Scene scene = new Scene(root);
-		       currentStage.setScene(scene);
-		       currentStage.setTitle("View Event Planning Request"); 
-		       currentStage.setHeight(800);
-		       currentStage.setWidth(600);
-		       currentStage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		
+		Stage currentStage= (Stage) buttonLogout.getScene().getWindow();
+		Controller.generateInterface(this,
+				new ViewEventPlanningRequestController(this.employee, this.epr),
+				"../Fxml/ViewEventPlanningRequest.fxml", currentStage,
+				"View Event Planning Request");
 	}
 	
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		this.labelLogin.setText(this.employee.getLogin());
+		this.eventLabel.setText(this.epr.toString());
+		
+		contractType = new ToggleGroup();
+		this.fullTimeButton.setToggleGroup(contractType);
+		this.fullTimeButton.setUserData("full time");
+		this.partTimeButton.setToggleGroup(contractType);
+		this.partTimeButton.setUserData("part time");
+		this.fullTimeButton.setSelected(true);
+		
+		department = new ToggleGroup();
+		this.adminButton.setToggleGroup(department);
+		this.adminButton.setUserData("administration");
+		this.prodButton.setToggleGroup(department);
+		this.prodButton.setUserData("production");
+		this.servicesButton.setToggleGroup(department);
+		this.servicesButton.setUserData("services");
+		this.financialButton.setToggleGroup(department);
+		this.financialButton.setUserData("financial");
+		this.prodButton.setSelected(true);
 	}
 	
 
