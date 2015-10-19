@@ -130,7 +130,7 @@ public class ViewApplicationController  implements Initializable{
 								"", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
-					Task task = new Task(employee, description, assign, priority);
+					Task task = new Task(employee, description, assign, priority,application.getEPR());
 					application.getTasks().put("music", task);
 					epr.updateXml();
 					JOptionPane.showMessageDialog(null, "The task has been "
@@ -204,7 +204,7 @@ public class ViewApplicationController  implements Initializable{
 								"", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
-					Task task = new Task(employee, description, assign, priority);
+					Task task = new Task(employee, description, assign, priority, application.getEPR());
 					application.getTasks().put("decoration", task);
 					epr.updateXml();
 					JOptionPane.showMessageDialog(null, "The task has been "

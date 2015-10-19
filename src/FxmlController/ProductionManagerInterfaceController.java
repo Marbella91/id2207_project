@@ -50,6 +50,7 @@ public class ProductionManagerInterfaceController  implements Initializable{
 	@FXML private TableColumn<Task, String> sender;
 	@FXML private TableColumn<Task, String> priority;
 	@FXML private TableColumn<Task, String> description;
+	@FXML private TableColumn<Task,String> event;
 	
 	public ProductionManagerInterfaceController(Employee employee){
 		this.employee=employee;
@@ -60,6 +61,7 @@ public class ProductionManagerInterfaceController  implements Initializable{
 				if(EPRequests.get(i).getProductionApplication().getTasks().size()!=0){
 					if(EPRequests.get(i).getProductionApplication().getTasks().get("music")!=null){
 						this.taskList.add(EPRequests.get(i).getProductionApplication().getTasks().get("music"));
+						System.out.println(EPRequests.get(i).getProductionApplication().getTasks().get("music").getEPR());
 					}
 					if(EPRequests.get(i).getProductionApplication().getTasks().get("decoration")!=null){
 						this.taskList.add(EPRequests.get(i).getProductionApplication().getTasks().get("decoration"));
@@ -101,6 +103,7 @@ public class ProductionManagerInterfaceController  implements Initializable{
 		sender.setCellValueFactory(new PropertyValueFactory<Task, String>("senderName"));
 		priority.setCellValueFactory(new PropertyValueFactory<Task, String>("priority"));
 		description.setCellValueFactory(new PropertyValueFactory<Task, String>("description"));
+		event.setCellValueFactory(new PropertyValueFactory<Task, String>("epr"));
 		table.setItems(FXCollections.observableList(this.taskList));
 					
 		table.setRowFactory( tv -> {

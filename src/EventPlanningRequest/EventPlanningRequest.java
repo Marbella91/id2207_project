@@ -17,7 +17,6 @@ public class EventPlanningRequest {
 
 	// unique id, generated first time the request is saved in the database
 	private int id;
-	
 	private String clientRecordRef;
 	private String clientName;
 	private String eventType;
@@ -363,6 +362,31 @@ public class EventPlanningRequest {
 				br.close();
 				fr.close();
 			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+		return EPRequestsList;
+	}
+	
+	public static LinkedList<EventPlanningRequest> generateEPRequestList()
+	{
+		File dataDirectory = new File("data/EPRequests");
+		File[] fileList = dataDirectory.listFiles(); 
+		
+		LinkedList<EventPlanningRequest>  EPRequestsList = new LinkedList<EventPlanningRequest>();
+		
+		for (int i = 0; i < fileList.length; i++)
+		{
+			FileReader fr;
+			try {
+				fr = new FileReader(fileList[i]);
+				BufferedReader br = new BufferedReader(fr);
+				String requestXml = br.readLine();
+				EventPlanningRequest request = fromXml(requestXml);
+				EPRequestsList.add(request);
+			}
+				
+				catch (IOException ex) {
 				ex.printStackTrace();
 			}
 		}

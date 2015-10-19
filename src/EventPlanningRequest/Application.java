@@ -10,11 +10,13 @@ public class Application {
 	
 	// key = type = decoration or music
 	private HashMap<String, Task> tasks;
+	private String epr;
 	
-	public Application(String department) {
+	public Application(String department, String epr) {
 		this.department = department;
 		this.status = "open";
 		this.tasks =new HashMap<String, Task>();
+		this.epr=epr;
 	}
 
 	public String getDepartment() {
@@ -39,6 +41,14 @@ public class Application {
 
 	public void setTasks(HashMap<String, Task> tasks) {
 		this.tasks = tasks;
+	}
+	
+	public void setEPR(String epr){
+		this.epr=epr;
+	}
+	
+	public String getEPR(){
+		return this.epr;
 	}
 	
 	

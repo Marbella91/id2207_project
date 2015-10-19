@@ -62,7 +62,7 @@ public class HRInterfaceController implements Initializable{
 		this.openRequests = new LinkedList<HiringRequest>();
 		this.rejectedRequests = new LinkedList<HiringRequest>();
 		
-		LinkedList<EventPlanningRequest> list= EventPlanningRequest.generateEPRequestsList();
+		LinkedList<EventPlanningRequest> list= EventPlanningRequest.generateEPRequestList();
 		for(int j=0; j<list.size();j++){
 			EventPlanningRequest epr=list.get(j);
 			for (int i=0; i<epr.getHiringRequest().size();i++){
@@ -137,6 +137,8 @@ public class HRInterfaceController implements Initializable{
 								approveButton.setVisible(false);
 						        rejectButton.setVisible(false);
 								traceTable();
+								row.getItem().setStatus("approved");
+								
 			
 								}
 				        	}

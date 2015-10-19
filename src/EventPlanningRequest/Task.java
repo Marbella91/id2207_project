@@ -11,14 +11,16 @@ public class Task {
 	private String priority;
 	private String senderName;
 	private String employeeName;
+	private String epr;
 
-	public Task(Employee sender, String description, Employee assignedTo, String priority) {
+	public Task(Employee sender, String description, Employee assignedTo, String priority, String epr) {
 		this.sender = sender;
 		this.description = description;
 		this.assignedTo = assignedTo;
 		this.priority = priority;
 		this.senderName=sender.getName();
 		this.employeeName=assignedTo.getName();
+		this.epr=epr;
 	}
 
 	public String getDescription() {
@@ -59,6 +61,14 @@ public class Task {
 	
 	public String getEmployeeName(){
 		return this.employeeName;
+	}
+	
+	public void setEPR(String epr){
+		this.epr=epr;
+	}
+	
+	public String getEPR(){
+		return this.epr;
 	}
 
 	

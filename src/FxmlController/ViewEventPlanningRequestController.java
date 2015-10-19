@@ -251,7 +251,7 @@ public class ViewEventPlanningRequestController  implements Initializable{
 						button.setOnAction(new EventHandler<ActionEvent>() {
 							@Override
 							public void handle(ActionEvent e) {
-								request.setProductionApplication(new Application("production"));
+								request.setProductionApplication(new Application("production", request.toString()));
 								request.updateXml();
 								JOptionPane.showMessageDialog(null, "The application has been "
 										+ "created successfully!",
