@@ -2,10 +2,7 @@ package FxmlController;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
@@ -15,7 +12,6 @@ import EventPlanningRequest.EventPlanningRequest;
 import EventPlanningRequest.EventPlanningRequestStatus;
 import EventPlanningRequest.HiringRequest;
 import Login.Employee;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -24,15 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -64,7 +52,6 @@ public class ViewEventPlanningRequestController  implements Initializable{
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		this.labelLogin.setText(this.employee.getLogin());
 		this.labelClientRef.setText(this.request.getClientRecordRef());
 		this.labelClientName.setText(this.request.getClientName());
@@ -80,7 +67,7 @@ public class ViewEventPlanningRequestController  implements Initializable{
 		this.labelBudget.setText(String.valueOf(this.request.getExpectedBudget()));
 		
 		
-		// Display existing comments from some actors
+		// Display existing comments from some actors or warnings
 		switch(this.employee.getJob()){
 			case SeniorCustomerServiceOfficer:
 			case FinancialManager:
@@ -99,6 +86,19 @@ public class ViewEventPlanningRequestController  implements Initializable{
 					comments += "Comments from Administration Manager: "
 						+ administrationComments+ "\n";
 				this.labelExistingComments.setText(comments);
+				break;
+			case ProductionManager:
+				String warning = "";
+				if (this.request.getProductionApplication() == null)
+					warning = "Warning: You cannot create an application if there is at least one open hiring request\n" +
+							"for this event.\n" +
+							"Once the application has been created, it is not possible to create hiring requests anymore.\n";
+				else if (this.request.getProductionApplication().getStatus().equals("open"))
+					warning = "Warning: You cannot set the application's status to 'in progress' if there is an open\n" +
+							"financial request for this event.\n" +
+							"Once the application's status has been set to 'in progress', it is not possible to create\n" +
+							"a financial request or to add new tasks in the application.";
+				this.labelExistingComments.setText(warning);
 				break;
 			default:
 				this.labelExistingComments.setText("");
