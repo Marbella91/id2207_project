@@ -15,6 +15,7 @@ import FxmlController.AdministrationManagerInterfaceController;
 import FxmlController.FinancialManagerInterfaceController;
 import FxmlController.HRInterfaceController;
 import FxmlController.NewRequestController;
+import FxmlController.ProductionEmployeeInterfaceController;
 import FxmlController.ProductionManagerInterfaceController;
 import FxmlController.SCSOInterfaceController;
 import javafx.fxml.FXMLLoader;
@@ -251,7 +252,20 @@ public class Employee {
 	    	        currentStage.setMinWidth(1100);
 	    	        currentStage.show();
 	        		break;
-	        	
+	        	case MusicEmployee:
+	        	case DecorationEmployee:
+	        		loader = new FXMLLoader(getClass().getResource("../Fxml/ProductionEmployeeInterface.fxml"));
+	        		ProductionEmployeeInterfaceController peInterfaceController =
+	        				new  ProductionEmployeeInterfaceController(this);
+	    	        loader.setController(peInterfaceController);
+	    	        root = (Parent) loader.load();
+					scene = new Scene(root);
+	    	        currentStage.setScene(scene);
+	    	        currentStage.setTitle("Production Employee Interface"); 
+	    	        currentStage.setMinHeight(700);
+	    	        currentStage.setMinWidth(1100);
+	    	        currentStage.show();
+	    	        break;
 	        	default:
 	        		System.out.println("Cas pas encore trait�");
 	        		currentStage.close();
