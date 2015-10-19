@@ -66,7 +66,7 @@ public class FinancialManagerInterfaceController  implements Initializable{
 	
 	public FinancialManagerInterfaceController(Employee employee){
 		this.employee=employee;
-		this.EPRequests = EventPlanningRequest.generateAuthorizedEPRequestsList(employee);
+		this.EPRequests = EventPlanningRequest.generateEPRequestList();
 		
 		this.pendingFinancialRequests = new LinkedList<EventPlanningRequest>();
 		this.approvedRequests = new LinkedList<EventPlanningRequest>();
