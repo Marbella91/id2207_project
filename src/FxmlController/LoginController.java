@@ -1,5 +1,4 @@
 package FxmlController;
-import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
@@ -9,12 +8,8 @@ import javax.swing.JOptionPane;
 import Login.Employee;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -22,7 +17,6 @@ public class LoginController implements Initializable{
 	@FXML private TextField labelLogin;
 	@FXML private TextField labelPass;
 	@FXML private Button buttonLogin;
-	private Employee employee; 
 	
 	@FXML
 	private void handleButtonLogin(ActionEvent event){
@@ -51,10 +45,7 @@ public class LoginController implements Initializable{
 		    		employeeFound = true;
 		    		if (employee.getPassword().equals(printedPassword))
 		    		{
-		    			this.employee=employee;
 		    			Stage currentStage = (Stage) buttonLogin.getScene().getWindow();
-		    			//currentStage.close();
-		    			
 		    			employee.generateInterface(currentStage);
 		    		}
 		    		else
@@ -77,7 +68,5 @@ public class LoginController implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
 	}
 }

@@ -36,6 +36,7 @@ public class MainTest {
 		TestEPRObjects.testFinancialRequest();
 		TestEPRObjects.testApplication();
 		TestEPRObjects.testTask();
+		TestEPRObjects.testClientRecord();
 		System.out.println();
 			
 	}

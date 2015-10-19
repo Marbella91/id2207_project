@@ -1,6 +1,7 @@
 package Test;
 
 import EventPlanningRequest.Application;
+import EventPlanningRequest.ClientRecord;
 import EventPlanningRequest.FinancialRequest;
 import EventPlanningRequest.HiringRequest;
 import EventPlanningRequest.Task;
@@ -11,7 +12,7 @@ public class TestEPRObjects {
 	public static void testHiringRequest()
 	{
 		HiringRequest hr = new HiringRequest("department", "contractType", 1, "jobTitle",
-				"jobDescription",12);
+				"jobDescription",1);
 		if (hr.getDepartment().equals("department") &&
 				hr.getContractType().equals("contractType") &&
 				hr.getExperience() == 1 &&
@@ -62,6 +63,16 @@ public class TestEPRObjects {
 			System.out.println("Task creation ok");
 		} else {
 			System.out.println("Error in creation of task");
+		}
+	}
+	
+	public static void testClientRecord()
+	{
+		ClientRecord record = new ClientRecord("recordref");
+		if (record.getRecordRef().equals("recordref")){
+			System.out.println("Client record creation ok");
+		} else {
+			System.out.println("Error in creation of clint record");
 		}
 	}
 }

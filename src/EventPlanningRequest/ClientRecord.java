@@ -11,7 +11,6 @@ import java.util.LinkedList;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
 
-import Login.Employee;
 
 public class ClientRecord {
 	private String recordRef;

@@ -1,7 +1,6 @@
 package FxmlController;
 
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
@@ -57,6 +56,7 @@ public class Controller {
 				 primaryStage.setTitle("Login"); 
 				 primaryStage.setHeight(250);
 				 primaryStage.setWidth(400);
+				 primaryStage.centerOnScreen();
 				 primaryStage.show();
 			} catch (IOException e) {
 				e.printStackTrace();

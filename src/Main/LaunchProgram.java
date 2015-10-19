@@ -26,6 +26,7 @@ public class LaunchProgram extends Application {
 	        primaryStage.setTitle("Login"); 
 	        primaryStage.setHeight(250);
 	        primaryStage.setWidth(400);
+	        primaryStage.centerOnScreen();
 	        primaryStage.show();
 	         
 	      
